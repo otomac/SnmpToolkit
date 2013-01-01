@@ -3,36 +3,36 @@
 package jp.co.acroquest.tool.snmp.toolkit.entity;
 
 /**
- * ‚Pƒm[ƒh•ª‚ÌAgent’è‹`‚ğ•\‚·ƒGƒ“ƒeƒBƒeƒBB
- * 
+ * ï¼‘ãƒãƒ¼ãƒ‰åˆ†ã®Agentå®šç¾©ã‚’è¡¨ã™ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã€‚
+ *
  * @author akiba
  */
 public class AgentDefinition
 {
-    /** Agent‚ÌMIBƒf[ƒ^‚ğ’è‹`‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹–¼B@*/
+    /** Agentã®MIBãƒ‡ãƒ¼ã‚¿ã‚’å®šç¾©ã—ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åã€‚ã€€*/
     private String agentMIBFile_;
-    
-    /** ‚±‚ÌAgent‚ÌIPƒAƒhƒŒƒXB@*/
+
+    /** ã“ã®Agentã®IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚ã€€*/
     private String address_;
-    
-    /** ‚±‚ÌAgent‚Ì‘Î‰‚·‚éSNMPƒo[ƒWƒ‡ƒ“B */
+
+    /** ã“ã®Agentã®å¯¾å¿œã™ã‚‹SNMPãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€‚ */
     private String version_;
-    
-    /** ‚±‚ÌAgent‚ÌGET/SET—pSNMPƒ|[ƒg”Ô†B@*/
+
+    /** ã“ã®Agentã®GET/SETç”¨SNMPãƒãƒ¼ãƒˆç•ªå·ã€‚ã€€*/
     private int snmpPort_;
-    
-    /** ‚±‚ÌAgent‚ÌTrap—pSNMPƒ|[ƒg”Ô†B */
+
+    /** ã“ã®Agentã®Trapç”¨SNMPãƒãƒ¼ãƒˆç•ªå·ã€‚ */
     private int trapPort_;
-    
-    /** ‚±‚ÌAgent‚Ì“Ç‚İæ‚èê—pƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** ã“ã®Agentã®èª­ã¿å–ã‚Šå°‚ç”¨ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     private String roCommunity_;
-    
-    /** ‚±‚ÌAgent‚Ì‘‚«‚İ‰Â”\ƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** ã“ã®Agentã®æ›¸ãè¾¼ã¿å¯èƒ½ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     private String rwCommunity_;
-    
-    /** ‚±‚ÌAgent‚ÌTrapƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** ã“ã®Agentã®Trapã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     private String trapCommunity_;
-    
+
     /**
      * @return the version
      */
@@ -136,7 +136,7 @@ public class AgentDefinition
     {
         return this.agentMIBFile_;
     }
-    
+
     /**
      * @param agentMIBFile the agentMIBFile to set
      */
@@ -144,7 +144,7 @@ public class AgentDefinition
     {
         this.agentMIBFile_ = agentMIBFile;
     }
-    
+
     /**
      * @return the address
      */
@@ -152,7 +152,7 @@ public class AgentDefinition
     {
         return this.address_;
     }
-    
+
     /**
      * @param address the address to set
      */
@@ -160,11 +160,11 @@ public class AgentDefinition
     {
         this.address_ = address;
     }
-    
+
     /**
-     * AgentInfo‚Ì•¶š—ñ•\Œ»‚ğæ“¾‚·‚éB
-     * 
-     * @return ‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ì•¶š—ñ•\Œ»B
+     * AgentInfoã®æ–‡å­—åˆ—è¡¨ç¾ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ–‡å­—åˆ—è¡¨ç¾ã€‚
      */
     public String toString()
     {
@@ -194,7 +194,7 @@ public class AgentDefinition
         buf.append("file=");
         buf.append(this.agentMIBFile_);
         buf.append('}');
-        
+
         return buf.toString();
     }
 }

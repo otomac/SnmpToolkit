@@ -1,6 +1,6 @@
 //Snmp4jTrapSender.java ----
 // History: 2004/11/22 - Create
-//          2009/08/15 - AgentService‘Î‰
+//          2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit.trap;
 
 import java.io.IOException;
@@ -34,8 +34,8 @@ import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
 
 /**
- * SNMP4jƒ‰ƒCƒuƒ‰ƒŠ‚ğg—p‚µ‚½TrapSenderB
- * 
+ * SNMP4jãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½¿ç”¨ã—ãŸTrapSenderã€‚
+ *
  * @author akiba
  * @version 1.0
  */
@@ -43,23 +43,23 @@ public class Snmp4jTrapSender extends AbstractTrapSender
 {
     private static final Object SNMP_VERSION_V1  = "v1";
     private static final Object SNMP_VERSION_V2C = "v2c";
-    
-    /** PDU‘—M‚Ég—p‚·‚éSnmpƒIƒuƒWƒFƒNƒgB */
+
+    /** PDUé€ä¿¡ã«ä½¿ç”¨ã™ã‚‹Snmpã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚ */
     private Snmp snmp_;
 
     /**
-     * Snmp4jTrapSender‚ğ‰Šú‰»‚·‚éB
-     * 
-     * @param host ƒoƒCƒ“ƒh‚·‚éƒzƒXƒg–¼B
-     * @exception SnmpToolkitException SNMPƒRƒ“ƒeƒLƒXƒg‚Ìì¬‚É¸”s‚µ‚½ê‡B
+     * Snmp4jTrapSenderã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+     *
+     * @param host ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ›ã‚¹ãƒˆåã€‚
+     * @exception SnmpToolkitException SNMPã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ä½œæˆã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public Snmp4jTrapSender(String host)
         throws SnmpToolkitException
     {
         super();
         Log log = LogFactory.getLog(TrapSender.class);
-        
-        // SnmpƒRƒ“ƒeƒLƒXƒg‚Ìì¬
+
+        // Snmpã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ä½œæˆ
         try
         {
             log.debug("Initializing Snmp4jTrapSender. host=" + host);
@@ -67,7 +67,7 @@ public class Snmp4jTrapSender extends AbstractTrapSender
         }
         catch (IOException exception)
         {
-            // TransportMapping‚Ìì¬‚É¸”s‚µ‚½ê‡‚Í“à•”‚Ì—áŠO‚Éƒ‰ƒbƒv‚µ‚ÄƒXƒ[‚·‚é
+            // TransportMappingã®ä½œæˆã«å¤±æ•—ã—ãŸå ´åˆã¯å†…éƒ¨ã®ä¾‹å¤–ã«ãƒ©ãƒƒãƒ—ã—ã¦ã‚¹ãƒ­ãƒ¼ã™ã‚‹
             throw new SnmpToolkitException("Failed to create transport mapping.", exception);
         }
     }
@@ -79,7 +79,7 @@ public class Snmp4jTrapSender extends AbstractTrapSender
     {
         Log log = LogFactory.getLog(TrapSender.class);
         PDU pdu = null;
-        
+
         int version = 0;
         String versionStr = trapData.getVersion();
         if (SNMP_VERSION_V1.equals(versionStr) == true)
@@ -100,8 +100,8 @@ public class Snmp4jTrapSender extends AbstractTrapSender
             version = SnmpConstants.version2c;
             pdu = createTrapV2cPDU(trapData);
         }
-        
-        // Trap‚ğ‘—M‚·‚é
+
+        // Trapã‚’é€ä¿¡ã™ã‚‹
         try
         {
             SnmpConfiguration config = SnmpConfiguration.getInstance();
@@ -109,7 +109,7 @@ public class Snmp4jTrapSender extends AbstractTrapSender
             SnmpManagerList mgrList = configItem.getSnmpManagerList();
             SnmpManager[] managers = mgrList.getSnmpManagers();
 
-            // ’è‹`‚³‚ê‚Ä‚¢‚é‘S‚Ä‚Ìƒ}ƒl[ƒWƒƒ‚É‘—M‚·‚é
+            // å®šç¾©ã•ã‚Œã¦ã„ã‚‹å…¨ã¦ã®ãƒãƒãƒ¼ã‚¸ãƒ£ã«é€ä¿¡ã™ã‚‹
             for (SnmpManager manager : managers)
             {
                 String mgrAddress = manager.getManagerAddress();
@@ -118,12 +118,12 @@ public class Snmp4jTrapSender extends AbstractTrapSender
                     log.warn("Manager address is null.");
                     throw new SnmpToolkitException("Manager address is null.");
                 }
-                
+
                 if (log.isDebugEnabled() == true)
                 {
                     log.debug("snmp manager=" + mgrAddress);
                 }
-                
+
                 CommunityTarget target = new CommunityTarget();
                 target.setVersion(version);
                 target.setCommunity(new OctetString(super.community_));
@@ -134,12 +134,12 @@ public class Snmp4jTrapSender extends AbstractTrapSender
                     throw new SnmpToolkitException("Failed to parse manager address.");
                 }
                 target.setAddress(address);
-                
+
                 if (log.isDebugEnabled() == true)
                 {
                     log.debug("Sending trap-pdu=" + pdu + ", target=" + target);
                 }
-                
+
                 this.snmp_.send(pdu, target);
                 log.info("Trap is sent to " + target.getAddress());
             }
@@ -154,57 +154,57 @@ public class Snmp4jTrapSender extends AbstractTrapSender
             throw ex;
         }
     }
-    
+
     /**
-     * SNMPv1Trap‚ÌPDU‚ğæ“¾‚·‚éB
-     * 
-     * @param trapData PDU‚Éİ’è‚·‚éTrapƒf[ƒ^B
-     * @return SNMPv2Trap‚ÌPDUB
-     * @throws SnmpToolkitException •s³‚ÈTrapƒf[ƒ^‚¾‚Á‚½ê‡B
+     * SNMPv1Trapã®PDUã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param trapData PDUã«è¨­å®šã™ã‚‹Trapãƒ‡ãƒ¼ã‚¿ã€‚
+     * @return SNMPv2Trapã®PDUã€‚
+     * @throws SnmpToolkitException ä¸æ­£ãªTrapãƒ‡ãƒ¼ã‚¿ã ã£ãŸå ´åˆã€‚
      */
     private PDU createTrapV1PDU(TrapData trapData)
         throws SnmpToolkitException
     {
         SnmpVariableHelper varHelaper = new Snmp4jVariableHelper();
-        
+
         PDUv1 pdu = new PDUv1();
         pdu.setType(PDU.V1TRAP);
-        
-        // RequestID‚ªw’è‚³‚ê‚Ä‚¢‚ê‚ÎATrapPDU‚Éİ’è‚·‚é
+
+        // RequestIDãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚Œã°ã€TrapPDUã«è¨­å®šã™ã‚‹
         boolean hasReqId = trapData.hasReqId();
         if (hasReqId == true)
         {
             pdu.setRequestID(new Integer32(trapData.getReqId()));
         }
-        
+
         int generic = trapData.getGeneric();
         int specific = trapData.getSpecific();
         String enterprise = trapData.getEnterprise();
-        
+
         if (generic < 0)
         {
             throw new SnmpToolkitException("invalid generic: " + generic);
         }
         pdu.setGenericTrap(generic);
-        
+
         if (specific < 0)
         {
             throw new SnmpToolkitException("invalid specific: " + specific);
         }
         pdu.setSpecificTrap(specific);
-        
+
         if (enterprise == null)
         {
             throw new SnmpToolkitException("invalid enterprise: null");
         }
         pdu.setEnterprise(new OID(enterprise));
-        
-        // sysUpTime‚Í1/100’PˆÊA‚©‚Â32bit Integer‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+
+        // sysUpTimeã¯1/100å˜ä½ã€ã‹ã¤32bit Integerã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
         long sysUpTime = SnmpToolkitImpl.getSysUpTime();
         int  sysUpTimeInt = (int)((sysUpTime / 10) % 4294967296L);
         pdu.setTimestamp(sysUpTimeInt);
-        
-        // Trap‚É•K—v‚ÈVariableBinding‚Ìİ’è
+
+        // Trapã«å¿…è¦ãªVariableBindingã®è¨­å®š
         SnmpVarbind[] varbinds = trapData.getVarbinds();
         for (int index = 0; index < varbinds.length; index ++)
         {
@@ -217,25 +217,25 @@ public class Snmp4jTrapSender extends AbstractTrapSender
                 pdu.add(new VariableBinding(new OID(oid), asnObject));
             }
         }
-        
+
         return pdu;
     }
-    
+
     /**
-     * SNMPv2Trap‚ÌPDU‚ğæ“¾‚·‚éB
-     * 
-     * @param trapData PDU‚Éİ’è‚·‚éTrapƒf[ƒ^B
-     * @return SNMPv2Trap‚ÌPDUB
+     * SNMPv2Trapã®PDUã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param trapData PDUã«è¨­å®šã™ã‚‹Trapãƒ‡ãƒ¼ã‚¿ã€‚
+     * @return SNMPv2Trapã®PDUã€‚
      */
     private PDU createTrapV2cPDU(TrapData trapData)
     {
         SnmpVariableHelper varHelaper = new Snmp4jVariableHelper();
-        
+
         PDU pdu = new PDU();
         pdu.setType(PDU.TRAP);
-        
-        // RequestID‚ªw’è‚³‚ê‚Ä‚¢‚ê‚ÎATrapPDU‚Éİ’è‚·‚é
-        // w’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎA©“®“I‚ÉƒCƒ“ƒNƒŠƒƒ“ƒg‚³‚ê‚½’l‚ğİ’è‚·‚é
+
+        // RequestIDãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚Œã°ã€TrapPDUã«è¨­å®šã™ã‚‹
+        // æŒ‡å®šã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€è‡ªå‹•çš„ã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã•ã‚ŒãŸå€¤ã‚’è¨­å®šã™ã‚‹
         boolean hasReqId = trapData.hasReqId();
         if (hasReqId == true)
         {
@@ -246,17 +246,17 @@ public class Snmp4jTrapSender extends AbstractTrapSender
             int newReqId = this.snmp_.getNextRequestID();
             pdu.setRequestID(new Integer32(newReqId));
         }
-        
-        // SysUpTimeATrapOID‚Ìİ’è
-        // sysUpTime‚Í1/100’PˆÊA‚©‚Â32bit Integer‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+
+        // SysUpTimeã€TrapOIDã®è¨­å®š
+        // sysUpTimeã¯1/100å˜ä½ã€ã‹ã¤32bit Integerã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
         long sysUpTime = SnmpToolkitImpl.getSysUpTime();
         int  sysUpTimeInt = (int)((sysUpTime / 10) % 4294967296L);
         pdu.add(new VariableBinding(SnmpConstants.sysUpTime,
                                     new TimeTicks(sysUpTimeInt)));
         pdu.add(new VariableBinding(SnmpConstants.snmpTrapOID,
                 new OID(trapData.getTrapOid())));
-        
-        // Trap‚É•K—v‚ÈVariableBinding‚Ìİ’è
+
+        // Trapã«å¿…è¦ãªVariableBindingã®è¨­å®š
         SnmpVarbind[] varbinds = trapData.getVarbinds();
         for (int index = 0; index < varbinds.length; index ++)
         {
@@ -269,17 +269,17 @@ public class Snmp4jTrapSender extends AbstractTrapSender
                 pdu.add(new VariableBinding(new OID(oid), asnObject));
             }
         }
-        
-        // trapEnterprise‚Ìİ’è
-        // XMLƒtƒ@ƒCƒ‹’†‚É<enterprise>—v‘f‚ğŠÜ‚ñ‚Å‚¢‚éê‡‚ÍA‚»‚ê‚ğİ’è‚·‚éB
-        // w’è‚ª‚È‚¢ê‡‚ÍAİ’è‚µ‚È‚¢B‚»‚Ìê‡‚ÍA©•ª‚ÅVarbind‚ğİ’è‚·‚é•K—v‚ª‚ ‚éB
+
+        // trapEnterpriseã®è¨­å®š
+        // XMLãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã«<enterprise>è¦ç´ ã‚’å«ã‚“ã§ã„ã‚‹å ´åˆã¯ã€ãã‚Œã‚’è¨­å®šã™ã‚‹ã€‚
+        // æŒ‡å®šãŒãªã„å ´åˆã¯ã€è¨­å®šã—ãªã„ã€‚ãã®å ´åˆã¯ã€è‡ªåˆ†ã§Varbindã‚’è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
         String enterprise = trapData.getEnterprise();
         if (enterprise != null)
         {
             pdu.add(new VariableBinding(SnmpConstants.snmpTrapEnterprise,
                     new OID(enterprise)));
         }
-        
+
         return pdu;
     }
 }

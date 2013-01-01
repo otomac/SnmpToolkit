@@ -16,8 +16,8 @@ import org.snmp4j.smi.UdpAddress;
 import org.snmp4j.smi.VariableBinding;
 
 /**
- * ƒ_ƒ~[‚ÌRequest‘—MƒNƒ‰ƒXB
- * 
+ * ãƒ€ãƒŸãƒ¼ã®Requesté€ä¿¡ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
@@ -28,32 +28,32 @@ public class SimpleRequestSender
     {
         SimpleRequestSender app = new SimpleRequestSender();
         app.send(args[0]);
-        
+
         System.exit(0);
     }
 
     /**
-     * w’è‚³‚ê‚½ƒzƒXƒg‚É‘Î‚µ‚ÄŒÅ’è‚ÌRequest‚ğ‘—M‚·‚éB
+     * æŒ‡å®šã•ã‚ŒãŸãƒ›ã‚¹ãƒˆã«å¯¾ã—ã¦å›ºå®šã®Requestã‚’é€ä¿¡ã™ã‚‹ã€‚
      */
     private void send(String toHost)
         throws Exception
     {
-        // PDUƒIƒuƒWƒFƒNƒg‚Ì¶¬
+        // PDUã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
         PDU requestPdu = new PDUv1();
         requestPdu.setType(PDU.SET);
-        
+
         VariableBinding varbind = new VariableBinding();
         varbind.setOid(new OID("1.3.6.1.2.1.1.1.0"));
         requestPdu.add(varbind);
-        
-        // ‘—Mæƒm[ƒh‚ÌŒˆ’è
+
+        // é€ä¿¡å…ˆãƒãƒ¼ãƒ‰ã®æ±ºå®š
         CommunityTarget target = new CommunityTarget();
         OctetString community = new OctetString("public");
         target.setCommunity(community);
         target.setAddress(new UdpAddress(InetAddress.getByName(toHost), 161));
         target.setVersion(1);
-        
-        // ‘—M
+
+        // é€ä¿¡
         Snmp snmp = Snmp4jFactory.createSnmp("127.0.0.1", 161);
         snmp.send(requestPdu, target);
         System.out.println("INFO : Sent pdu.");

@@ -1,65 +1,65 @@
 //RequestHandler.java ----
 // History: 2005/02/07 - Create
-//          2009/05/07 - initHandler()‚ğ’Ç‰Á
-//          2009/08/15 - AgentService‘Î‰
+//          2009/05/07 - initHandler()ã‚’è¿½åŠ 
+//          2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit.request;
 
 import jp.co.acroquest.tool.snmp.toolkit.AgentService;
 import jp.co.acroquest.tool.snmp.toolkit.SnmpToolkitException;
 
 /**
- * SNMP-GETƒŠƒNƒGƒXƒg‚ğó‚¯•t‚¯‚éˆ—ƒNƒ‰ƒX‚ÌƒCƒ“ƒ^ƒtƒF[ƒXB
- * 
+ * SNMP-GETãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ã‘ä»˜ã‘ã‚‹å‡¦ç†ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
+ *
  * @author akiba
  */
 public interface RequestHandler
 {
-    /** ƒfƒtƒHƒ‹ƒg‚ÌRequestóMƒ|[ƒg”Ô†B */
+    /** ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®Requestå—ä¿¡ãƒãƒ¼ãƒˆç•ªå·ã€‚ */
     static final int    DEFAULT_SNMP_PORT      = 161;
-    
-    /** ƒfƒtƒHƒ‹ƒg‚Ì“Ç‚İ‚İê—pƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®èª­ã¿è¾¼ã¿å°‚ç”¨ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     static final String DEFAULT_RO_COMMUNITY   = "public";
-    
-    /** ƒfƒtƒHƒ‹ƒg‚Ì‘‚«‚İ‰Â”\ƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æ›¸ãè¾¼ã¿å¯èƒ½ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     static final String DEFAULT_RW_COMMUNITY   = "public";
-    
-    /** ƒfƒtƒHƒ‹ƒg‚ÌTrap‘—MƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®Trapé€ä¿¡ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     static final String DEFAULT_TRAP_COMMUNITY = "public";
-    
+
     /**
-     * RequestHandler‚É‰Šú‰»ƒpƒ‰ƒ[ƒ^‚ğ—^‚¦‚éB
-     * 
-     * @param agentService RequestHandler‚ªˆ—‚·‚éAgentƒf[ƒ^‚ÌƒT[ƒrƒXB
-     * @throws SnmpToolkitException RequestHandler‚Ì‰Šú‰»‚É¸”s‚µ‚½ê‡B
+     * RequestHandlerã«åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¸ãˆã‚‹ã€‚
+     *
+     * @param agentService RequestHandlerãŒå‡¦ç†ã™ã‚‹Agentãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ¼ãƒ“ã‚¹ã€‚
+     * @throws SnmpToolkitException RequestHandlerã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     void initHandler(AgentService agentService)
         throws SnmpToolkitException;
-    
+
     /**
-     * ƒŠƒXƒjƒ“ƒO‚ğŠJn‚·‚éB
-     * 
-     * @throws SnmpToolkitException ƒŠƒXƒjƒ“ƒO‚ÌŠJn‚É¸”s‚µ‚½ê‡B
+     * ãƒªã‚¹ãƒ‹ãƒ³ã‚°ã‚’é–‹å§‹ã™ã‚‹ã€‚
+     *
+     * @throws SnmpToolkitException ãƒªã‚¹ãƒ‹ãƒ³ã‚°ã®é–‹å§‹ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     void startListening() throws SnmpToolkitException;
-    
+
     /**
-     * RequestHandler‚ğ’â~‚·‚éB
-     * 
-     * @throws SnmpToolkitException ƒŠƒXƒjƒ“ƒO‚Ì’â~‚ÉˆÙí‚ª”­¶‚µ‚½ê‡B
+     * RequestHandlerã‚’åœæ­¢ã™ã‚‹ã€‚
+     *
+     * @throws SnmpToolkitException ãƒªã‚¹ãƒ‹ãƒ³ã‚°ã®åœæ­¢ã«ç•°å¸¸ãŒç™ºç”Ÿã—ãŸå ´åˆã€‚
      */
     void stopListening() throws SnmpToolkitException;
 
     ///**
-    // * V‚µ‚¢AgentƒIƒuƒWƒFƒNƒg‚ğİ’è‚·‚éB
-    // * 
-    // * @param agent V‚µ‚¢AgentƒIƒuƒWƒFƒNƒgB
+    // * æ–°ã—ã„Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®šã™ã‚‹ã€‚
+    // *
+    // * @param agent æ–°ã—ã„Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
     // */
     //void setAgent(Agent agent);
     //
     ///**
-    // * Œ»İİ’è‚³‚ê‚Ä‚¢‚éAgentƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚éB
-    // * 
-    // * @return AgentƒIƒuƒWƒFƒNƒgB
+    // * ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+    // *
+    // * @return Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
     // */
     //Agent getAgent();
 }

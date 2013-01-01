@@ -1,6 +1,6 @@
 //AgentLifecycleManager.java ----
 // History: 2009/05/05 - Create
-//          2009/08/15 - AgentService‘Î‰
+//          2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit;
 
 import java.io.IOException;
@@ -19,31 +19,31 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Agent‚Ì‹N“®EI—¹‚Ìƒ‰ƒCƒtƒTƒCƒNƒ‹‚ğŠÇ—‚·‚éƒNƒ‰ƒXB
- * 
+ * Agentã®èµ·å‹•ãƒ»çµ‚äº†ã®ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  */
 public class AgentLifecycleManager
 {
-    /** Agent’è‹`ƒf[ƒ^”z’uƒfƒBƒŒƒNƒgƒŠ‚ÌƒfƒtƒHƒ‹ƒg’lB */
+    /** Agentå®šç¾©ãƒ‡ãƒ¼ã‚¿é…ç½®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã€‚ */
     private static final String DEFAULT_DATA_DIR = "data";
-    
-    /** ‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ì‹¤’ÊƒCƒ“ƒXƒ^ƒ“ƒXB */
+
+    /** ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å…±é€šã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚ */
     private static AgentLifecycleManager instance__;
-    
-    /** AgentInfo‚ÌƒŠƒXƒgB */
+
+    /** AgentInfoã®ãƒªã‚¹ãƒˆã€‚ */
     private AgentDefinitionList agentDefList_;
-    
-    /** AgentService‚ğ•Û‚·‚éMapƒIƒuƒWƒFƒNƒgB */
+
+    /** AgentServiceã‚’ä¿æŒã™ã‚‹Mapã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚ */
     private Map<String, AgentService> agentServiceMap_;
-    
-    /** Agent’è‹`ƒf[ƒ^”z’uƒfƒBƒŒƒNƒgƒŠB */
+
+    /** Agentå®šç¾©ãƒ‡ãƒ¼ã‚¿é…ç½®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã€‚ */
     private String dataDir_;
-    
+
     /**
-     * AgentLifecycleManager‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éB
-     * 
-     * @return AgentLifecycleManagerƒCƒ“ƒXƒ^ƒ“ƒXB
+     * AgentLifecycleManagerã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return AgentLifecycleManagerã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚
      */
     public static AgentLifecycleManager getInstance()
     {
@@ -54,47 +54,47 @@ public class AgentLifecycleManager
 
         return instance__;
     }
-    
+
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     private AgentLifecycleManager()
     {
         this.dataDir_ = DEFAULT_DATA_DIR;
     }
-    
+
     /**
-     * AgentƒŠƒXƒg’è‹`‚ğ“Ç‚İ‚İA‘S‚Ä‚ÌAgent‚ğƒ[ƒh‚·‚éB
-     * 
-     * @param defFile Agent’è‹`ƒtƒ@ƒCƒ‹‚ÌƒpƒXB
-     * @throws IOException Agent’è‹`ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚½ê‡B
+     * Agentãƒªã‚¹ãƒˆå®šç¾©ã‚’èª­ã¿è¾¼ã¿ã€å…¨ã¦ã®Agentã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã€‚
+     *
+     * @param defFile Agentå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã€‚
+     * @throws IOException Agentå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public void loadAgent(String defFile) throws IOException
     {
         Log log = LogFactory.getLog(AgentLifecycleManager.class);
         log.info("Start loading agents. defFile=" + defFile);
-        
+
         AgentDefinitionListLoader listLoader = new AgentDefinitionListLoader();
         this.agentDefList_ = listLoader.load(defFile);
-        
+
         this.agentServiceMap_ = new HashMap<String, AgentService>();
         for (AgentDefinition agentDef : this.agentDefList_.getAgentDefinitionArray())
         {
-            // Agent’è‹`ƒtƒ@ƒCƒ‹‚©‚çAgentƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚é
+            // Agentå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹
             String agentAddress = agentDef.getAddress();
             String agentMibFile = agentDef.getAgentMIBFile();
             AgentMIBCSVLoader defLoader = new AgentMIBCSVLoader();
             Agent agent = defLoader.load(this.dataDir_, agentMibFile);
-            
-            // AgentƒIƒuƒWƒFƒNƒg‚É‘®«‚ğİ’è‚·‚é
+
+            // Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å±æ€§ã‚’è¨­å®šã™ã‚‹
             agent.setAddress(agentDef.getAddress());
             agent.setSnmpPort(agentDef.getSnmpPort());
             agent.setTrapPort(agentDef.getTrapPort());
             agent.setRoCommunity(agentDef.getRoCommunity());
             agent.setRwCommunity(agentDef.getRwCommunity());
             agent.setTrapCommunity(agentDef.getTrapCommunity());
-            
-            // Agent‚ğƒ}ƒbƒv‚ÉŠi”[‚·‚é
+
+            // Agentã‚’ãƒãƒƒãƒ—ã«æ ¼ç´ã™ã‚‹
             AgentService service = new AgentService(agent);
             this.agentServiceMap_.put(agentAddress, service);
             if (log.isDebugEnabled())
@@ -102,13 +102,13 @@ public class AgentLifecycleManager
                 log.debug("loaded agent: address=" + agentAddress);
             }
         }
-        
+
         log.info("Finished loading agents.");
     }
-    
+
     /**
-     * MIB’è‹`ƒf[ƒ^‚ÌÄ“Ç‚İ‚İ‚ğÀ{‚·‚éB
-     * 
+     * MIBå®šç¾©ãƒ‡ãƒ¼ã‚¿ã®å†èª­ã¿è¾¼ã¿ã‚’å®Ÿæ–½ã™ã‚‹ã€‚
+     *
      * @throws SnmpToolkitException
      */
     public void reloadMIBData()
@@ -116,7 +116,7 @@ public class AgentLifecycleManager
     {
         Log log = LogFactory.getLog(AgentLifecycleManager.class);
         log.info("Start reloading all agents.");
-        
+
         synchronized(this.agentServiceMap_)
         {
             Set<String> agentAddressSet = this.agentServiceMap_.keySet();
@@ -125,46 +125,46 @@ public class AgentLifecycleManager
                 reloadMIBData(agentAddress);
             }
         }
-        
+
         log.info("Finished reloading all agents.");
     }
 
     /**
-     * “Á’èIPƒAƒhƒŒƒX‚ÌAgent‚É‚Â‚¢‚ÄMIB’è‹`ƒf[ƒ^‚ÌÄ“Ç‚İ‚İ‚ğÀ{‚·‚éB
-     * 
+     * ç‰¹å®šIPã‚¢ãƒ‰ãƒ¬ã‚¹ã®Agentã«ã¤ã„ã¦MIBå®šç¾©ãƒ‡ãƒ¼ã‚¿ã®å†èª­ã¿è¾¼ã¿ã‚’å®Ÿæ–½ã™ã‚‹ã€‚
+     *
      * @param ipAddress
      * @throws IOException
      * @throws SnmpToolkitException
      */
-    public void reloadMIBData(String ipAddress) 
+    public void reloadMIBData(String ipAddress)
         throws SnmpToolkitException
     {
         Log log = LogFactory.getLog(AgentLifecycleManager.class);
         log.info("Start reloading agents. address=" + ipAddress);
-        
+
         synchronized(this.agentServiceMap_)
         {
             try
             {
                 AgentService service = this.agentServiceMap_.get(ipAddress);
                 Agent oldAgent = service.getAgent();
-                
-                // Agent’è‹`ƒtƒ@ƒCƒ‹‚©‚çAgentƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚é
+
+                // Agentå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹
                 AgentDefinition agentInfo = this.agentDefList_.getAgentDefinition(ipAddress);
                 String agentDefFile = agentInfo.getAgentMIBFile();
                 AgentMIBCSVLoader defLoader = new AgentMIBCSVLoader();
                 Agent agent = defLoader.load(this.dataDir_, agentDefFile);
                 log.debug("new agent loaded. " + agent.toString());
-                
-                // AgentƒIƒuƒWƒFƒNƒg‚É‘®«‚ğİ’è‚·‚é
+
+                // Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å±æ€§ã‚’è¨­å®šã™ã‚‹
                 agent.setAddress(oldAgent.getAddress());
                 agent.setSnmpPort(oldAgent.getSnmpPort());
                 agent.setTrapPort(oldAgent.getTrapPort());
                 agent.setRoCommunity(oldAgent.getRoCommunity());
                 agent.setRwCommunity(oldAgent.getRwCommunity());
                 agent.setTrapCommunity(oldAgent.getTrapCommunity());
-                
-                // Agent‚ğXV‚·‚é
+
+                // Agentã‚’æ›´æ–°ã™ã‚‹
                 service.reloadAgent(agent);
             }
             catch (IOException exception)
@@ -172,35 +172,35 @@ public class AgentLifecycleManager
                 throw new SnmpToolkitException(exception);
             }
         }
-        
+
         log.info("Finished reloading agents. address=" + ipAddress);
     }
-    
+
     /**
-     * w’è‚³‚ê‚½ƒAƒhƒŒƒX‚ÅAgent‚ğ‹N“®‚·‚éB
-     * 
-     * @param address Agent‚ğ‹N“®‚·‚éƒAƒhƒŒƒXB
-     * @throws SnmpToolkitException Agent‚Ì‹N“®‚É¸”s‚µ‚½ê‡B
+     * æŒ‡å®šã•ã‚ŒãŸã‚¢ãƒ‰ãƒ¬ã‚¹ã§Agentã‚’èµ·å‹•ã™ã‚‹ã€‚
+     *
+     * @param address Agentã‚’èµ·å‹•ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+     * @throws SnmpToolkitException Agentã®èµ·å‹•ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public void startAgent(String address) throws SnmpToolkitException
     {
         Log log = LogFactory.getLog(AgentLifecycleManager.class);
-        
+
         AgentService service = this.agentServiceMap_.get(address);
         if (service == null)
         {
             log.warn("cannot find agent: address=" + address);
             return;
         }
-        
+
         service.startService();
         log.info("started agent: address=" + address);
     }
-    
+
     /**
-     * “o˜^‚³‚ê‚Ä‚¢‚é‘S‚Ä‚ÌAgent‚ğ‹N“®‚·‚éB
-     * 
-     * @throws SnmpToolkitException Agent‚Ì‹N“®‚É¸”s‚µ‚½ê‡B
+     * ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å…¨ã¦ã®Agentã‚’èµ·å‹•ã™ã‚‹ã€‚
+     *
+     * @throws SnmpToolkitException Agentã®èµ·å‹•ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public void startAllAgents() throws SnmpToolkitException
     {
@@ -208,37 +208,37 @@ public class AgentLifecycleManager
         {
             return;
         }
-        
+
         Set<String> keys = this.agentServiceMap_.keySet();
         for (String address : keys)
         {
             startAgent(address);
         }
     }
-    
+
     /**
-     * w’è‚³‚ê‚½IPƒAƒhƒŒƒX‚ÌAgent‚ª‚à‚ÂTrapSender‚ğæ“¾‚·‚éB
-     * 
-     * @param ipAddress æ“¾‚·‚éAgent‚ÌIPƒAƒhƒŒƒXB
-     * @return TrapSenderƒIƒuƒWƒFƒNƒgB
+     * æŒ‡å®šã•ã‚ŒãŸIPã‚¢ãƒ‰ãƒ¬ã‚¹ã®AgentãŒã‚‚ã¤TrapSenderã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param ipAddress å–å¾—ã™ã‚‹Agentã®IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+     * @return TrapSenderã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public TrapSender getTrapSender(String ipAddress)
     {
         TrapSender sender = null;
-        
+
         AgentService  service = this.agentServiceMap_.get(ipAddress);
         if (service != null)
         {
             sender = service.getTrapSender();
         }
-        
+
         return sender;
     }
 
     /**
-     * Agent’è‹`ƒtƒ@ƒCƒ‹‚Ì”z’uƒfƒBƒŒƒNƒgƒŠ‚ğİ’è‚·‚éB
-     * 
-     * @param dataDir Agent’è‹`ƒtƒ@ƒCƒ‹‚Ì”z’uƒfƒBƒŒƒNƒgƒŠB
+     * Agentå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®é…ç½®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param dataDir Agentå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®é…ç½®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã€‚
      */
     public void setDataDir(String dataDir)
     {
@@ -246,21 +246,21 @@ public class AgentLifecycleManager
     }
 
     /**
-     * 
+     *
      */
     public void suspendAllServices()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     /**
-     * 
+     *
      */
     public void resumeAllServices()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     /**
@@ -269,7 +269,7 @@ public class AgentLifecycleManager
     public void suspendService(String ipAddress)
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     /**
@@ -278,6 +278,6 @@ public class AgentLifecycleManager
     public void resumeService(String ipAddress)
     {
         // TODO Auto-generated method stub
-        
+
     }
 }

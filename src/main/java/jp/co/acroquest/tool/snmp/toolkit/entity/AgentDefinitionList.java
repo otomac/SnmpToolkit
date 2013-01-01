@@ -7,17 +7,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * AgentDefinition‚ğ•Û‚·‚éƒŠƒXƒgBAgentDefinitionLoader‚©‚ç¶¬‚³‚ê‚éB
- * 
+ * AgentDefinitionã‚’ä¿æŒã™ã‚‹ãƒªã‚¹ãƒˆã€‚AgentDefinitionLoaderã‹ã‚‰ç”Ÿæˆã•ã‚Œã‚‹ã€‚
+ *
  * @author akiba
  */
 public class AgentDefinitionList
 {
-    /** AgentDefinition‚ğ•Û‚·‚éƒ}ƒbƒvB */
+    /** AgentDefinitionã‚’ä¿æŒã™ã‚‹ãƒãƒƒãƒ—ã€‚ */
     private Map<String, AgentDefinition> agentDefinitionList_;
-    
+
     /**
-     * AgentDefinitionList‚ğ¶¬‚·‚éB
+     * AgentDefinitionListã‚’ç”Ÿæˆã™ã‚‹ã€‚
      */
     public AgentDefinitionList()
     {
@@ -25,9 +25,9 @@ public class AgentDefinitionList
     }
 
     /**
-     * AgentDefinition‚ğ’Ç‰Á‚·‚éB
-     * 
-     * @param AgentDefinition ’Ç‰Á‘ÎÛ‚ÌAgentDefinitionB
+     * AgentDefinitionã‚’è¿½åŠ ã™ã‚‹ã€‚
+     *
+     * @param AgentDefinition è¿½åŠ å¯¾è±¡ã®AgentDefinitionã€‚
      */
     public void addAgentDefinition(AgentDefinition AgentDefinition)
     {
@@ -41,30 +41,30 @@ public class AgentDefinitionList
             }
         }
     }
-    
+
     /**
-     * w’è‚³‚ê‚½IPƒAƒhƒŒƒX‚É‘Î‰‚·‚éAgentDefinition‚ğæ“¾‚·‚éB
-     * 
-     * @param address æ“¾‘ÎÛAgentDefinition‚ÌIPƒAƒhƒŒƒXB
-     * @return ‘Î‰‚·‚éAgentDefinitionB‘¶İ‚µ‚È‚¢ê‡‚Ínull‚ğ•Ô‚·B
+     * æŒ‡å®šã•ã‚ŒãŸIPã‚¢ãƒ‰ãƒ¬ã‚¹ã«å¯¾å¿œã™ã‚‹AgentDefinitionã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param address å–å¾—å¯¾è±¡AgentDefinitionã®IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+     * @return å¯¾å¿œã™ã‚‹AgentDefinitionã€‚å­˜åœ¨ã—ãªã„å ´åˆã¯nullã‚’è¿”ã™ã€‚
      */
     public AgentDefinition getAgentDefinition(String address)
     {
         AgentDefinition retAgentDefinition = this.agentDefinitionList_.get(address);
         return retAgentDefinition;
     }
-    
+
     /**
-     * ‚±‚ÌAgentDefinitionList‚ª•Û‚·‚é‘S‚Ä‚ÌAgentDefinition‚ğ”z—ñ‚Åæ“¾‚·‚éB
-     * 
-     * @return AgentDefinition‚Ì”z—ñB
+     * ã“ã®AgentDefinitionListãŒä¿æŒã™ã‚‹å…¨ã¦ã®AgentDefinitionã‚’é…åˆ—ã§å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return AgentDefinitionã®é…åˆ—ã€‚
      */
     public AgentDefinition[] getAgentDefinitionArray()
     {
         Collection<AgentDefinition> infoSet = this.agentDefinitionList_.values();
         AgentDefinition[] infoArray = new AgentDefinition[infoSet.size()];
         infoArray = infoSet.toArray(infoArray);
-        
+
         return infoArray;
     }
 }

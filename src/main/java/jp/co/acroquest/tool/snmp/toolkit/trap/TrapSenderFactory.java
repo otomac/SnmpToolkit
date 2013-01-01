@@ -1,7 +1,7 @@
 //TrapSenderFactory.java ----
 // History: 2005/02/07 - Create
-//          2009/05/07 - SnmpStackFactory‚ğ“±“ü
-//          2009/08/15 - AgentService‘Î‰
+//          2009/05/07 - SnmpStackFactoryã‚’å°å…¥
+//          2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit.trap;
 
 import jp.co.acroquest.tool.snmp.toolkit.SnmpToolkitException;
@@ -9,19 +9,19 @@ import jp.co.acroquest.tool.snmp.toolkit.entity.Agent;
 import jp.co.acroquest.tool.snmp.toolkit.stack.SnmpStackFactory;
 
 /**
- * TrapSenderƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»‚·‚éˆ×‚Ìƒtƒ@ƒNƒgƒŠƒNƒ‰ƒXB<br>
- * ’ñ‹Ÿ‚·‚éƒƒ\ƒbƒh‚Ístatic‚Å‚ ‚èA‚±‚ÌƒNƒ‰ƒX©‘Ì‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬‚Í•s—v‚Å‚ ‚éB
- * 
+ * TrapSenderã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹ç‚ºã®ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚¯ãƒ©ã‚¹ã€‚<br>
+ * æä¾›ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã¯staticã§ã‚ã‚Šã€ã“ã®ã‚¯ãƒ©ã‚¹è‡ªä½“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆã¯ä¸è¦ã§ã‚ã‚‹ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
 public class TrapSenderFactory
 {
     /**
-     * TrapSenderƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»‚·‚éB
-     * 
-     * @param agent TrapSender‚ªˆ—‚·‚éAgent‚Ìƒf[ƒ^B
-     * @return ¶¬‚µ‚½TrapSenderƒCƒ“ƒXƒ^ƒ“ƒXB
+     * TrapSenderã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+     *
+     * @param agent TrapSenderãŒå‡¦ç†ã™ã‚‹Agentã®ãƒ‡ãƒ¼ã‚¿ã€‚
+     * @return ç”Ÿæˆã—ãŸTrapSenderã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚
      * @throws SnmpToolkitException
      */
     public static TrapSender createTrapSender(Agent agent)
@@ -37,12 +37,12 @@ public class TrapSenderFactory
         {
             throw new SnmpToolkitException(exception);
         }
-        
+
         return sender;
     }
 
     /**
-     * ƒCƒ“ƒXƒ^ƒ“ƒX‰»‚Í•s—v‚Ìˆ×AƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğprivate‰»‚·‚éB
+     * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã¯ä¸è¦ã®ç‚ºã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’privateåŒ–ã™ã‚‹ã€‚
      */
     private TrapSenderFactory()
     {

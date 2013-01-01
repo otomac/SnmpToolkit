@@ -3,7 +3,7 @@
 package jp.co.acroquest.tool.snmp.toolkit;
 
 /**
- * SNMPToolkit‚Ìƒo[ƒWƒ‡ƒ“‚ğ’è‹`‚·‚é’è”ƒNƒ‰ƒXB
+ * SNMPToolkitã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å®šç¾©ã™ã‚‹å®šæ•°ã‚¯ãƒ©ã‚¹ã€‚
  *
  * @author akiba
  */

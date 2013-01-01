@@ -1,7 +1,7 @@
 //Agent.java ----
 // History: 2009/05/07 - Create
-//          2009/05/21 - GETNEXT‘Î‰
-//          2009/08/15 - AgentService‘Î‰
+//          2009/05/21 - GETNEXTå¯¾å¿œ
+//          2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit.entity;
 
 import java.util.Set;
@@ -12,44 +12,44 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * ’Pˆê‚ÌSNMPAgentƒIƒuƒWƒFƒNƒgB
- * 
+ * å˜ä¸€ã®SNMPAgentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+ *
  * @author akiba
  */
 public class Agent
 {
-    /** Agent‚Ìí—Ş‚ğ•\‚·Type–¼ÌB */
+    /** Agentã®ç¨®é¡ã‚’è¡¨ã™Typeåç§°ã€‚ */
     private String type_;
-    
-    /** Agent‚Ì‘Î‰‚·‚éSNMPƒo[ƒWƒ‡ƒ“Bv1, v2c‚ªw’è‰Â”\B */
+
+    /** Agentã®å¯¾å¿œã™ã‚‹SNMPãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€‚v1, v2cãŒæŒ‡å®šå¯èƒ½ã€‚ */
     private String version_;
-    
-    /** Agent‚ÌIPƒAƒhƒŒƒXB */
+
+    /** Agentã®IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚ */
     private String address_;
-    
-    /** “Ç‚İ‚İê—pƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** èª­ã¿è¾¼ã¿å°‚ç”¨ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     private String roCommunity_;
-    
-    /** ‘‚«‚İ‘Î‰ƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** æ›¸ãè¾¼ã¿å¯¾å¿œã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     private String rwCommunity_;
-    
-    /** TrapƒRƒ~ƒ…ƒjƒeƒB–¼B */
+
+    /** Trapã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     private String trapCommunity_;
-    
-    /** GET^SET Requestó•tƒ|[ƒg”Ô†B */
+
+    /** GETï¼SET Requestå—ä»˜ãƒãƒ¼ãƒˆç•ªå·ã€‚ */
     private int snmpPort_;
-    
-    /** Trap‘—Mƒ|[ƒg”Ô†B */
+
+    /** Trapé€ä¿¡ãƒãƒ¼ãƒˆç•ªå·ã€‚ */
     private int trapPort_;
-    
-    /** SNMP‚ÌVariableBinding‚ğŠi”[‚·‚éMapB */
+
+    /** SNMPã®VariableBindingã‚’æ ¼ç´ã™ã‚‹Mapã€‚ */
     private SortedMap<String, SnmpVarbind> objectMap_;
-    
-    /** OID‚Ì”äŠr‚ğs‚¤‚½‚ß‚ÌComparatorB */
+
+    /** OIDã®æ¯”è¼ƒã‚’è¡Œã†ãŸã‚ã®Comparatorã€‚ */
     private OIDComparator comp_;
-    
+
     /**
-     * Agent‚ğ¶¬‚·‚éB
+     * Agentã‚’ç”Ÿæˆã™ã‚‹ã€‚
      */
     public Agent()
     {
@@ -58,9 +58,9 @@ public class Agent
     }
 
     /**
-     * Agent‚ÉVarbind‚ğ’Ç‰Á‚·‚éB
-     * 
-     * @param varbind ’Ç‰Á‚·‚éVarbindB
+     * Agentã«Varbindã‚’è¿½åŠ ã™ã‚‹ã€‚
+     *
+     * @param varbind è¿½åŠ ã™ã‚‹Varbindã€‚
      */
     public void addVarbind(SnmpVarbind varbind)
     {
@@ -68,7 +68,7 @@ public class Agent
         {
             return;
         }
-        
+
         String oid = varbind.getOid();
         if (oid == null)
         {
@@ -78,11 +78,11 @@ public class Agent
     }
 
     /**
-     * w’è‚µ‚½OID‚É‘Î‰‚·‚éVarbind‚ğæ“¾‚·‚éB
-     * 
-     * @param oid ŒŸõ‘ÎÛOIDB
-     * @param exact w’è‚µ‚½OID‚É‘Î‚µ‚ÄŒµ–§‚Éˆê’v‚·‚éVarbind‚ğŒŸõ‚·‚é‚©‚Ç‚¤‚©B
-     * @return ƒqƒbƒg‚µ‚½VarbindB
+     * æŒ‡å®šã—ãŸOIDã«å¯¾å¿œã™ã‚‹Varbindã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param oid æ¤œç´¢å¯¾è±¡OIDã€‚
+     * @param exact æŒ‡å®šã—ãŸOIDã«å¯¾ã—ã¦å³å¯†ã«ä¸€è‡´ã™ã‚‹Varbindã‚’æ¤œç´¢ã™ã‚‹ã‹ã©ã†ã‹ã€‚
+     * @return ãƒ’ãƒƒãƒˆã—ãŸVarbindã€‚
      */
     public SnmpVarbind findObject(String oid, boolean exact)
     {
@@ -91,50 +91,50 @@ public class Agent
             return null;
         }
         Log log = LogFactory.getLog(Agent.class);
-        
+
         SnmpVarbind object = null;
         if (exact == true)
         {
-            // Š®‘Sˆê’vw’è‚Ìê‡‚ÍA‚»‚Ì‚Ü‚Ü‚ÌOID‚ÅVarbind‚ğŒŸõ‚·‚é
+            // å®Œå…¨ä¸€è‡´æŒ‡å®šã®å ´åˆã¯ã€ãã®ã¾ã¾ã®OIDã§Varbindã‚’æ¤œç´¢ã™ã‚‹
             object = this.objectMap_.get(oid);
         }
         else
         {
-            // w’è‚³‚ê‚½OIDˆÈ~‚ÌƒTƒuƒ}ƒbƒv‚©‚çAğŒ‚É‡’v‚·‚éÅ‚àá‚¢Varbind‚ğŒŸõ‚·‚é
+            // æŒ‡å®šã•ã‚ŒãŸOIDä»¥é™ã®ã‚µãƒ–ãƒãƒƒãƒ—ã‹ã‚‰ã€æ¡ä»¶ã«åˆè‡´ã™ã‚‹æœ€ã‚‚è‹¥ã„Varbindã‚’æ¤œç´¢ã™ã‚‹
             SortedMap<String, SnmpVarbind> subMap = this.objectMap_.tailMap(oid);
             if (subMap.size() == 0)
             {
-                // ‚±‚êˆÈãVarbind‚ª‚È‚¢ê‡
+                // ã“ã‚Œä»¥ä¸ŠVarbindãŒãªã„å ´åˆ
                 log.info("END of MIB.");
                 return null;
             }
-            
+
             Set<String> keys = subMap.keySet();
             String[] keyArray = keys.toArray(new String[keys.size()]);
             if (keyArray[0].equals(oid) == true)
             {
-                // GETNEXT‚ÅŠ®‘S‚É‡’v‚·‚éOID‚ªw’è‚³‚ê‚½ê‡‚ÍAŸ‚Ì—v‘f‚ğŒŸõ‚·‚é
+                // GETNEXTã§å®Œå…¨ã«åˆè‡´ã™ã‚‹OIDãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ã€æ¬¡ã®è¦ç´ ã‚’æ¤œç´¢ã™ã‚‹
                 if (keyArray.length > 1)
                 {
                     object = this.objectMap_.get(keyArray[1]);
                 }
                 else
                 {
-                    // ‚±‚êˆÈãVarbind‚ª‚È‚¢ê‡
+                    // ã“ã‚Œä»¥ä¸ŠVarbindãŒãªã„å ´åˆ
                     log.info("END of MIB.");
                     return null;
                 }
             }
             else if (keyArray[0].contains(oid) == true)
             {
-                // GETNEXT‚ÅŠ®‘S‚É‡’v‚µ‚È‚¢OID‚ªw’è‚³‚ê‚½ê‡‚ÍA
-                // Ÿ‚É‚ÂÅ‚àá‚¢Varbind‚ğŒŸõ‚·‚é
+                // GETNEXTã§å®Œå…¨ã«åˆè‡´ã—ãªã„OIDãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ã€
+                // æ¬¡ã«æŒã¤æœ€ã‚‚è‹¥ã„Varbindã‚’æ¤œç´¢ã™ã‚‹
                 object = this.objectMap_.get(keyArray[0]);
             }
         }
         return object;
     }
-    
+
     /**
      * @return the version
      */
@@ -270,7 +270,7 @@ public class Agent
     public String toString()
     {
         StringBuffer buf = new StringBuffer();
-        
+
         int cnt = 0;
         for (SnmpVarbind obj : this.objectMap_.values())
         {
@@ -282,7 +282,7 @@ public class Agent
             buf.append(obj.toString());
             cnt++;
         }
-        
+
         return buf.toString();
     }
 }

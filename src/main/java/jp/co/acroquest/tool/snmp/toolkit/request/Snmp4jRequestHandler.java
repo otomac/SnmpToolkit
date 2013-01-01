@@ -1,7 +1,7 @@
 // Snmp4jTrapSender.java ----
 // History: 2009/05/07 - Create
-// 2009/05/21 - GETNEXT‘Î‰
-// 2009/08/15 - AgentService‘Î‰
+// 2009/05/21 - GETNEXTå¯¾å¿œ
+// 2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit.request;
 
 import java.io.IOException;
@@ -28,8 +28,8 @@ import org.snmp4j.smi.UdpAddress;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
 /**
- * SNMP4J—p‚ÌRequestˆ—ƒNƒ‰ƒXB
- * 
+ * SNMP4Jç”¨ã®Requestå‡¦ç†ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  */
 public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
@@ -55,26 +55,26 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
     /** Unknown typeStr */
     private static final String PDU_TYPESTR_UNKNOWN  = "unknown";
 
-    /** SNMPƒXƒ^ƒbƒNB */
+    /** SNMPã‚¹ã‚¿ãƒƒã‚¯ã€‚ */
     private Snmp                snmp_;
 
-    /** “Ç‚İ‚İƒRƒ~ƒ…ƒjƒeƒBB */
+    /** èª­ã¿è¾¼ã¿ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã€‚ */
     private String              roCommunity_;
 
-    /** ‘‚«‚İƒRƒ~ƒ…ƒjƒeƒBB */
+    /** æ›¸ãè¾¼ã¿ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã€‚ */
     private String              rwCommunity_;
 
-    /** RequestHandler‚ªˆµ‚¤SNMP-Agentî•ñ‚ÌƒT[ƒrƒXB */
+    /** RequestHandlerãŒæ‰±ã†SNMP-Agentæƒ…å ±ã®ã‚µãƒ¼ãƒ“ã‚¹ã€‚ */
     private AgentService        agentService_;
 
-    /** GET/GETNEXT ‚Ì—v‹‚ğˆ—‚·‚éƒvƒƒZƒbƒTB */
+    /** GET/GETNEXT ã®è¦æ±‚ã‚’å‡¦ç†ã™ã‚‹ãƒ—ãƒ­ã‚»ãƒƒã‚µã€‚ */
     private RequestProcessor    getReqProcessor_;
 
-    /** SET ‚Ì—v‹‚ğˆ—‚·‚éƒvƒƒZƒbƒTB */
+    /** SET ã®è¦æ±‚ã‚’å‡¦ç†ã™ã‚‹ãƒ—ãƒ­ã‚»ãƒƒã‚µã€‚ */
     private RequestProcessor    setReqProcessor_;
 
     /**
-     * ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public Snmp4jRequestHandler()
     {
@@ -88,25 +88,25 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
         Log log = LogFactory.getLog(Snmp4jRequestHandler.class);
         try
         {
-            // AgentService‚ğ•Û‘¶‚·‚é
+            // AgentServiceã‚’ä¿å­˜ã™ã‚‹
             this.agentService_ = agentService;
 
             Agent agent = agentService.getAgent();
 
-            // w’è‚³‚ê‚½Agent‚Ìî•ñ‚ğæ“¾‚·‚é
+            // æŒ‡å®šã•ã‚ŒãŸAgentã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
             String address = agent.getAddress();
             int port = agent.getSnmpPort();
             String roCommunity = agent.getRoCommunity();
             String rwCommunity = agent.getRwCommunity();
             log.info("agent: " + address + ":" + port + "@" + roCommunity + "/" + rwCommunity);
 
-            // SNMPƒXƒ^ƒbƒN‚ğ‰Šú‰»‚·‚é
+            // SNMPã‚¹ã‚¿ãƒƒã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹
             UdpAddress udpAddress = new UdpAddress(InetAddress.getByName(address), port);
             TransportMapping transportMapping = new DefaultUdpTransportMapping(udpAddress);
             this.snmp_ = new Snmp(transportMapping);
             this.snmp_.addCommandResponder(this);
 
-            // “Ç‚İ‚İƒRƒ~ƒ…ƒjƒeƒB‚ÌƒfƒtƒHƒ‹ƒgƒ`ƒFƒbƒN
+            // èª­ã¿è¾¼ã¿ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒã‚§ãƒƒã‚¯
             if (roCommunity == null)
             {
                 this.roCommunity_ = DEFAULT_RO_COMMUNITY;
@@ -116,7 +116,7 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
                 this.roCommunity_ = roCommunity;
             }
 
-            // ‘‚«‚İƒRƒ~ƒ…ƒjƒeƒB‚ÌƒfƒtƒHƒ‹ƒgƒ`ƒFƒbƒN
+            // æ›¸ãè¾¼ã¿ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒã‚§ãƒƒã‚¯
             if (rwCommunity == null)
             {
                 this.rwCommunity_ = DEFAULT_RW_COMMUNITY;
@@ -126,7 +126,7 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
                 this.rwCommunity_ = rwCommunity;
             }
 
-            // RequestProcessor‚ğ‰Šú‰»‚·‚é
+            // RequestProcessorã‚’åˆæœŸåŒ–ã™ã‚‹
             this.getReqProcessor_ = new Snmp4jGetRequestProcessor(agentService);
             this.setReqProcessor_ = new Snmp4jSetRequestProcessor(agentService);
         }
@@ -170,9 +170,9 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
             log.warn("agent is null. stopListening is nothing to do.");
             return;
         }
-        
+
         log.info("stopListening address=[" + agent.getAddress() + "]");
-        
+
         try
         {
             this.snmp_.close();
@@ -186,30 +186,30 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
     }
 
     /**
-     * óM‚µ‚½Request‚Åw’è‚³‚ê‚½OID‚É‘Î‚·‚éResponse‚ğ‘—M‚·‚éB
-     * 
-     * @param event Request‚ğóM‚µ‚½‚±‚Æ‚ğ¦‚·SNMP4J‚ÌƒCƒxƒ“ƒgB
+     * å—ä¿¡ã—ãŸRequestã§æŒ‡å®šã•ã‚ŒãŸOIDã«å¯¾ã™ã‚‹Responseã‚’é€ä¿¡ã™ã‚‹ã€‚
+     *
+     * @param event Requestã‚’å—ä¿¡ã—ãŸã“ã¨ã‚’ç¤ºã™SNMP4Jã®ã‚¤ãƒ™ãƒ³ãƒˆã€‚
      */
     public void processPdu(CommandResponderEvent event)
     {
         Log log = LogFactory.getLog(this.getClass());
 
-        // Event‚©‚çóM‚µ‚½PDU‚ğæ“¾‚·‚é
+        // Eventã‹ã‚‰å—ä¿¡ã—ãŸPDUã‚’å–å¾—ã™ã‚‹
         PDU pdu = event.getPDU();
         log.info("processPdu : pdu=" + pdu);
 
-        // ƒRƒ~ƒ…ƒjƒeƒB–¼‚ğæ“¾‚·‚é
+        // ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã‚’å–å¾—ã™ã‚‹
         String securityName = new String(event.getSecurityName());
 
-        // ‰“š—pPDU
+        // å¿œç­”ç”¨PDU
         PDU retPdu = null;
 
         try
         {
-            // GET, GETNEXT, SET‚Ì‚İ‚É‘Î‰‚·‚é
+            // GET, GETNEXT, SETã®ã¿ã«å¯¾å¿œã™ã‚‹
             if (pdu.getType() == PDU.GET || pdu.getType() == PDU.GETNEXT)
             {
-                // SNMPƒRƒ~ƒ…ƒjƒeƒB–¼‚ğƒ`ƒFƒbƒN‚·‚é
+                // SNMPã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
                 if (this.roCommunity_.equals(securityName) == false)
                 {
                     log.warn("invalid request has received. community: " + securityName + " <> "
@@ -217,14 +217,14 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
                     return;
                 }
 
-                // óM‚µ‚½PDU‚ğˆ—‚·‚é
+                // å—ä¿¡ã—ãŸPDUã‚’å‡¦ç†ã™ã‚‹
                 log.debug("PDU type [" + toTypeString(pdu.getType()) + "] is applicable.");
                 event.setProcessed(true);
                 retPdu = this.getReqProcessor_.processPdu(pdu);
             }
             else if (pdu.getType() == PDU.SET)
             {
-                // SNMPƒRƒ~ƒ…ƒjƒeƒB–¼‚ğƒ`ƒFƒbƒN‚·‚é
+                // SNMPã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
                 if (rwCommunity_.equals(securityName) == false)
                 {
                     log.warn("invalid request has received. community: " + securityName + " <> "
@@ -232,7 +232,7 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
                     return;
                 }
 
-                // óM‚µ‚½PDU‚ğˆ—‚·‚é
+                // å—ä¿¡ã—ãŸPDUã‚’å‡¦ç†ã™ã‚‹
                 log.debug("PDU type [" + toTypeString(pdu.getType()) + "] is applicable.");
                 event.setProcessed(true);
                 retPdu = this.setReqProcessor_.processPdu(pdu);
@@ -248,14 +248,14 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
             log.warn("exception occured in processPdu.", exception);
         }
 
-        // ‘—M‚·‚éResponsePDU‚ª–³‚¯‚ê‚ÎAI—¹‚·‚é
+        // é€ä¿¡ã™ã‚‹ResponsePDUãŒç„¡ã‘ã‚Œã°ã€çµ‚äº†ã™ã‚‹
         if (retPdu == null || retPdu.size() == 0)
         {
             log.info("there is nothing to respond.");
             return;
         }
 
-        // ResponsePDU‚É•K—v‚Èî•ñ‚ğİ’è‚µA‘—M‚·‚é
+        // ResponsePDUã«å¿…è¦ãªæƒ…å ±ã‚’è¨­å®šã—ã€é€ä¿¡ã™ã‚‹
         CommunityTarget target = new CommunityTarget();
         target.setAddress(event.getPeerAddress());
         int snmpVersion = getSnmpVersion(event.getSecurityLevel(), event.getSecurityModel());
@@ -273,10 +273,10 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
     }
 
     /**
-     * PDU‚Ìtype’l‚É‘Î‰‚·‚é–¼Ì•¶š—ñ‚ğæ“¾‚·‚éB
-     * 
-     * @param type PDU‚Ìtype’lB
-     * @return PDU‚Ìtype‚ğ•\‚·–¼Ì•¶š—ñB
+     * PDUã®typeå€¤ã«å¯¾å¿œã™ã‚‹åç§°æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param type PDUã®typeå€¤ã€‚
+     * @return PDUã®typeã‚’è¡¨ã™åç§°æ–‡å­—åˆ—ã€‚
      */
     private String toTypeString(int type)
     {
@@ -319,12 +319,12 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
     }
 
     /**
-     * w’è‚³‚ê‚½ƒZƒLƒ…ƒŠƒeƒBƒpƒ‰ƒ[ƒ^‚©‚çSNMPƒo[ƒWƒ‡ƒ“‚ğ‚ ‚ç‚í‚·”’l‚É•ÏŠ·‚·‚éB<br/>
-     * 
-     * 
-     * @param securityLevel ƒZƒLƒ…ƒŠƒeƒBƒŒƒxƒ‹”Ô†B
-     * @param securityModel ƒZƒLƒ…ƒŠƒeƒBƒ‚ƒfƒ‹”Ô†B
-     * @return SNMPƒo[ƒWƒ‡ƒ“‚ğ‚ ‚ç‚í‚·”’lB
+     * æŒ‡å®šã•ã‚ŒãŸã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰SNMPãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ã‚ã‚‰ã‚ã™æ•°å€¤ã«å¤‰æ›ã™ã‚‹ã€‚<br/>
+     *
+     *
+     * @param securityLevel ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ãƒ¬ãƒ™ãƒ«ç•ªå·ã€‚
+     * @param securityModel ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ãƒ¢ãƒ‡ãƒ«ç•ªå·ã€‚
+     * @return SNMPãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ã‚ã‚‰ã‚ã™æ•°å€¤ã€‚
      */
     private int getSnmpVersion(int securityLevel, int securityModel)
     {
@@ -361,7 +361,7 @@ public class Snmp4jRequestHandler implements RequestHandler, CommandResponder
     {
         //this.agent_ = agent;
     }
-    
+
     /**
      * {@inheritDoc}
      */

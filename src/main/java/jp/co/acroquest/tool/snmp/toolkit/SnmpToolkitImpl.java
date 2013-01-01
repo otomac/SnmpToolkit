@@ -1,6 +1,6 @@
 // SnmpToolkitImpl.java ----
 // History: 2004/03/23 - Create
-// 2009/08/15 - AgentService‘Î‰
+// 2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit;
 
 import java.io.IOException;
@@ -21,8 +21,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * SnmpToolkit‚ÌƒfƒtƒHƒ‹ƒgÀ‘•B
- * 
+ * SnmpToolkitã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£…ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
@@ -30,25 +30,25 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
 {
     private static final long     serialVersionUID    = 4675606205704697125L;
 
-    /** ƒo[ƒWƒ‡ƒ“•\¦‚ğs‚¤ƒIƒvƒVƒ‡ƒ“w’è•¶š—ñB */
+    /** ãƒãƒ¼ã‚¸ãƒ§ãƒ³è¡¨ç¤ºã‚’è¡Œã†ã‚ªãƒ—ã‚·ãƒ§ãƒ³æŒ‡å®šæ–‡å­—åˆ—ã€‚ */
     private static final String   OPT_SHOW_VERSION    = "-v";
 
-    /** İ’èƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX‚ğw’è‚·‚éƒVƒXƒeƒ€ƒvƒƒpƒeƒB‚ÌƒL[B */
+    /** è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹ã‚’æŒ‡å®šã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ã‚­ãƒ¼ã€‚ */
     private static final String   CONFIG_PATH         = "snmptoolkit.configPath";
 
-    /** İ’èƒtƒ@ƒCƒ‹‚Ö‚ÌƒfƒtƒHƒ‹ƒgƒpƒXB */
+    /** è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ã‚¹ã€‚ */
     private static final String   DEFAULT_CONFIG_PATH = "../conf/config.xml";
 
-    /** Agent‚Ìƒ‰ƒCƒtƒTƒCƒNƒ‹ŠÇ—‚ğs‚¤ƒIƒuƒWƒFƒNƒgB */
+    /** Agentã®ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«ç®¡ç†ã‚’è¡Œã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚ */
     private AgentLifecycleManager lcMgr_              = null;
 
-    /** ‚±‚ÌƒvƒƒZƒX‚ª‹N“®‚µ‚½ŠÔB */
+    /** ã“ã®ãƒ—ãƒ­ã‚»ã‚¹ãŒèµ·å‹•ã—ãŸæ™‚é–“ã€‚ */
     private static long           upTime__            = System.currentTimeMillis();
 
     /**
-     * ‚±‚ÌƒvƒƒZƒX‚ª‹N“®‚µ‚Ä‚©‚çŒo‰ß‚µ‚½ŠÔ‚ğæ“¾‚·‚éB
-     * 
-     * @return ‚±‚ÌƒvƒƒZƒX‚ª‹N“®‚µ‚Ä‚©‚çŒo‰ß‚µ‚½ŠÔ(ƒ~ƒŠ•b)B
+     * ã“ã®ãƒ—ãƒ­ã‚»ã‚¹ãŒèµ·å‹•ã—ã¦ã‹ã‚‰çµŒéã—ãŸæ™‚é–“ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return ã“ã®ãƒ—ãƒ­ã‚»ã‚¹ãŒèµ·å‹•ã—ã¦ã‹ã‚‰çµŒéã—ãŸæ™‚é–“(ãƒŸãƒªç§’)ã€‚
      */
     public static long getSysUpTime()
     {
@@ -57,9 +57,9 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
     }
 
     /**
-     * SnmpToolkitImpl‚ğ‰Šú‰»‚·‚éB
-     * 
-     * @throws RemoteException ‰Šú‰»‚É¸”s‚µ‚½ê‡B
+     * SnmpToolkitImplã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+     *
+     * @throws RemoteException åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public SnmpToolkitImpl(String agentDefFile) throws RemoteException
     {
@@ -92,11 +92,11 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
     }
 
     /**
-     * Trap‚ğ‘—M‚·‚éB
-     * 
-     * @param address Agent‚ğw’è‚·‚éIPƒAƒhƒŒƒXB
-     * @param trapData ‘—M‚·‚éTrap‚Ìƒf[ƒ^B
-     * @throws RemoteException RMIŒÄ‚Ño‚µ‚Å”­¶‚µ‚½—áŠOB
+     * Trapã‚’é€ä¿¡ã™ã‚‹ã€‚
+     *
+     * @param address Agentã‚’æŒ‡å®šã™ã‚‹IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+     * @param trapData é€ä¿¡ã™ã‚‹Trapã®ãƒ‡ãƒ¼ã‚¿ã€‚
+     * @throws RemoteException RMIå‘¼ã³å‡ºã—ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã€‚
      */
     public void sendTrap(String address, TrapData trapData)
         throws RemoteException
@@ -156,9 +156,9 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
     }
 
     /**
-     * ƒvƒƒOƒ‰ƒ€ƒGƒ“ƒgƒŠB
-     * 
-     * @param args ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ˆø”BRMIƒ|[ƒg”Ô†‚ğw’è‚·‚éB
+     * ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¨ãƒ³ãƒˆãƒªã€‚
+     *
+     * @param args ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°ã€‚RMIãƒãƒ¼ãƒˆç•ªå·ã‚’æŒ‡å®šã™ã‚‹ã€‚
      * @throws Exception
      */
     public static void main(String[] args) throws Exception
@@ -168,14 +168,14 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
             System.err.println("USAGE: SnmpToolkitImpl <data-file>");
             System.exit(1);
         }
-        
+
         if (OPT_SHOW_VERSION.equals(args[0]) == true)
         {
             System.err.println("SNMPToolkit version " + Version.VERSION);
             System.exit(0);
         }
-        
-        // Agent’è‹`ƒf[ƒ^ƒtƒ@ƒCƒ‹
+
+        // Agentå®šç¾©ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
         String dataFile = args[0];
 
         Log log = LogFactory.getLog(SnmpToolkitImpl.class);
@@ -184,16 +184,16 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
         log.info(lineStr);
         log.info(logoStr);
         log.info(lineStr);
-        
+
         try
         {
-            // ƒVƒXƒeƒ€ƒvƒƒpƒeƒB‚©‚çİ’èƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğæ“¾‚·‚é
+            // ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
             String configPath = System.getProperty(CONFIG_PATH, DEFAULT_CONFIG_PATH);
             log.debug("Configuration file path: " + configPath);
 
-            // SnmpToolkit‚Ì‰Šú‰»
+            // SnmpToolkitã®åˆæœŸåŒ–
             SnmpConfiguration.initialize(configPath);
-            // ƒRƒ“ƒtƒBƒO‚Ì“à—e‚ğƒ`ƒFƒbƒN‚·‚é
+            // ã‚³ãƒ³ãƒ•ã‚£ã‚°ã®å†…å®¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
             checkConfig();
             SnmpConfiguration config = SnmpConfiguration.getInstance();
             SnmpConfigItem configItem = config.getSnmpConfigItem();
@@ -202,17 +202,17 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
             SnmpToolkit toolkit = new SnmpToolkitImpl(dataFile);
             log.info("SnmpToolkitImpl is created.");
 
-            // ƒŒƒWƒXƒgƒŠ‚Ì‰Šú‰»
+            // ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã®åˆæœŸåŒ–
             int rmiPort = configItem.getRemotePort();
             Registry registry = LocateRegistry.createRegistry(rmiPort);
             log.debug("Created local registry in port " + rmiPort);
 
-            // SnmpToolkit‚ğƒŒƒWƒXƒgƒŠ‚ÉƒoƒCƒ“ƒh‚·‚é
+            // SnmpToolkitã‚’ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã«ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
             InetAddress local = InetAddress.getLocalHost();
             String localAddr = local.getHostName();
             registry.bind("SnmpToolkit", toolkit);
 
-            // ƒƒO•ƒRƒ“ƒ\[ƒ‹o—Í
+            // ãƒ­ã‚°ï¼†ã‚³ãƒ³ã‚½ãƒ¼ãƒ«å‡ºåŠ›
             String msg = "SnmpToolkit was started at [rmi://" + localAddr + ":" + rmiPort + "].";
             log.info(msg);
             System.out.println(msg);
@@ -226,10 +226,10 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
     }
 
     /**
-     * ƒƒS•\¦—p‚Ì‹æØ‚èü•¶š—ñ‚ğ¶¬‚·‚éB
+     * ãƒ­ã‚´è¡¨ç¤ºç”¨ã®åŒºåˆ‡ã‚Šç·šæ–‡å­—åˆ—ã‚’ç”Ÿæˆã™ã‚‹ã€‚
      *
-     * @param logoStr ƒƒS‚Ì•¶š—ñB
-     * @return ‹æØ‚èü•¶š—ñB
+     * @param logoStr ãƒ­ã‚´ã®æ–‡å­—åˆ—ã€‚
+     * @return åŒºåˆ‡ã‚Šç·šæ–‡å­—åˆ—ã€‚
      */
     private static String getLineStr(String logoStr)
     {
@@ -242,17 +242,17 @@ public class SnmpToolkitImpl extends UnicastRemoteObject implements SnmpToolkit
     }
 
     /**
-     * ƒRƒ“ƒtƒBƒOƒtƒ@ƒCƒ‹‚Ì“à—e‚ğƒ`ƒFƒbƒN‚·‚éB
-     * 
-     * @throws SnmpToolkitException ƒ`ƒFƒbƒN‚ÅƒGƒ‰[‚ª”­¶‚µ‚½ê‡B
+     * ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
+     *
+     * @throws SnmpToolkitException ãƒã‚§ãƒƒã‚¯ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€‚
      */
     private static void checkConfig()
         throws SnmpToolkitException
     {
         SnmpConfiguration config = SnmpConfiguration.getInstance();
         SnmpConfigItem configItem = config.getSnmpConfigItem();
-        
-        // SNMPƒ}ƒl[ƒWƒƒ‚ÌƒŠƒXƒg‚ğ‘–¸‚µAƒAƒhƒŒƒX‚ª³‚µ‚­”F¯‚³‚ê‚Ä‚¢‚È‚¢‚à‚Ì‚ª‚ ‚ê‚ÎƒGƒ‰[‚Æ‚·‚é
+
+        // SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒªã‚¹ãƒˆã‚’èµ°æŸ»ã—ã€ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ­£ã—ãèªè­˜ã•ã‚Œã¦ã„ãªã„ã‚‚ã®ãŒã‚ã‚Œã°ã‚¨ãƒ©ãƒ¼ã¨ã™ã‚‹
         SnmpManagerList mgrList = configItem.getSnmpManagerList();
         SnmpManager[] managers = mgrList.getSnmpManagers();
         for (SnmpManager manager : managers)

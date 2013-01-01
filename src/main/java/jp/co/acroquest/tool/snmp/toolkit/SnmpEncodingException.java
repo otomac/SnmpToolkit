@@ -3,8 +3,8 @@
 package jp.co.acroquest.tool.snmp.toolkit;
 
 /**
- * SNMP Encodingˆ—‚ÅƒGƒ‰[‚ª”­¶‚µ‚½‚±‚Æ‚ğ•\‚·—áŠOB
- * 
+ * SNMP Encodingå‡¦ç†ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã“ã¨ã‚’è¡¨ã™ä¾‹å¤–ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
@@ -13,7 +13,7 @@ public class SnmpEncodingException extends RuntimeException
     private static final long serialVersionUID = -9220149928704551626L;
 
     /**
-     * SnmpEncodingException‚ğ¶¬‚·‚éB
+     * SnmpEncodingExceptionã‚’ç”Ÿæˆã™ã‚‹ã€‚
      */
     public SnmpEncodingException()
     {
@@ -21,9 +21,9 @@ public class SnmpEncodingException extends RuntimeException
     }
 
     /**
-     * SnmpEncodingException‚ğ¶¬‚·‚éB
-     * 
-     * @param cause ‚±‚Ì—áŠO‚ª”­¶‚µ‚½——RB
+     * SnmpEncodingExceptionã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param cause ã“ã®ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸç†ç”±ã€‚
      */
     public SnmpEncodingException(String cause)
     {
@@ -31,9 +31,9 @@ public class SnmpEncodingException extends RuntimeException
     }
 
     /**
-     * SnmpEncodingException‚ğ¶¬‚·‚éB
-     * 
-     * @param superException ‚±‚Ì—áŠO‚É˜A½‚³‚¹‚é—áŠOƒIƒuƒWƒFƒNƒgB
+     * SnmpEncodingExceptionã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param superException ã“ã®ä¾‹å¤–ã«é€£é–ã•ã›ã‚‹ä¾‹å¤–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public SnmpEncodingException(Throwable superException)
     {
@@ -41,10 +41,10 @@ public class SnmpEncodingException extends RuntimeException
     }
 
     /**
-     * SnmpEncodingException‚ğ¶¬‚·‚éB
-     * 
-     * @param cause ‚±‚Ì—áŠO‚ª”­¶‚µ‚½——RB
-     * @param superException ‚±‚Ì—áŠO‚É˜A½‚³‚¹‚é—áŠOƒIƒuƒWƒFƒNƒgB
+     * SnmpEncodingExceptionã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param cause ã“ã®ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸç†ç”±ã€‚
+     * @param superException ã“ã®ä¾‹å¤–ã«é€£é–ã•ã›ã‚‹ä¾‹å¤–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public SnmpEncodingException(String cause, Throwable superException)
     {

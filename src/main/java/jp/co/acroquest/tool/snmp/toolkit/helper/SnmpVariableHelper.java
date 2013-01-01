@@ -5,9 +5,9 @@ package jp.co.acroquest.tool.snmp.toolkit.helper;
 import java.net.InetAddress;
 
 /**
- * SNMP‚Ì’l‚ğŒ^w’è•¶š—ñ‚É‚µ‚½‚ª‚Á‚Ä•ÏŠ·‚·‚éƒwƒ‹ƒp[ƒNƒ‰ƒX‚ÌŠî’êƒCƒ“ƒ^ƒtƒF[ƒXB<br/>
- * —lX‚ÈSNMPƒXƒ^ƒbƒNƒ‰ƒCƒuƒ‰ƒŠ‚ğ—˜—p‚Å‚«‚é‚æ‚¤A‹¤’Ê‚ÌƒCƒ“ƒ^ƒtƒF[ƒX‚ğ‹K’è‚µ‚Ä‚¢‚éB
- * 
+ * SNMPã®å€¤ã‚’å‹æŒ‡å®šæ–‡å­—åˆ—ã«ã—ãŸãŒã£ã¦å¤‰æ›ã™ã‚‹ãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã®åŸºåº•ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚<br/>
+ * æ§˜ã€…ãªSNMPã‚¹ã‚¿ãƒƒã‚¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆ©ç”¨ã§ãã‚‹ã‚ˆã†ã€å…±é€šã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’è¦å®šã—ã¦ã„ã‚‹ã€‚
+ *
  * @author akiba
  */
 public interface SnmpVariableHelper
@@ -26,93 +26,93 @@ public interface SnmpVariableHelper
 
     /** IP-Address */
     static final String IPADDRESS    = "ipaddress";
-    
+
     /** Object-ID */
     static final String OBJECT_ID    = "object-id";
-    
+
     /** String */
     static final String STRING       = "string";
 
     /**
-     * —^‚¦‚ç‚ê‚½Object‚Æƒf[ƒ^Œ^–¼‚©‚çAsnObjectƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚éB
-     * 
-     * @param obj •ÏŠ·‘ÎÛƒIƒuƒWƒFƒNƒgB
-     * @param typeStr ƒIƒuƒWƒFƒNƒg‚Ìƒf[ƒ^Œ^–¼Bw’è‰Â”\‚ÈŒ^–¼‚Í–{ƒCƒ“ƒ^ƒtƒF[ƒX‚Ì’è”‚Æ‚µ‚ÄéŒ¾‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚·‚éB
-     * @return •ÏŠ·Œã‚ÌAsnObjectƒIƒuƒWƒFƒNƒgB
+     * ä¸ãˆã‚‰ã‚ŒãŸObjectã¨ãƒ‡ãƒ¼ã‚¿å‹åã‹ã‚‰AsnObjectã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹ã€‚
+     *
+     * @param obj å¤‰æ›å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @param typeStr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ‡ãƒ¼ã‚¿å‹åã€‚æŒ‡å®šå¯èƒ½ãªå‹åã¯æœ¬ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã®å®šæ•°ã¨ã—ã¦å®£è¨€ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ã™ã‚‹ã€‚
+     * @return å¤‰æ›å¾Œã®AsnObjectã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createAsnObject(Object obj, String typeStr);
-    
+
     /**
-     * OctetString‚ğ•\Œ»‚·‚éStackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param str •ÏŠ·Œ³‚Æ‚È‚éStringƒIƒuƒWƒFƒNƒgB
-     * @return •ÏŠ·‚µ‚½OctetStringƒIƒuƒWƒFƒNƒgB
+     * OctetStringã‚’è¡¨ç¾ã™ã‚‹Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param str å¤‰æ›å…ƒã¨ãªã‚‹Stringã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @return å¤‰æ›ã—ãŸOctetStringã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createOctetString(String str);
-    
+
     /**
-     * OctetString‚ğ•\Œ»‚·‚éStackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param chars •ÏŠ·Œ³‚Æ‚È‚échar”z—ñB
-     * @return •ÏŠ·‚µ‚½OctetStringƒIƒuƒWƒFƒNƒgB
+     * OctetStringã‚’è¡¨ç¾ã™ã‚‹Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param chars å¤‰æ›å…ƒã¨ãªã‚‹charé…åˆ—ã€‚
+     * @return å¤‰æ›ã—ãŸOctetStringã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createOctetString(char[] chars);
-    
+
     /**
-     * OctetString‚ğ•\Œ»‚·‚éStackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param bytes •ÏŠ·Œ³‚Æ‚È‚ébyte”z—ñB
-     * @return •ÏŠ·‚µ‚½OctetStringƒIƒuƒWƒFƒNƒgB
+     * OctetStringã‚’è¡¨ç¾ã™ã‚‹Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param bytes å¤‰æ›å…ƒã¨ãªã‚‹byteé…åˆ—ã€‚
+     * @return å¤‰æ›ã—ãŸOctetStringã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createOctetString(byte[] bytes);
-    
-    
+
+
     /**
-     * String‚ğ•\Œ»‚·‚éStackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param string •ÏŠ·Œ³‚Æ‚È‚éString•¶š—ñB
-     * @return •ÏŠ·‚µ‚½OctetStringƒIƒuƒWƒFƒNƒgB
+     * Stringã‚’è¡¨ç¾ã™ã‚‹Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param string å¤‰æ›å…ƒã¨ãªã‚‹Stringæ–‡å­—åˆ—ã€‚
+     * @return å¤‰æ›ã—ãŸOctetStringã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createString(String string);
 
     /**
-     * IpAddress‚ğ•\Œ»‚·‚éStackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param addr •ÏŠ·Œ³‚Æ‚È‚éInetAddressƒIƒuƒWƒFƒNƒgB
-     * @return •ÏŠ·‚µ‚½IpAddressƒIƒuƒWƒFƒNƒgB
+     * IpAddressã‚’è¡¨ç¾ã™ã‚‹Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param addr å¤‰æ›å…ƒã¨ãªã‚‹InetAddressã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @return å¤‰æ›ã—ãŸIpAddressã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createIpAddress(InetAddress addr);
 
     /**
-     * Integer‚ğ•\Œ»‚·‚éStackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param intValue •ÏŠ·Œ³‚Æ‚È‚éint’lB
-     * @return •ÏŠ·‚µ‚½IntegerƒIƒuƒWƒFƒNƒgB
+     * Integerã‚’è¡¨ç¾ã™ã‚‹Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param intValue å¤‰æ›å…ƒã¨ãªã‚‹intå€¤ã€‚
+     * @return å¤‰æ›ã—ãŸIntegerã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createInteger(int intValue);
 
     /**
-     * Timeticks‚ğ•\Œ»‚·‚éStackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param ticks •ÏŠ·Œ³‚Æ‚È‚étick’lB
-     * @return •ÏŠ·‚µ‚½TimeticksƒIƒuƒWƒFƒNƒgB
+     * Timeticksã‚’è¡¨ç¾ã™ã‚‹Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param ticks å¤‰æ›å…ƒã¨ãªã‚‹tickå€¤ã€‚
+     * @return å¤‰æ›ã—ãŸTimeticksã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createTimeticks(long ticks);
-    
+
     /**
-     * ObjectID‚ğ•\Œ»‚·‚éStackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param oid •ÏŠ·Œ³‚Æ‚È‚éObjectID’lB
-     * @return •ÏŠ·‚µ‚½ObjectIDƒIƒuƒWƒFƒNƒgB
+     * ObjectIDã‚’è¡¨ç¾ã™ã‚‹Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param oid å¤‰æ›å…ƒã¨ãªã‚‹ObjectIDå€¤ã€‚
+     * @return å¤‰æ›ã—ãŸObjectIDã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     Object createObjectId(String oid);
 
     /**
-     * Stackã‚ÌƒIƒuƒWƒFƒNƒg‚ğ•¶š—ñŒ`®‚É•ÏŠ·‚·‚éB
-     * 
-     * @param type Agent‚ÌŒ^B
-     * @param reqVar Stackã‚ÌƒIƒuƒWƒFƒNƒgB
-     * @return •ÏŠ·‚µ‚½•¶š—ñB
+     * Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›ã™ã‚‹ã€‚
+     *
+     * @param type Agentã®å‹ã€‚
+     * @param reqVar Stackä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @return å¤‰æ›ã—ãŸæ–‡å­—åˆ—ã€‚
      */
     String convertToString(String type, Object reqVar);
 }

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Trapî•ñB
- * 
+ * Trapæƒ…å ±ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
@@ -16,32 +16,32 @@ public class TrapData implements Serializable
 {
     private static final long serialVersionUID = -2767281869930767183L;
 
-    /** TrapŒÅ—LOIDB */
+    /** Trapå›ºæœ‰OIDã€‚ */
     private String            trapOid_;
 
-    /** Trap-Enterprise OIDB */
+    /** Trap-Enterprise OIDã€‚ */
     private String            enterprise_;
 
-    /** Trap“à—e‚ÌVarbind‚ğŠi”[‚·‚éƒŠƒXƒgB */
+    /** Trapå†…å®¹ã®Varbindã‚’æ ¼ç´ã™ã‚‹ãƒªã‚¹ãƒˆã€‚ */
     private List<SnmpVarbind> varbindList_;
 
-    /** RequestID‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©B */
+    /** RequestIDãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ã€‚ */
     private boolean           hasReqId_;
 
-    /** RequestIDB */
+    /** RequestIDã€‚ */
     private int               reqId_           = -1;
 
-    /** SNMPTrap VersionB */
+    /** SNMPTrap Versionã€‚ */
     private String            version_;
 
-    /** V1Trap‚ÌGeneric’lB */
+    /** V1Trapã®Genericå€¤ã€‚ */
     private int               generic_         = -1;
 
-    /** V1Trap‚ÌSpecific’lB */
+    /** V1Trapã®Specificå€¤ã€‚ */
     private int               specific_        = -1;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public TrapData()
     {
@@ -51,8 +51,8 @@ public class TrapData implements Serializable
     }
 
     /**
-     * SNMPTrap version‚ğæ“¾‚·‚éB
-     * 
+     * SNMPTrap versionã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * @return the version
      */
     public String getVersion()
@@ -61,8 +61,8 @@ public class TrapData implements Serializable
     }
 
     /**
-     * SNMPTrap version‚ğİ’è‚·‚éB
-     * 
+     * SNMPTrap versionã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param version the version to set
      */
     public void setVersion(String version)
@@ -71,9 +71,9 @@ public class TrapData implements Serializable
     }
 
     /**
-     * RequetID‚Ìw’è‚ª‚ ‚é‚©B
-     * 
-     * @return RequetID‚ªİ’è‚³‚ê‚Ä‚¢‚ê‚ÎtrueB
+     * RequetIDã®æŒ‡å®šãŒã‚ã‚‹ã‹ã€‚
+     *
+     * @return RequetIDãŒè¨­å®šã•ã‚Œã¦ã„ã‚Œã°trueã€‚
      */
     public boolean hasReqId()
     {
@@ -81,9 +81,9 @@ public class TrapData implements Serializable
     }
 
     /**
-     * RequestID‚ğæ“¾‚·‚éB
-     * 
-     * @return RequestIDB
+     * RequestIDã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return RequestIDã€‚
      */
     public int getReqId()
     {
@@ -91,28 +91,28 @@ public class TrapData implements Serializable
     }
 
     /**
-     * RequestID‚ğİ’è‚·‚éB
-     * 
-     * @param reqId RequestIDB
-     * @throws IllegalArgumentException RequestID‚ª0–¢–‚Ìê‡B
+     * RequestIDã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param reqId RequestIDã€‚
+     * @throws IllegalArgumentException RequestIDãŒ0æœªæº€ã®å ´åˆã€‚
      */
     public void setReqId(int reqId)
     {
-        // ”ÍˆÍŠO‚ÌRequetID‚Í—áŠO‚ğƒXƒ[‚·‚é
+        // ç¯„å›²å¤–ã®RequetIDã¯ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹
         if (reqId < 0)
         {
             throw new IllegalArgumentException("RequetID is out of range: " + reqId);
         }
 
         this.reqId_ = reqId;
-        // RequestID‚ªİ’è‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ğƒ}[ƒN‚·‚é
+        // RequestIDãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã“ã¨ã‚’ãƒãƒ¼ã‚¯ã™ã‚‹
         this.hasReqId_ = true;
     }
 
     /**
-     * Trap-OID‚ğİ’è‚·‚éB
-     * 
-     * @param oid Trap-OIDB
+     * Trap-OIDã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param oid Trap-OIDã€‚
      */
     public void setTrapOid(String oid)
     {
@@ -120,9 +120,9 @@ public class TrapData implements Serializable
     }
 
     /**
-     * Trap-OID‚ğæ“¾‚·‚éB
-     * 
-     * @return Trap-OIDB
+     * Trap-OIDã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Trap-OIDã€‚
      */
     public String getTrapOid()
     {
@@ -130,8 +130,8 @@ public class TrapData implements Serializable
     }
 
     /**
-     * V1Trap‚ÌGeneric’l‚ğæ“¾‚·‚éB
-     * 
+     * V1Trapã®Genericå€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * @return the generic
      */
     public int getGeneric()
@@ -140,8 +140,8 @@ public class TrapData implements Serializable
     }
 
     /**
-     * V1Trap‚ÌGeneric’l‚ğİ’è‚·‚éB
-     * 
+     * V1Trapã®Genericå€¤ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param generic the generic to set
      */
     public void setGeneric(int generic)
@@ -150,8 +150,8 @@ public class TrapData implements Serializable
     }
 
     /**
-     * V1Trap‚ÌSpecific’l‚ğæ“¾‚·‚éB
-     * 
+     * V1Trapã®Specificå€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * @return the specific
      */
     public int getSpecific()
@@ -160,8 +160,8 @@ public class TrapData implements Serializable
     }
 
     /**
-     * V1Trap‚ÌSpecific’l‚ğİ’è‚·‚éB
-     * 
+     * V1Trapã®Specificå€¤ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param specific the specific to set
      */
     public void setSpecific(int specific)
@@ -170,9 +170,9 @@ public class TrapData implements Serializable
     }
 
     /**
-     * Trap-Enterprise‚ğİ’è‚·‚éB
-     * 
-     * @param enterprise Trap-EnterpriseB
+     * Trap-Enterpriseã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param enterprise Trap-Enterpriseã€‚
      */
     public void setEnterprise(String enterprise)
     {
@@ -180,9 +180,9 @@ public class TrapData implements Serializable
     }
 
     /**
-     * Trap-Enterprise‚ğæ“¾‚·‚éB
-     * 
-     * @return Trap-EnterpriseB
+     * Trap-Enterpriseã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Trap-Enterpriseã€‚
      */
     public String getEnterprise()
     {
@@ -190,9 +190,9 @@ public class TrapData implements Serializable
     }
 
     /**
-     * Varbind‚ğ’Ç‰Á‚·‚éB
-     * 
-     * @param varbind VarbindB
+     * Varbindã‚’è¿½åŠ ã™ã‚‹ã€‚
+     *
+     * @param varbind Varbindã€‚
      */
     public void addVarbind(SnmpVarbind varbind)
     {
@@ -200,9 +200,9 @@ public class TrapData implements Serializable
     }
 
     /**
-     * ’Ç‰Á‚³‚ê‚Ä‚¢‚éVarbind‚ğ”z—ñ‚Æ‚µ‚Äæ“¾‚·‚éB
-     * 
-     * @return Varbind‚Ì”z—ñB
+     * è¿½åŠ ã•ã‚Œã¦ã„ã‚‹Varbindã‚’é…åˆ—ã¨ã—ã¦å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Varbindã®é…åˆ—ã€‚
      */
     public SnmpVarbind[] getVarbinds()
     {
@@ -213,9 +213,9 @@ public class TrapData implements Serializable
     }
 
     /**
-     * ƒfƒoƒbƒO—p‚ÉA‚±‚ÌTrapƒf[ƒ^‚Ì“à—e‚ğ•¶š—ñ‰»‚·‚éB
-     * 
-     * @return TrapDataƒIƒuƒWƒFƒNƒg‚Ì•¶š—ñ•\Œ»B
+     * ãƒ‡ãƒãƒƒã‚°ç”¨ã«ã€ã“ã®Trapãƒ‡ãƒ¼ã‚¿ã®å†…å®¹ã‚’æ–‡å­—åˆ—åŒ–ã™ã‚‹ã€‚
+     *
+     * @return TrapDataã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ–‡å­—åˆ—è¡¨ç¾ã€‚
      */
     public String toString()
     {

@@ -12,8 +12,8 @@ import org.snmp4j.smi.TimeTicks;
 import org.snmp4j.smi.Variable;
 
 /**
- * SNMP4J‚ğ—˜—p‚·‚éSNMPó‘Ô’l•ÏŠ·ƒwƒ‹ƒp[ƒNƒ‰ƒXB
- * 
+ * SNMP4Jã‚’åˆ©ç”¨ã™ã‚‹SNMPçŠ¶æ…‹å€¤å¤‰æ›ãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  */
 public class Snmp4jVariableHelper extends AbstractSnmpVariableHelper
@@ -126,13 +126,13 @@ public class Snmp4jVariableHelper extends AbstractSnmpVariableHelper
      */
     public String convertToString(String type, Object reqObj)
     {
-        // type‚ªnull‚È‚ç‚Î—áŠO‚ğƒXƒ[‚·‚é
+        // typeãŒnullãªã‚‰ã°ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹
         if (type == null)
         {
             throw new NullPointerException("type is null.");
         }
 
-        // reqObj‚ªVariable‚Å‚È‚¯‚ê‚Î—áŠO‚ğƒXƒ[‚·‚é
+        // reqObjãŒVariableã§ãªã‘ã‚Œã°ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹
         if ((reqObj instanceof Variable) == false)
         {
             throw new IllegalArgumentException("illegal object-type: "

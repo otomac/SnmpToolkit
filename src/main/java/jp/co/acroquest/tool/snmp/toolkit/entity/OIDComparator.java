@@ -7,22 +7,22 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * OID‡‚Éƒ\[ƒg‚ğs‚¤ƒRƒ“ƒpƒŒ[ƒ^B
- * 
+ * OIDé †ã«ã‚½ãƒ¼ãƒˆã‚’è¡Œã†ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿ã€‚
+ *
  * @author akiba
  */
 public class OIDComparator implements Comparator<String>
 {
-    /** ¶‘¤‚ª‘å‚«‚¢‚Æ”»’è‚µ‚½ê‡B */
+    /** å·¦å´ãŒå¤§ãã„ã¨åˆ¤å®šã—ãŸå ´åˆã€‚ */
     private static final int LEFT   = 1;
 
-    /** ‰E‘¤‚ª‘å‚«‚¢‚Æ”»’è‚µ‚½ê‡B */
+    /** å³å´ãŒå¤§ãã„ã¨åˆ¤å®šã—ãŸå ´åˆã€‚ */
     private static final int RIGHT  = -1;
 
-    /** ‘o•û‚ª“¯‚¶‚Å‚ ‚é‚Æ”»’è‚µ‚½ê‡B */
+    /** åŒæ–¹ãŒåŒã˜ã§ã‚ã‚‹ã¨åˆ¤å®šã—ãŸå ´åˆã€‚ */
     private static final int EQUALS = 0;
 
-    /** OID‚ğ•ªŠ„‚·‚éƒfƒŠƒ~ƒ^•¶šB */
+    /** OIDã‚’åˆ†å‰²ã™ã‚‹ãƒ‡ãƒªãƒŸã‚¿æ–‡å­—ã€‚ */
     private static final int OID_DELIM = '.';
 
     /**
@@ -34,71 +34,71 @@ public class OIDComparator implements Comparator<String>
         {
             if (str2 == null)
             {
-                // ‘o•û‚Æ‚ànull‚Ìê‡‚Í“™’l‚Æ”»’è‚·‚é
+                // åŒæ–¹ã¨ã‚‚nullã®å ´åˆã¯ç­‰å€¤ã¨åˆ¤å®šã™ã‚‹
                 return EQUALS;
             }
             else
             {
-                // ¶‘¤‚¾‚¯‚ªnull‚Ìê‡‚ÍA‰E‘¤‚ğ‘å‚Æ”»’è‚·‚é
+                // å·¦å´ã ã‘ãŒnullã®å ´åˆã¯ã€å³å´ã‚’å¤§ã¨åˆ¤å®šã™ã‚‹
                 return RIGHT;
             }
         }
 
-        // ‰E‘¤‚¾‚¯‚ªnull‚Ìê‡‚ÍA¶‘¤‚ğ‘å‚Æ”»’è‚·‚é
+        // å³å´ã ã‘ãŒnullã®å ´åˆã¯ã€å·¦å´ã‚’å¤§ã¨åˆ¤å®šã™ã‚‹
         if (str2 == null)
         {
             return LEFT;
         }
 
-        // ˆÈ‰º‚Í‘o•û‚Æ‚ànull‚Å‚È‚¢ê‡
+        // ä»¥ä¸‹ã¯åŒæ–¹ã¨ã‚‚nullã§ãªã„å ´åˆ
 
-        // OID•¶š—ñ‚ğdigit–ˆ‚É•ªŠ„‚·‚é
+        // OIDæ–‡å­—åˆ—ã‚’digitæ¯ã«åˆ†å‰²ã™ã‚‹
         Integer[] leftArray = this.splitOid(str1);
         Integer[] rightArray = this.splitOid(str2);
 
         for (int cnt = 0; cnt < leftArray.length; cnt++)
         {
-            // “r’†‚Ü‚Å“¯‚¶‚ÅA¶‘¤‚Ì•û‚ª’·‚¢ê‡
+            // é€”ä¸­ã¾ã§åŒã˜ã§ã€å·¦å´ã®æ–¹ãŒé•·ã„å ´åˆ
             if (cnt >= rightArray.length)
             {
                 return LEFT;
             }
 
-            // “r’†‚ÌŠK‘w‚ªˆÙ‚È‚é’l‚É‚È‚Á‚Ä‚¢‚éê‡‚ÍA‚»‚ÌŠK‘w‚Ì·‚Å‡˜‚ğŒˆ‚ß‚é
+            // é€”ä¸­ã®éšå±¤ãŒç•°ãªã‚‹å€¤ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ã€ãã®éšå±¤ã®å·®ã§é †åºã‚’æ±ºã‚ã‚‹
             if (leftArray[cnt] < rightArray[cnt])
             {
                 return RIGHT;
             }
-            
+
             if (rightArray[cnt] < leftArray[cnt])
             {
                 return LEFT;
             }
         }
-        
-        // “r’†‚Ü‚Å“¯‚¶‚ÅA‰E‘¤‚Ì•û‚ª’·‚¢ê‡
+
+        // é€”ä¸­ã¾ã§åŒã˜ã§ã€å³å´ã®æ–¹ãŒé•·ã„å ´åˆ
         if (leftArray.length < rightArray.length)
         {
             return RIGHT;
         }
 
-        // ‘S‚Ä‚ÌŠK‘w‚Å“¯‚¶’l‚¾‚Á‚½ê‡‚Í“™’l‚Æ‚İ‚È‚·
+        // å…¨ã¦ã®éšå±¤ã§åŒã˜å€¤ã ã£ãŸå ´åˆã¯ç­‰å€¤ã¨ã¿ãªã™
         return EQUALS;
     }
-    
+
     /**
-     * OID•¶š—ñ‚ğInteger”z—ñ‚É•ªŠ„‚·‚éB<br/>
-     * ‚±‚Ìƒƒ\ƒbƒh‚ÍA<code>String#split()</code>‚ª‚ÂƒpƒtƒH[ƒ}ƒ“ƒX‚Ì–â‘è‚ğ‰ğÁ‚·‚é‚½‚ß‚É“±“ü‚³‚ê‚½B<br/>
-     * 
-     * @param str null‚Å‚Í‚È‚¢OID•¶š—ñB<br/>
-     *            ‹ó‚Ìdigit‚ª’Šo‚³‚ê‚é‚æ‚¤‚ÈOID‚ğ—^‚¦‚é‚ÆNumberFormatException‚ª”­¶‚·‚éB
-     *            ‹ï‘Ì“I‚É‚ÍAæ“ª‚ªƒsƒŠƒIƒh‚Ån‚Ü‚é^––”ö‚ªƒsƒŠƒIƒh‚ÅI‚í‚é^“r’†‚ÉƒsƒŠƒIƒh‚ª˜A‘±‚·‚é‚à‚Ì‚ÍNGB
-     * @return •ªŠ„‚³‚ê‚½Integer”z—ñB
+     * OIDæ–‡å­—åˆ—ã‚’Integeré…åˆ—ã«åˆ†å‰²ã™ã‚‹ã€‚<br/>
+     * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã€<code>String#split()</code>ãŒæŒã¤ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã®å•é¡Œã‚’è§£æ¶ˆã™ã‚‹ãŸã‚ã«å°å…¥ã•ã‚ŒãŸã€‚<br/>
+     *
+     * @param str nullã§ã¯ãªã„OIDæ–‡å­—åˆ—ã€‚<br/>
+     *            ç©ºã®digitãŒæŠ½å‡ºã•ã‚Œã‚‹ã‚ˆã†ãªOIDã‚’ä¸ãˆã‚‹ã¨NumberFormatExceptionãŒç™ºç”Ÿã™ã‚‹ã€‚
+     *            å…·ä½“çš„ã«ã¯ã€å…ˆé ­ãŒãƒ”ãƒªã‚ªãƒ‰ã§å§‹ã¾ã‚‹ï¼æœ«å°¾ãŒãƒ”ãƒªã‚ªãƒ‰ã§çµ‚ã‚ã‚‹ï¼é€”ä¸­ã«ãƒ”ãƒªã‚ªãƒ‰ãŒé€£ç¶šã™ã‚‹ã‚‚ã®ã¯NGã€‚
+     * @return åˆ†å‰²ã•ã‚ŒãŸIntegeré…åˆ—ã€‚
      */
     private Integer[] splitOid(String str)
     {
         List<Integer> list = new ArrayList<Integer>();
-        
+
         int subPos = 0;
         while (true)
         {
@@ -109,12 +109,12 @@ public class OIDComparator implements Comparator<String>
                 list.add(Integer.parseInt(subStr));
                 break;
             }
-            
+
             String subStr = str.substring(subPos, delimPos);
             list.add(Integer.parseInt(subStr));
             subPos = delimPos + 1;
         }
-        
+
         Integer[] array = new Integer[list.size()];
         array = list.toArray(array);
         return array;

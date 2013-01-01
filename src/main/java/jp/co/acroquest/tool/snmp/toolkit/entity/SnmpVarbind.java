@@ -5,13 +5,13 @@ package jp.co.acroquest.tool.snmp.toolkit.entity;
 import java.io.Serializable;
 
 /**
- * VarbindƒIƒuƒWƒFƒNƒgB
- * 
+ * Varbindã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+ *
  * @author akiba
  */
 public class SnmpVarbind implements Serializable
 {
-    /** ƒVƒŠƒAƒ‹UIDB */
+    /** ã‚·ãƒªã‚¢ãƒ«UIDã€‚ */
     private static final long  serialVersionUID             = 2664529399476520952L;
 
     /** READ-WRITE */
@@ -23,20 +23,20 @@ public class SnmpVarbind implements Serializable
     /** NOT-ACCESSIBLE */
     public static final String ACCESSIBILITY_NOT_ACCESSIBLE = "NOT-ACCESSIBLE";
 
-    /** Varbind‚ÌObjectIDB */
+    /** Varbindã®ObjectIDã€‚ */
     private String             oid_;
 
-    /** Varbind‚Ì’lB */
+    /** Varbindã®å€¤ã€‚ */
     private String             value_;
 
-    /** Varbind‚Ì’l‚ÌŒ^B */
+    /** Varbindã®å€¤ã®å‹ã€‚ */
     private String             type_;
 
-    /** Access‹–‰Â‚ğ•\‚·’lB */
+    /** Accessè¨±å¯ã‚’è¡¨ã™å€¤ã€‚ */
     private String             accessibility_ = ACCESSIBILITY_READ_WRITE;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public SnmpVarbind()
     {
@@ -44,9 +44,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * Varbind‚ÌObjectID‚ğæ“¾‚·‚éB
-     * 
-     * @return Varbind‚ÌObjectIDB
+     * Varbindã®ObjectIDã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Varbindã®ObjectIDã€‚
      */
     public String getOid()
     {
@@ -54,9 +54,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * Varbind‚Ì’l‚ğæ“¾‚·‚éB
-     * 
-     * @return Varbind‚Ì’lB
+     * Varbindã®å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Varbindã®å€¤ã€‚
      */
     public String getValue()
     {
@@ -64,9 +64,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * Varbind‚ÌObjectID‚ğİ’è‚·‚éB
-     * 
-     * @param oid ObjectIDB
+     * Varbindã®ObjectIDã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param oid ObjectIDã€‚
      */
     public void setOid(String oid)
     {
@@ -74,9 +74,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * Varbind‚Ì’l‚ğæ“¾‚·‚éB
-     * 
-     * @param value Varbind‚Ì’lB
+     * Varbindã®å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param value Varbindã®å€¤ã€‚
      */
     public void setValue(String value)
     {
@@ -84,9 +84,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * Varbind‚Ì’l‚ÌŒ^‚ğæ“¾‚·‚éB
-     * 
-     * @return Varbind‚Ì’l‚ÌŒ^B
+     * Varbindã®å€¤ã®å‹ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Varbindã®å€¤ã®å‹ã€‚
      */
     public String getType()
     {
@@ -94,9 +94,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * Varbind‚Ì’l‚ÌŒ^‚ğİ’è‚·‚éB
-     * 
-     * @param type Varbind‚Ì’l‚ÌŒ^B
+     * Varbindã®å€¤ã®å‹ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param type Varbindã®å€¤ã®å‹ã€‚
      */
     public void setType(String type)
     {
@@ -104,9 +104,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * Access‹–‰Â‚ğ•\‚·’l‚ğæ“¾‚·‚éB
-     * 
-     * @return Access‹–‰Â‚ğ•\‚·’lB
+     * Accessè¨±å¯ã‚’è¡¨ã™å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Accessè¨±å¯ã‚’è¡¨ã™å€¤ã€‚
      */
     public String getAccessibility()
     {
@@ -114,9 +114,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * Access‹–‰Â‚ğ•\‚·’l‚ğİ’è‚·‚éB
-     * 
-     * @param ccessibility Access‹–‰Â‚ğ•\‚·’lB
+     * Accessè¨±å¯ã‚’è¡¨ã™å€¤ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param ccessibility Accessè¨±å¯ã‚’è¡¨ã™å€¤ã€‚
      */
     public void setAccessibility(String accessibility)
     {
@@ -131,9 +131,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * w’è‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ª©g‚Æ“™‚µ‚¢‚©‚É‚Â‚¢‚ÄŒŸØ‚·‚éB
-     * 
-     * @return w’è‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ªnull‚Å‚È‚­ASnmpVarbindƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚Å‚ ‚èA ‚©‚Â‘S‚Ä‚Ì‘®«‚ª“™‚µ‚¢ê‡‚Étrue‚ğ•Ô‚·B
+     * æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒè‡ªèº«ã¨ç­‰ã—ã„ã‹ã«ã¤ã„ã¦æ¤œè¨¼ã™ã‚‹ã€‚
+     *
+     * @return æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒnullã§ãªãã€SnmpVarbindã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã‚ã‚Šã€ ã‹ã¤å…¨ã¦ã®å±æ€§ãŒç­‰ã—ã„å ´åˆã«trueã‚’è¿”ã™ã€‚
      */
     public boolean equals(Object obj)
     {
@@ -153,9 +153,9 @@ public class SnmpVarbind implements Serializable
     }
 
     /**
-     * ‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ì•¶š—ñ•\Œ»‚ğæ“¾‚·‚éB
-     * 
-     * @return ‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ì•¶š—ñ•\Œ»B
+     * ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ–‡å­—åˆ—è¡¨ç¾ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ–‡å­—åˆ—è¡¨ç¾ã€‚
      * @see java.lang.Object#toString()
      */
     public String toString()

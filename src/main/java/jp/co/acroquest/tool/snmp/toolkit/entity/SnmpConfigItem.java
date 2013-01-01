@@ -1,30 +1,30 @@
 // SnmpConfigItem.java ----
 // History: 2004/03/07 - Create
-// 2009/05/20 - ƒNƒ‰ƒX–¼•ÏX
+// 2009/05/20 - ã‚¯ãƒ©ã‚¹åå¤‰æ›´
 package jp.co.acroquest.tool.snmp.toolkit.entity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * SnmpToolkit‚Ìİ’èƒf[ƒ^‚ğ•\‚·B
- * 
+ * SnmpToolkitã®è¨­å®šãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ã™ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
 public class SnmpConfigItem
 {
-    /** İ’è’l‚ğŠi”[‚·‚éƒ}ƒbƒvB */
+    /** è¨­å®šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ—ã€‚ */
     private Map<String, Object> configMap_;
 
-    /** SNMPƒ}ƒl[ƒWƒƒ‚ÌƒŠƒXƒgB */
+    /** SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒªã‚¹ãƒˆã€‚ */
     private SnmpManagerList     managerList_;
 
-    /** Registry‚ÌƒfƒtƒHƒ‹ƒgƒ|[ƒg”Ô†B */
+    /** Registryã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ãƒˆç•ªå·ã€‚ */
     private static final int    DEFAULT_PORT = 10000;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public SnmpConfigItem()
     {
@@ -34,9 +34,9 @@ public class SnmpConfigItem
     }
 
     /**
-     * SNMPƒ}ƒl[ƒWƒƒ‚ÌƒŠƒXƒg‚ğİ’è‚·‚éB
-     * 
-     * @param mgrList SNMPƒ}ƒl[ƒWƒƒ‚ÌƒŠƒXƒgB
+     * SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒªã‚¹ãƒˆã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param mgrList SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒªã‚¹ãƒˆã€‚
      */
     public void setSnmpManagerList(SnmpManagerList mgrList)
     {
@@ -44,9 +44,9 @@ public class SnmpConfigItem
     }
 
     /**
-     * SNMPƒ}ƒl[ƒWƒƒ‚ÌƒŠƒXƒg‚ğæ“¾‚·‚éB
-     * 
-     * @return SNMPƒ}ƒl[ƒWƒƒ‚ÌƒŠƒXƒgB
+     * SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒªã‚¹ãƒˆã€‚
      */
     public SnmpManagerList getSnmpManagerList()
     {
@@ -54,11 +54,11 @@ public class SnmpConfigItem
     }
 
     /**
-     * İ’è’l‚ğƒ}ƒbƒv‚É’Ç‰Á‚·‚éB<br>
-     * ‚±‚Ìƒƒ\ƒbƒh‚ÍADigester‚©‚çŒÄ‚Ño‚³‚ê‚éB
-     * 
-     * @param name İ’è’l‚Ì–¼ÌB
-     * @param value İ’è’lB
+     * è¨­å®šå€¤ã‚’ãƒãƒƒãƒ—ã«è¿½åŠ ã™ã‚‹ã€‚<br>
+     * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã€Digesterã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
+     *
+     * @param name è¨­å®šå€¤ã®åç§°ã€‚
+     * @param value è¨­å®šå€¤ã€‚
      */
     public void setProperty(String name, Object value)
     {
@@ -66,9 +66,9 @@ public class SnmpConfigItem
     }
 
     /**
-     * ƒf[ƒ^ƒfƒBƒŒƒNƒgƒŠ–¼‚ğæ“¾‚·‚éB
-     * 
-     * @return ƒf[ƒ^ƒfƒBƒŒƒNƒgƒŠ–¼B
+     * ãƒ‡ãƒ¼ã‚¿ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return ãƒ‡ãƒ¼ã‚¿ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåã€‚
      */
     public String getDataDir()
     {
@@ -77,9 +77,9 @@ public class SnmpConfigItem
     }
 
     /**
-     * ‘—Mæƒ|[ƒg”Ô†‚ğæ“¾‚·‚éB
-     * 
-     * @return ‘—Mæƒ|[ƒg”Ô†B
+     * é€ä¿¡å…ˆãƒãƒ¼ãƒˆç•ªå·ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return é€ä¿¡å…ˆãƒãƒ¼ãƒˆç•ªå·ã€‚
      */
     public int getRemotePort()
     {
@@ -88,11 +88,11 @@ public class SnmpConfigItem
     }
 
     /**
-     * İ’è’l‚ğŠi”[‚µ‚½ƒ}ƒbƒv‚©‚çAw’è‚µ‚½–¼Ì‚Ìƒpƒ‰ƒ[ƒ^‚ğint’l‚Æ‚µ‚Äæ“¾‚·‚éB
-     * 
-     * @param name æ“¾‚·‚éƒpƒ‰ƒ[ƒ^‚Ì–¼ÌB
-     * @param defvalue ƒpƒ‰ƒ[ƒ^‚ªw’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½ê‡‚ÌƒfƒtƒHƒ‹ƒg’lB
-     * @return æ“¾‚µ‚½intƒpƒ‰ƒ[ƒ^B
+     * è¨­å®šå€¤ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ—ã‹ã‚‰ã€æŒ‡å®šã—ãŸåç§°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’intå€¤ã¨ã—ã¦å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param name å–å¾—ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åç§°ã€‚
+     * @param defvalue ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸå ´åˆã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã€‚
+     * @return å–å¾—ã—ãŸintãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚
      */
     private int getIntValue(String name, int defvalue)
     {
@@ -107,10 +107,10 @@ public class SnmpConfigItem
     }
 
     /**
-     * ‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ì•¶š—ñ•\Œ»‚ğæ“¾‚·‚éB<br>
-     * ‚±‚Ìƒƒ\ƒbƒh‚Í“à•”‚Å•Û‚·‚éƒ}ƒbƒv‚ÌtoString()ƒƒ\ƒbƒh‚ÉˆË‘¶‚·‚éB
-     * 
-     * @return ‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ì•¶š—ñ•\Œ»B
+     * ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ–‡å­—åˆ—è¡¨ç¾ã‚’å–å¾—ã™ã‚‹ã€‚<br>
+     * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯å†…éƒ¨ã§ä¿æŒã™ã‚‹ãƒãƒƒãƒ—ã®toString()ãƒ¡ã‚½ãƒƒãƒ‰ã«ä¾å­˜ã™ã‚‹ã€‚
+     *
+     * @return ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ–‡å­—åˆ—è¡¨ç¾ã€‚
      */
     public String toString()
     {

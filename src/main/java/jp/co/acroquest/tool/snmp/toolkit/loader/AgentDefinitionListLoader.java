@@ -1,6 +1,6 @@
 //AgentDefinitionListLoader.java ----
 // History: 2009/04/26 - Create
-//          2009/08/15 - ƒNƒ‰ƒX–¼•ÏX
+//          2009/08/15 - ã‚¯ãƒ©ã‚¹åå¤‰æ›´
 package jp.co.acroquest.tool.snmp.toolkit.loader;
 
 import java.io.File;
@@ -13,49 +13,49 @@ import org.apache.commons.digester.Digester;
 import org.xml.sax.SAXException;
 
 /**
- * AgentƒŠƒXƒg’è‹`ƒf[ƒ^XML‚ğ“Ç‚İ‚Şƒ[ƒ_[ƒNƒ‰ƒXB
- * 
+ * Agentãƒªã‚¹ãƒˆå®šç¾©ãƒ‡ãƒ¼ã‚¿XMLã‚’èª­ã¿è¾¼ã‚€ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  */
 public class AgentDefinitionListLoader
 {
-    /** AgentƒŠƒXƒg’è‹`ƒf[ƒ^‚ğ‹Lq‚µ‚½XML‚ğ“Ç‚İ‚Şˆ×‚ÌDigesterB */
+    /** Agentãƒªã‚¹ãƒˆå®šç¾©ãƒ‡ãƒ¼ã‚¿ã‚’è¨˜è¿°ã—ãŸXMLã‚’èª­ã¿è¾¼ã‚€ç‚ºã®Digesterã€‚ */
     private Digester digester_;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B<br/>
-     * Digester‚ğ‰Šú‰»‚µA“Ç‚İ‚İƒ‹[ƒ‹‚ğİ’è‚·‚éB
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚<br/>
+     * Digesterã‚’åˆæœŸåŒ–ã—ã€èª­ã¿è¾¼ã¿ãƒ«ãƒ¼ãƒ«ã‚’è¨­å®šã™ã‚‹ã€‚
      */
     public AgentDefinitionListLoader()
     {
         super();
-        
+
         this.digester_ = new Digester();
-        
-        // 1. agent—v‘f‚ÍAAgentƒNƒ‰ƒX‚ğ¶¬‚·‚é
+
+        // 1. agentè¦ç´ ã¯ã€Agentã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
         this.digester_.addObjectCreate("agents", AgentDefinitionList.class);
-        
+
         //--------------------------------------------------------------------
-        // <traps/trap-data/varbind>‚Ì’Ç‰Áw’è
+        // <traps/trap-data/varbind>ã®è¿½åŠ æŒ‡å®š
         //--------------------------------------------------------------------
-        // 1. traps/trap-data/varbind —v‘f‚ÍASnmpVarbindƒNƒ‰ƒX‚ğ¶¬‚·‚é
+        // 1. traps/trap-data/varbind è¦ç´ ã¯ã€SnmpVarbindã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
         this.digester_.addObjectCreate("agents/agent", AgentDefinition.class);
-        // 2. ¶¬‚µ‚½ AgentDefinition ‚ÍAaddAgentInfo()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚ÄTrapData‚É’Ç‰Á‚·‚é
+        // 2. ç”Ÿæˆã—ãŸ AgentDefinition ã¯ã€addAgentInfo()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã¦TrapDataã«è¿½åŠ ã™ã‚‹
         this.digester_.addSetNext("agents/agent", "addAgentDefinition", AgentDefinition.class.getName());
-        // 3. agents/agent —v‘f‚ÍAsetOid()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // 3. agents/agent è¦ç´ ã¯ã€setOid()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
         this.digester_.addCallMethod("agents/agent", "setAgentMIBFile", 0);
-        // 4. agents/agent@address —v‘f‚ÍAsetType()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // 4. agents/agent@address è¦ç´ ã¯ã€setType()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
         this.digester_.addSetProperties("agents/agent");
-        
+
     }
-    
+
     /**
-     * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İAAgentDefinitionListƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB<br/>
-     * ¶¬‚³‚ê‚½AgentDefinitionListƒIƒuƒWƒFƒNƒg‚ÍA“à•”‚ÉAgentDefinitionƒIƒuƒWƒFƒNƒg‚ğ•Û‚·‚éB
-     * 
-     * @param filename Agent’è‹`ƒtƒ@ƒCƒ‹ƒpƒXB
-     * @return “Ç‚İ‚İ‚É¬Œ÷‚µ‚½Œ‹‰Ê¶¬‚³‚ê‚½AgentDefinitionListƒIƒuƒWƒFƒNƒgB
-     * @throws IOException “Ç‚İ‚İ‚É¸”s‚µ‚½ê‡B
+     * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã€AgentDefinitionListã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚<br/>
+     * ç”Ÿæˆã•ã‚ŒãŸAgentDefinitionListã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ã€å†…éƒ¨ã«AgentDefinitionã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä¿æŒã™ã‚‹ã€‚
+     *
+     * @param filename Agentå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã€‚
+     * @return èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸçµæœç”Ÿæˆã•ã‚ŒãŸAgentDefinitionListã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @throws IOException èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public AgentDefinitionList load(String filename)
         throws IOException
@@ -63,21 +63,21 @@ public class AgentDefinitionListLoader
         AgentDefinitionList agentList = null;
         try
         {
-            // Digester‚ğg—p‚µ‚ÄAgentƒŠƒXƒg’è‹`ƒf[ƒ^‚ğƒ[ƒh‚·‚é
+            // Digesterã‚’ä½¿ç”¨ã—ã¦Agentãƒªã‚¹ãƒˆå®šç¾©ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
             agentList = (AgentDefinitionList) this.digester_.parse(new File(filename));
         }
         catch (SAXException exception)
         {
             throw new IOException("SAXException occured.\n" +  exception.toString());
         }
-        
+
         return agentList;
     }
-    
+
     /**
-     * ƒeƒXƒg—p‚ÌƒƒCƒ“ƒƒ\ƒbƒhB
-     * 
-     * @param args “Ç‚İ‚Şƒf[ƒ^ƒtƒ@ƒCƒ‹B
+     * ãƒ†ã‚¹ãƒˆç”¨ã®ãƒ¡ã‚¤ãƒ³ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     *
+     * @param args èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã€‚
      * @throws Exception
      */
     public static void main(String[] args) throws Exception

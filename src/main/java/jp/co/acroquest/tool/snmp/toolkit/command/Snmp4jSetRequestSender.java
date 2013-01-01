@@ -26,8 +26,8 @@ import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
 /**
- * SNMP4J‚ğg—p‚µ‚ÄSETƒŠƒNƒGƒXƒg‚ğ‘—M‚·‚éƒc[ƒ‹B
- * 
+ * SNMP4Jã‚’ä½¿ç”¨ã—ã¦SETãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’é€ä¿¡ã™ã‚‹ãƒ„ãƒ¼ãƒ«ã€‚
+ *
  * @author akiba
  */
 public class Snmp4jSetRequestSender implements ResponseListener
@@ -40,27 +40,27 @@ public class Snmp4jSetRequestSender implements ResponseListener
     private Snmp                  snmp_;
 
     /**
-     * Snmp4jSetRequestSender‚ğ¶¬‚·‚éB
-     * 
-     * @param args ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ˆø”B
+     * Snmp4jSetRequestSenderã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param args ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°ã€‚
      * @throws IOException
      */
     public Snmp4jSetRequestSender(String[] args) throws IOException
     {
-        // SNMP4J‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬
+        // SNMP4Jã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
         UdpAddress udpAddress = new UdpAddress(InetAddress.getLocalHost(), 11111);
         TransportMapping transportMapping = new DefaultUdpTransportMapping(udpAddress);
         this.snmp_ = new Snmp(transportMapping);
 
-        // Variable¶¬—p‚Ìƒwƒ‹ƒp[ƒIƒuƒWƒFƒNƒg‚ğ¶¬
+        // Variableç”Ÿæˆç”¨ã®ãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
         this.helper_ = new Snmp4jVariableHelper();
 
-        // ˆø”‚©‚çƒzƒXƒg–¼‚Æƒ|[ƒg”Ô†‚ğæ“¾
+        // å¼•æ•°ã‹ã‚‰ãƒ›ã‚¹ãƒˆåã¨ãƒãƒ¼ãƒˆç•ªå·ã‚’å–å¾—
         this.host_ = args[0];
         this.port_ = Integer.parseInt(args[1]);
         this.rwCommunity_ = args[2];
 
-        // Varbind‚ÌƒŠƒXƒg‚ğ¶¬
+        // Varbindã®ãƒªã‚¹ãƒˆã‚’ç”Ÿæˆ
         this.varbinds_ = new ArrayList<VariableBinding>();
         for (int index = 3; index < args.length; index += 3)
         {
@@ -75,14 +75,14 @@ public class Snmp4jSetRequestSender implements ResponseListener
 
             this.varbinds_.add(varbind);
         }
-        
-        // RESPONSE‚ğó‚¯æ‚ê‚é‚æ‚¤‚Élisten‚ğŠJn‚·‚é
+
+        // RESPONSEã‚’å—ã‘å–ã‚Œã‚‹ã‚ˆã†ã«listenã‚’é–‹å§‹ã™ã‚‹
         this.snmp_.listen();
     }
 
     /**
-     * RequestƒpƒPƒbƒg‚ğ‘—M‚·‚éB
-     * 
+     * Requestãƒ‘ã‚±ãƒƒãƒˆã‚’é€ä¿¡ã™ã‚‹ã€‚
+     *
      * @throws IOException
      */
     private void execute() throws IOException
@@ -90,7 +90,7 @@ public class Snmp4jSetRequestSender implements ResponseListener
         VariableBinding[] varbindArray = new VariableBinding[this.varbinds_.size()];
         varbindArray = this.varbinds_.toArray(varbindArray);
 
-        // SET‚ğs‚¤PDU‚ğ¶¬‚·‚é
+        // SETã‚’è¡Œã†PDUã‚’ç”Ÿæˆã™ã‚‹
         PDU setPdu = new PDU();
         setPdu.setRequestID(new Integer32(1));
         setPdu.setType(PDU.SET);
@@ -98,7 +98,7 @@ public class Snmp4jSetRequestSender implements ResponseListener
 
         System.out.println("SET PDU=" + setPdu);
 
-        // ‘—Mˆ—
+        // é€ä¿¡å‡¦ç†
         CommunityTarget target = new CommunityTarget();
         target.setVersion(SnmpConstants.version2c);
         target.setTimeout(5000L);
@@ -110,11 +110,11 @@ public class Snmp4jSetRequestSender implements ResponseListener
     }
 
     /**
-     * ’l‚ğ¦‚·•¶š—ñ‚ÆŒ^‚©‚çVariable‚ğ¶¬‚·‚éB
-     * 
-     * @param value SNMP‚Ì’lB
-     * @param type SNMP‚ÌValue‚ÌŒ^B
-     * @return ¶¬‚³‚ê‚½VariableƒIƒuƒWƒFƒNƒgB
+     * å€¤ã‚’ç¤ºã™æ–‡å­—åˆ—ã¨å‹ã‹ã‚‰Variableã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param value SNMPã®å€¤ã€‚
+     * @param type SNMPã®Valueã®å‹ã€‚
+     * @return ç”Ÿæˆã•ã‚ŒãŸVariableã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     private Variable createVariable(String value, String type)
     {
@@ -131,10 +131,10 @@ public class Snmp4jSetRequestSender implements ResponseListener
     }
 
     /**
-     * ƒvƒƒOƒ‰ƒ€ƒGƒ“ƒgƒŠB
-     * 
-     * @param args ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ˆø”B
-     * @throws IOException Ú‘±‚É¸”s‚µ‚½ê‡B
+     * ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¨ãƒ³ãƒˆãƒªã€‚
+     *
+     * @param args ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°ã€‚
+     * @throws IOException æ¥ç¶šã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public static void main(String[] args) throws IOException
     {

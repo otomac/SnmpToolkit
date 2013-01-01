@@ -7,18 +7,18 @@ import jp.co.acroquest.tool.snmp.toolkit.SnmpToolkitException;
 import org.snmp4j.PDU;
 
 /**
- * SNMP‚Ì—v‹(PDU)‚ğˆ—‚·‚éƒvƒƒZƒbƒTƒNƒ‰ƒX‚ÌŠî’êƒCƒ“ƒ^ƒtƒF[ƒXB
- * 
+ * SNMPã®è¦æ±‚(PDU)ã‚’å‡¦ç†ã™ã‚‹ãƒ—ãƒ­ã‚»ãƒƒã‚µã‚¯ãƒ©ã‚¹ã®åŸºåº•ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
+ *
  * @author akiba
  */
 public interface RequestProcessor
 {
     /**
-     * óM‚µ‚½PDU‚ğˆ—‚·‚éB
-     * 
-     * @param pdu óM‚µ‚½PDUB
-     * @return ˆ—‚µ‚½Œ‹‰Ê¶¬‚³‚êA•ÔM‚·‚éPDUB
-     * @throws SnmpToolkitException PDU‚Ìˆ—’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚½ê‡B
+     * å—ä¿¡ã—ãŸPDUã‚’å‡¦ç†ã™ã‚‹ã€‚
+     *
+     * @param pdu å—ä¿¡ã—ãŸPDUã€‚
+     * @return å‡¦ç†ã—ãŸçµæœç”Ÿæˆã•ã‚Œã€è¿”ä¿¡ã™ã‚‹PDUã€‚
+     * @throws SnmpToolkitException PDUã®å‡¦ç†ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€‚
      */
     PDU processPdu(PDU pdu)
         throws SnmpToolkitException;

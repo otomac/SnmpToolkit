@@ -1,7 +1,7 @@
 //Snmp4jFactory.java ----
 // History: 2005/02/07 - Create
-//          2009/05/07 - SnmpStackFactory‚ğ“±“ü
-//          2009/08/15 - AgentService‘Î‰
+//          2009/05/07 - SnmpStackFactoryã‚’å°å…¥
+//          2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit.stack;
 
 import java.io.IOException;
@@ -21,8 +21,8 @@ import org.snmp4j.smi.UdpAddress;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
 /**
- * Snmp4j‚ÌƒIƒuƒWƒFƒNƒg¶¬—pƒtƒ@ƒNƒgƒŠƒNƒ‰ƒXB
- * 
+ * Snmp4jã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆç”¨ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
@@ -37,25 +37,25 @@ public class Snmp4jFactory extends SnmpStackFactory
         String address       = agent.getAddress();
         String host          = getHostIpAddress(address);
         String trapCommunity = agent.getTrapCommunity();
-        
+
         TrapSender sender = new Snmp4jTrapSender(host);
-        
-        // ¶¬‚µ‚½TrapSender‚É‰Šúî•ñ‚ğİ’è‚·‚é
+
+        // ç”Ÿæˆã—ãŸTrapSenderã«åˆæœŸæƒ…å ±ã‚’è¨­å®šã™ã‚‹
         sender.setCommunity(trapCommunity);
-        
+
         return sender;
     }
-    
+
     /**
-     * ƒzƒXƒg•\‹L‚©‚çIPƒAƒhƒŒƒX‚ğ’Šo‚·‚éB
-     * 
-     * @param address ƒzƒXƒg‚Ì•\‹LB"ƒzƒXƒg–¼:ƒ|[ƒg”Ô†"‚ÌŒ`®‚ğŠú‘Ò‚µ‚Ä‚¢‚éB
-     * @return ƒzƒXƒg‚Ì•\‹L‚©‚ç’Šo‚µ‚½IPƒAƒhƒŒƒXBƒ|[ƒg”Ô†‚ª‚È‚¯‚ê‚Î“ü—Í‚»‚Ì‚Ü‚Ü‚ğ•Ô‚·B
+     * ãƒ›ã‚¹ãƒˆè¡¨è¨˜ã‹ã‚‰IPã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŠ½å‡ºã™ã‚‹ã€‚
+     *
+     * @param address ãƒ›ã‚¹ãƒˆã®è¡¨è¨˜ã€‚"ãƒ›ã‚¹ãƒˆå:ãƒãƒ¼ãƒˆç•ªå·"ã®å½¢å¼ã‚’æœŸå¾…ã—ã¦ã„ã‚‹ã€‚
+     * @return ãƒ›ã‚¹ãƒˆã®è¡¨è¨˜ã‹ã‚‰æŠ½å‡ºã—ãŸIPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚ãƒãƒ¼ãƒˆç•ªå·ãŒãªã‘ã‚Œã°å…¥åŠ›ãã®ã¾ã¾ã‚’è¿”ã™ã€‚
      */
     private String getHostIpAddress(String address)
     {
         String host;
-        //TODO: TCP/UDP‚ÌØ‘Ö‚ğ‰Â”\‚É‚·‚é
+        //TODO: TCP/UDPã®åˆ‡æ›¿ã‚’å¯èƒ½ã«ã™ã‚‹
         String hostAndPort = address.replace("udp://", "");
         int portIndex = hostAndPort.indexOf(':');
         if (portIndex < 0)
@@ -77,40 +77,40 @@ public class Snmp4jFactory extends SnmpStackFactory
     {
         RequestHandler handler = new Snmp4jRequestHandler();
         handler.initHandler(agentService);
-        
+
         return handler;
     }
-    
+
     /**
-     * SnmpƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param host ƒoƒCƒ“ƒhæƒzƒXƒg–¼B
-     * @param port ƒoƒCƒ“ƒhæƒ|[ƒg”Ô†B
-     * @return SnmpƒIƒuƒWƒFƒNƒgB
-     * @throws IOException SnmpƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»‚É¸”s‚µ‚½ê‡B
+     * Snmpã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param host ãƒã‚¤ãƒ³ãƒ‰å…ˆãƒ›ã‚¹ãƒˆåã€‚
+     * @param port ãƒã‚¤ãƒ³ãƒ‰å…ˆãƒãƒ¼ãƒˆç•ªå·ã€‚
+     * @return Snmpã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @throws IOException Snmpã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public static Snmp createSnmp(String host, int port)
         throws IOException
     {
-        //TODO: TCP/UDP‚ÌØ‘Ö‚ğ‰Â”\‚É‚·‚é
+        //TODO: TCP/UDPã®åˆ‡æ›¿ã‚’å¯èƒ½ã«ã™ã‚‹
         UdpAddress udpAddress = new UdpAddress(InetAddress.getByName(host), port);
-        TransportMapping transportMapping = new DefaultUdpTransportMapping(udpAddress); 
+        TransportMapping transportMapping = new DefaultUdpTransportMapping(udpAddress);
         Snmp snmp = new Snmp(transportMapping);
-        
+
         return snmp;
     }
-    
+
     /**
-     * Trap‘—M—p‚ÌSnmpƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param host ƒoƒCƒ“ƒhæƒzƒXƒg–¼B
-     * @return Trap‘—M—p‚ÌSnmpƒIƒuƒWƒFƒNƒgB
-     * @throws IOException SnmpƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»‚É¸”s‚µ‚½ê‡B
+     * Trapé€ä¿¡ç”¨ã®Snmpã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param host ãƒã‚¤ãƒ³ãƒ‰å…ˆãƒ›ã‚¹ãƒˆåã€‚
+     * @return Trapé€ä¿¡ç”¨ã®Snmpã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @throws IOException Snmpã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public static Snmp createSnmp(String host)
         throws IOException
     {
-        //TODO “½–¼ƒ|[ƒg‚ÌŠm•Û‚Í‰Â”\‚©H
+        //TODO åŒ¿åãƒãƒ¼ãƒˆã®ç¢ºä¿ã¯å¯èƒ½ã‹ï¼Ÿ
         Snmp snmp = createSnmp(host, SnmpStackFactory.DEFAULT_TRAP_PORT);
         return snmp;
     }

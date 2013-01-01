@@ -1,6 +1,6 @@
 // TrapDataLoader.java ----
 // History: 2004/03/07 - Create
-// 2009/07/25 - URIw’è‚ğ•s—v‚Æ‚·‚é‚½‚ß‚ÌC³
+// 2009/07/25 - URIæŒ‡å®šã‚’ä¸è¦ã¨ã™ã‚‹ãŸã‚ã®ä¿®æ­£
 package jp.co.acroquest.tool.snmp.toolkit.loader;
 
 import java.io.File;
@@ -14,18 +14,18 @@ import org.apache.commons.digester.Digester;
 import org.xml.sax.SAXException;
 
 /**
- * Digester‚ğg—p‚µ‚ÄAXMLƒtƒ@ƒCƒ‹‚©‚çTrapƒf[ƒ^‚ğ“Ç‚İ‚Şƒ[ƒ_B
- * 
+ * Digesterã‚’ä½¿ç”¨ã—ã¦ã€XMLãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰Trapãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ãƒ­ãƒ¼ãƒ€ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
 public class TrapDataLoader
 {
-    /** Trapƒf[ƒ^‚ğ‹Lq‚µ‚½XML‚ğ“Ç‚İ‚Şˆ×‚ÌDigesterB */
+    /** Trapãƒ‡ãƒ¼ã‚¿ã‚’è¨˜è¿°ã—ãŸXMLã‚’èª­ã¿è¾¼ã‚€ç‚ºã®Digesterã€‚ */
     private Digester digester_;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public TrapDataLoader()
     {
@@ -34,60 +34,60 @@ public class TrapDataLoader
         this.digester_ = new Digester();
 
         // --------------------------------------------------------------------
-        // <traps>—v‘f‚Ì’Ç‰Áw’è
+        // <traps>è¦ç´ ã®è¿½åŠ æŒ‡å®š
         // --------------------------------------------------------------------
-        // 1. traps —v‘f‚ÍATrapsƒNƒ‰ƒX‚ğ¶¬‚·‚é
+        // 1. traps è¦ç´ ã¯ã€Trapsã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
         this.digester_.addObjectCreate("traps", Traps.class);
 
         // --------------------------------------------------------------------
-        // <traps/trap-data>—v‘f‚Ì’Ç‰Áw’è
+        // <traps/trap-data>è¦ç´ ã®è¿½åŠ æŒ‡å®š
         // --------------------------------------------------------------------
-        // 1. traps/trap-data —v‘f‚ÍATrapDataƒNƒ‰ƒX‚ğ¶¬‚·‚é
+        // 1. traps/trap-data è¦ç´ ã¯ã€TrapDataã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
         this.digester_.addObjectCreate("traps/trap-data", TrapData.class);
-        // 2. ¶¬‚µ‚½ TrapDataƒIƒuƒWƒFƒNƒg‚ÍATrapsƒNƒ‰ƒX‚ÌaddTrapData()ƒƒ\ƒbƒh‚Å’Ç‰Á‚·‚é
+        // 2. ç”Ÿæˆã—ãŸ TrapDataã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ã€Trapsã‚¯ãƒ©ã‚¹ã®addTrapData()ãƒ¡ã‚½ãƒƒãƒ‰ã§è¿½åŠ ã™ã‚‹
         this.digester_.addSetNext("traps/trap-data", "addTrapData", TrapData.class.getName());
-        // 3. traps/trap-data/trap-oid —v‘f‚ÍAsetTrapOid()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // 3. traps/trap-data/trap-oid è¦ç´ ã¯ã€setTrapOid()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
         this.digester_.addBeanPropertySetter("traps/trap-data/trap-oid", "trapOid");
-        // 4. traps/trap-data/enterprise —v‘f‚ÍAsetEnterprise()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // 4. traps/trap-data/enterprise è¦ç´ ã¯ã€setEnterprise()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
         this.digester_.addBeanPropertySetter("traps/trap-data/enterprise");
 
         this.digester_.addBeanPropertySetter("traps/trap-data/generic");
 
         this.digester_.addBeanPropertySetter("traps/trap-data/specific");
-        // 5. traps/trap-data@* —v‘f‚ÍAset*()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // 5. traps/trap-data@* è¦ç´ ã¯ã€set*()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
         this.digester_.addSetProperties("traps/trap-data");
 
         // --------------------------------------------------------------------
-        // <traps/trap-data/varbind>‚Ì’Ç‰Áw’è
+        // <traps/trap-data/varbind>ã®è¿½åŠ æŒ‡å®š
         // --------------------------------------------------------------------
-        // 1. traps/trap-data/varbind —v‘f‚ÍASnmpVarbindƒNƒ‰ƒX‚ğ¶¬‚·‚é
+        // 1. traps/trap-data/varbind è¦ç´ ã¯ã€SnmpVarbindã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
         this.digester_.addObjectCreate("traps/trap-data/varbind", SnmpVarbind.class);
-        // 2. ¶¬‚µ‚½SnmpVarbindƒIƒuƒWƒFƒNƒg‚ÍAaddVarbind()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚ÄTrapData‚É’Ç‰Á‚·‚é
+        // 2. ç”Ÿæˆã—ãŸSnmpVarbindã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ã€addVarbind()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã¦TrapDataã«è¿½åŠ ã™ã‚‹
         this.digester_.addSetNext("traps/trap-data/varbind", "addVarbind");
-        // 3. traps/trap-data/varbind/oid —v‘f‚ÍAsetOid()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // 3. traps/trap-data/varbind/oid è¦ç´ ã¯ã€setOid()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
         this.digester_.addBeanPropertySetter("traps/trap-data/varbind/oid");
-        // 4. traps/trap-data/varbind/value —v‘f‚ÍAsetValue()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // 4. traps/trap-data/varbind/value è¦ç´ ã¯ã€setValue()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
         this.digester_.addBeanPropertySetter("traps/trap-data/varbind/value");
-        // 5. traps/trap-data/varbind/value@type —v‘f‚ÍAsetType()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // 5. traps/trap-data/varbind/value@type è¦ç´ ã¯ã€setType()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
         this.digester_.addSetProperties("traps/trap-data/varbind/value", "type", "type");
     }
 
     /**
-     * Trapƒf[ƒ^‚ğƒ[ƒh‚·‚éB
-     * 
-     * @param path Trapƒf[ƒ^‚ğ‹Lq‚µ‚½XMLƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒXB
-     * @return Trapƒf[ƒ^B
-     * @throws IOException “Ç‚İ‚İ‚É¸”s‚µ‚½B
+     * Trapãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã€‚
+     *
+     * @param path Trapãƒ‡ãƒ¼ã‚¿ã‚’è¨˜è¿°ã—ãŸXMLãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹ã€‚
+     * @return Trapãƒ‡ãƒ¼ã‚¿ã€‚
+     * @throws IOException èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸæ™‚ã€‚
      */
     public Traps load(String path) throws IOException
     {
         Traps traps;
         try
         {
-            // URIw’è‚ğ•s—v‚Æ‚·‚é‚½‚ß‚ÉFileƒNƒ‰ƒX‚ğ’Ê‚·
+            // URIæŒ‡å®šã‚’ä¸è¦ã¨ã™ã‚‹ãŸã‚ã«Fileã‚¯ãƒ©ã‚¹ã‚’é€šã™
             File datafile = new File(path);
 
-            // Digester‚ğg—p‚µ‚ÄTrapƒf[ƒ^‚ğƒ[ƒh‚·‚é
+            // Digesterã‚’ä½¿ç”¨ã—ã¦Trapãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
             traps = (Traps) this.digester_.parse(datafile);
         }
         catch (SAXException e)
@@ -99,9 +99,9 @@ public class TrapDataLoader
     }
 
     /**
-     * ƒeƒXƒg—p‚ÌƒƒCƒ“ƒƒ\ƒbƒhB
-     * 
-     * @param args “Ç‚İ‚Şƒf[ƒ^ƒtƒ@ƒCƒ‹B
+     * ãƒ†ã‚¹ãƒˆç”¨ã®ãƒ¡ã‚¤ãƒ³ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     *
+     * @param args èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã€‚
      * @throws Exception
      */
     public static void main(String[] args) throws Exception

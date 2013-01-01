@@ -22,19 +22,19 @@ import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
 
 /**
- * GET/GETNEXT ‚ğˆ—‚·‚éRequestProcessorB
- * 
+ * GET/GETNEXT ã‚’å‡¦ç†ã™ã‚‹RequestProcessorã€‚
+ *
  * @author akiba
  */
 public class Snmp4jGetRequestProcessor implements RequestProcessor
 {
-    /** RequestHandler‚ªˆµ‚¤SNMP-Agentî•ñ‚ÌƒT[ƒrƒXB */
+    /** RequestHandlerãŒæ‰±ã†SNMP-Agentæƒ…å ±ã®ã‚µãƒ¼ãƒ“ã‚¹ã€‚ */
     private AgentService agentService_;
 
     /**
-     * Snmp4jGetRequestProcessor‚ğ‰Šú‰»‚·‚éB
-     * 
-     * @param agentService RequestHandler‚ªˆµ‚¤SNMP-Agentî•ñ‚ÌƒT[ƒrƒXB
+     * Snmp4jGetRequestProcessorã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+     *
+     * @param agentService RequestHandlerãŒæ‰±ã†SNMP-Agentæƒ…å ±ã®ã‚µãƒ¼ãƒ“ã‚¹ã€‚
      */
     public Snmp4jGetRequestProcessor(AgentService agentService)
     {
@@ -48,38 +48,38 @@ public class Snmp4jGetRequestProcessor implements RequestProcessor
     {
         Log log = LogFactory.getLog(this.getClass());
 
-        // ‰“š—p‚ÌPDU‚ğ¶¬‚·‚é
+        // å¿œç­”ç”¨ã®PDUã‚’ç”Ÿæˆã™ã‚‹
         PDU retPdu = new PDU();
         retPdu.setType(PDU.RESPONSE);
 
-        // —v‹‚ÌƒŠƒNƒGƒXƒgID‚ğæ“¾‚µA‰“šPDU‚ÉƒZƒbƒg‚·‚é
+        // è¦æ±‚ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆIDã‚’å–å¾—ã—ã€å¿œç­”PDUã«ã‚»ãƒƒãƒˆã™ã‚‹
         Integer32 requestID = pdu.getRequestID();
         retPdu.setRequestID(requestID);
 
-        // SNMP4J—p‚ÌŒ^•ÏŠ·ƒIƒuƒWƒFƒNƒg
+        // SNMP4Jç”¨ã®å‹å¤‰æ›ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
         SnmpVariableHelper varHelper = new Snmp4jVariableHelper();
 
-        // AgentService‚©‚çAgent‚ğæ“¾‚·‚é
+        // AgentServiceã‹ã‚‰Agentã‚’å–å¾—ã™ã‚‹
         Agent agent = this.agentService_.getAgent();
 
-        // —v‹PDU‚ÌVarbind‚ğ‘–¸‚·‚é
+        // è¦æ±‚PDUã®Varbindã‚’èµ°æŸ»ã™ã‚‹
         int varCount = 0;
         List<?> reqVarbinds = pdu.getVariableBindings();
         for (Object reqVarbindObj : reqVarbinds)
         {
             varCount++;
 
-            // —v‹‚³‚ê‚Ä‚¢‚éOID‚ğæ“¾‚·‚é
+            // è¦æ±‚ã•ã‚Œã¦ã„ã‚‹OIDã‚’å–å¾—ã™ã‚‹
             VariableBinding reqVarbind = (VariableBinding) reqVarbindObj;
             OID oid = reqVarbind.getOid();
-            
-            // GETNEXT‚Å‚È‚¢ê‡‚ÍAw’è‚³‚ê‚½OID‚»‚Ì‚à‚Ì‚ğæ“¾‚µ‚æ‚¤‚Æ‚·‚é
-            // GETNEXT‚Ìê‡‚ÍAw’è‚³‚ê‚½OID”z‰º‚ÅÅ‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg‚ğ’T‚·
+
+            // GETNEXTã§ãªã„å ´åˆã¯ã€æŒ‡å®šã•ã‚ŒãŸOIDãã®ã‚‚ã®ã‚’å–å¾—ã—ã‚ˆã†ã¨ã™ã‚‹
+            // GETNEXTã®å ´åˆã¯ã€æŒ‡å®šã•ã‚ŒãŸOIDé…ä¸‹ã§æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¢ã™
             boolean exact = (pdu.getType() != PDU.GETNEXT);
             SnmpVarbind foundVarbind = agent.findObject(oid.toString(), exact);
             if (foundVarbind == null)
             {
-                // Varbind‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚ÍnoSuchName‚ğ•Ô‚·
+                // VarbindãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯noSuchNameã‚’è¿”ã™
                 log.warn("varbind is not found. oid=" + oid.toString());
 
                 retPdu.setErrorStatus(SnmpConstants.SNMP_ERROR_NO_SUCH_NAME);
@@ -91,15 +91,15 @@ public class Snmp4jGetRequestProcessor implements RequestProcessor
                 break;
             }
 
-            // READ-WRITE‚Å‚È‚¯‚ê‚ÎƒGƒ‰[‰“š‚ğ•Ô‚·
+            // READ-WRITEã§ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼å¿œç­”ã‚’è¿”ã™
             String accessibility = foundVarbind.getAccessibility();
             if (accessibility.equals(SnmpVarbind.ACCESSIBILITY_NOT_ACCESSIBLE) == true)
             {
                 log.warn("varbind is not accessible. accessibility=" + accessibility);
-                
+
                 retPdu.setErrorStatus(SnmpConstants.SNMP_ERROR_NO_ACCESS);
                 retPdu.setErrorIndex(varCount);
-                
+
                 Variable retObject = new Null();
                 VariableBinding retVarbind = new VariableBinding(oid, retObject);
                 retPdu.add(retVarbind);
@@ -108,7 +108,7 @@ public class Snmp4jGetRequestProcessor implements RequestProcessor
 
             try
             {
-                // ³í‚Ì‰“š‚ğ•Ô‚·
+                // æ­£å¸¸ã®å¿œç­”ã‚’è¿”ã™
                 retPdu.setErrorStatus(SnmpConstants.SNMP_ERROR_SUCCESS);
                 retPdu.setErrorIndex(0);
 
@@ -124,11 +124,11 @@ public class Snmp4jGetRequestProcessor implements RequestProcessor
             catch (Exception exception)
             {
                 log.warn("exception occured", exception);
-                
-                // –¢’m‚ÌƒGƒ‰[‚ğ¦‚·‰“šPDU‚ğì¬‚·‚é
+
+                // æœªçŸ¥ã®ã‚¨ãƒ©ãƒ¼ã‚’ç¤ºã™å¿œç­”PDUã‚’ä½œæˆã™ã‚‹
                 retPdu.setErrorStatus(SnmpConstants.SNMP_ERROR_GENERAL_ERROR);
                 retPdu.setErrorIndex(varCount);
-                
+
                 if (foundVarbind != null)
                 {
                     OID retOID = new OID(foundVarbind.getOid());

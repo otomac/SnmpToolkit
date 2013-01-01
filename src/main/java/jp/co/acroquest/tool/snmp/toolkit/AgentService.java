@@ -8,25 +8,25 @@ import jp.co.acroquest.tool.snmp.toolkit.stack.SnmpStackFactory;
 import jp.co.acroquest.tool.snmp.toolkit.trap.TrapSender;
 
 /**
- * ’Pˆê‚ÌAgent‚Ì‹N“®EI—¹‚ğŠÇ—‚·‚éB
- * 
+ * å˜ä¸€ã®Agentã®èµ·å‹•ãƒ»çµ‚äº†ã‚’ç®¡ç†ã™ã‚‹ã€‚
+ *
  * @author akiba
  */
 public class AgentService
 {
-    /** ‚±‚ÌAgentService‚ªŠÇ—‚·‚éAgentƒIƒuƒWƒFƒNƒgB */
+    /** ã“ã®AgentServiceãŒç®¡ç†ã™ã‚‹Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚ */
     private Agent agent_;
-    
-    /** ‚±‚ÌAgentService‚ªˆµ‚¤RequestHandlerB */
+
+    /** ã“ã®AgentServiceãŒæ‰±ã†RequestHandlerã€‚ */
     private RequestHandler reqHandler_;
-    
-    /** ‚±‚ÌAgentService‚ª—˜—p‚·‚éTrapSenderB */
+
+    /** ã“ã®AgentServiceãŒåˆ©ç”¨ã™ã‚‹TrapSenderã€‚ */
     private TrapSender trapSender_;
-    
+
     /**
-     * AgentService‚ğ‰Šú‰»‚·‚éB
-     * 
-     * @param agent ‚±‚ÌAgentService‚ªˆµ‚¤AgentƒIƒuƒWƒFƒNƒgB
+     * AgentServiceã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+     *
+     * @param agent ã“ã®AgentServiceãŒæ‰±ã†Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public AgentService(Agent agent)
     {
@@ -34,9 +34,9 @@ public class AgentService
     }
 
     /**
-     * AgentService‚ğŠJn‚·‚éB
-     * 
-     * @throws SnmpToolkitException AgentService‚ÌŠJn‚É¸”s‚µ‚½ê‡B
+     * AgentServiceã‚’é–‹å§‹ã™ã‚‹ã€‚
+     *
+     * @throws SnmpToolkitException AgentServiceã®é–‹å§‹ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public void startService() throws SnmpToolkitException
     {
@@ -45,7 +45,7 @@ public class AgentService
             SnmpStackFactory factory = SnmpStackFactory.getFactory();
             this.reqHandler_ = factory.createRequestHandler(this);
             this.trapSender_ = factory.createTrapSender(this.agent_);
-            
+
             this.reqHandler_.startListening();
         }
         catch (ClassNotFoundException exception)
@@ -61,62 +61,62 @@ public class AgentService
             throw new SnmpToolkitException(exception);
         }
     }
-    
+
     /**
-     * AgentService‚ğ’â~‚·‚éB
-     * 
-     * @throws SnmpToolkitException AgentService‚Ì’â~‚É¸”s‚µ‚½ê‡B
+     * AgentServiceã‚’åœæ­¢ã™ã‚‹ã€‚
+     *
+     * @throws SnmpToolkitException AgentServiceã®åœæ­¢ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public void stopService() throws SnmpToolkitException
     {
         this.reqHandler_.stopListening();
     }
-    
+
     /**
-     * AgentService‚Ì“®ì‚ğˆê“I‚É’â~‚·‚éB
-     * 
-     * @throws SnmpToolkitException AgentService‚Ìˆê’â~‚É¸”s‚µ‚½ê‡B
+     * AgentServiceã®å‹•ä½œã‚’ä¸€æ™‚çš„ã«åœæ­¢ã™ã‚‹ã€‚
+     *
+     * @throws SnmpToolkitException AgentServiceã®ä¸€æ™‚åœæ­¢ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public void suspendService() throws SnmpToolkitException
     {
         //this.reqHandler_.suspend();
     }
-    
+
     /**
-     * ˆê’â~’†‚ÌAgentService‚ğÄŠJ‚·‚éB
-     * 
-     * @throws SnmpToolkitException AgentService‚ÌÄŠJ‚É¸”s‚µ‚½ê‡B
+     * ä¸€æ™‚åœæ­¢ä¸­ã®AgentServiceã‚’å†é–‹ã™ã‚‹ã€‚
+     *
+     * @throws SnmpToolkitException AgentServiceã®å†é–‹ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public void resumeService() throws SnmpToolkitException
     {
         //this.reqHandler_.resume();
     }
-    
+
     /**
-     * V‚µ‚¢AgentƒIƒuƒWƒFƒNƒg‚ğİ’è‚µAMIBƒf[ƒ^‚ğXV‚·‚éB
-     * 
-     * @param agent V‚µ‚¢AgentƒIƒuƒWƒFƒNƒgB
+     * æ–°ã—ã„Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®šã—ã€MIBãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹ã€‚
+     *
+     * @param agent æ–°ã—ã„Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public void reloadAgent(Agent agent)
     {
         this.agent_ = agent;
         //this.reqHandler_.setAgent(agent);
     }
-    
+
     /**
-     * ‚±‚ÌAgentService‚ªˆµ‚¤AgentƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚éB
-     * 
-     * @return AgentƒIƒuƒWƒFƒNƒgB
+     * ã“ã®AgentServiceãŒæ‰±ã†Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public Agent getAgent()
     {
         return this.agent_;
     }
-    
+
     /**
-     * ‚±‚ÌAgentService‚ªg—p‚·‚éTrapSender‚ğæ“¾‚·‚éB
-     * 
-     * @return TrapSenderƒIƒuƒWƒFƒNƒgB
+     * ã“ã®AgentServiceãŒä½¿ç”¨ã™ã‚‹TrapSenderã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return TrapSenderã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public TrapSender getTrapSender()
     {

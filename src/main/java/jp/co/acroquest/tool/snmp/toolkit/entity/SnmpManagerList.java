@@ -6,27 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SNMPƒ}ƒl[ƒWƒƒ‚ÌƒŠƒXƒg‚ğ•Û‚·‚éƒGƒ“ƒeƒBƒeƒBB
- * 
+ * SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒªã‚¹ãƒˆã‚’ä¿æŒã™ã‚‹ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã€‚
+ *
  * @author akiba
  */
 public class SnmpManagerList
 {
-    /** SNMPƒ}ƒl[ƒWƒƒ‚ÌƒGƒ“ƒeƒBƒeƒB‚ğ•Û‚·‚éƒŠƒXƒgB */
+    /** SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã‚’ä¿æŒã™ã‚‹ãƒªã‚¹ãƒˆã€‚ */
     private List<SnmpManager> managerList_;
-    
+
     /**
-     * SNMPƒ}ƒl[ƒWƒƒ‚ÌƒŠƒXƒg‚ğ‰Šú‰»‚·‚éB
+     * SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
      */
     public SnmpManagerList()
     {
         this.managerList_ = new ArrayList<SnmpManager>();
     }
-    
+
     /**
-     * SNMPƒ}ƒl[ƒWƒƒ‚ÌƒGƒ“ƒeƒBƒeƒB‚ğ’Ç‰Á‚·‚éB
-     * 
-     * @param mgr SNMPƒ}ƒl[ƒWƒƒ‚ÌƒGƒ“ƒeƒBƒeƒBB
+     * SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã‚’è¿½åŠ ã™ã‚‹ã€‚
+     *
+     * @param mgr SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã€‚
      */
     public void addSnmpManager(SnmpManager mgr)
     {
@@ -34,20 +34,20 @@ public class SnmpManagerList
         {
             return ;
         }
-        
+
         this.managerList_.add(mgr);
     }
-    
+
     /**
-     * ‘S‚Ä‚ÌSNMPƒ}ƒl[ƒWƒƒ‚ğ”z—ñ‚Åæ“¾‚·‚éB
-     * 
-     * @return ‘S‚Ä‚ÌSNMPƒ}ƒl[ƒWƒƒ‚Ì”z—ñB
+     * å…¨ã¦ã®SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã‚’é…åˆ—ã§å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return å…¨ã¦ã®SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®é…åˆ—ã€‚
      */
     public SnmpManager[] getSnmpManagers()
     {
         SnmpManager[] managers = new SnmpManager[this.managerList_.size()];
         managers = this.managerList_.toArray(managers);
-        
+
         return managers;
     }
 

@@ -3,29 +3,29 @@
 package jp.co.acroquest.tool.snmp.toolkit.entity;
 
 /**
- * SNMP‚ÌTrap‘—Mæ‚Æ‚È‚éƒ}ƒl[ƒWƒƒ‚Ìİ’è‚ğ•Û‚·‚éƒGƒ“ƒeƒBƒeƒBB
- * 
+ * SNMPã®Trapé€ä¿¡å…ˆã¨ãªã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ã®è¨­å®šã‚’ä¿æŒã™ã‚‹ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã€‚
+ *
  * @author akiba
  */
 public class SnmpManager
 {
-    /** SNMPƒ}ƒl[ƒWƒƒ‚ÌƒAƒhƒŒƒXw’èB */
+    /** SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹æŒ‡å®šã€‚ */
     private String address_;
-    
+
     /**
-     * SNMPƒ}ƒl[ƒWƒƒ‚ÌƒAƒhƒŒƒX‚ğİ’è‚·‚éB
-     * 
-     * @param address SNMPƒ}ƒl[ƒWƒƒ‚ÌƒAƒhƒŒƒXB
+     * SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param address SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
      */
     public void setManagerAddress(String address)
     {
         this.address_ = address;
     }
-    
+
     /**
-     * SNMPƒ}ƒl[ƒWƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚éB
-     * 
-     * @return SNMPƒ}ƒl[ƒWƒƒ‚ÌƒAƒhƒŒƒXB
+     * SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return SNMPãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
      */
     public String getManagerAddress()
     {

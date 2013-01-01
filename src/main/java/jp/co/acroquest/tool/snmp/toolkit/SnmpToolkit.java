@@ -1,6 +1,6 @@
 // SnmpToolkit.java ----
 // History: 2004/03/23 - Create
-// 2009/07/25 - MIBƒf[ƒ^Ä“Ç‚İ‚İƒCƒ“ƒ^ƒtƒF[ƒX‚ğ’Ç‰Á
+// 2009/07/25 - MIBãƒ‡ãƒ¼ã‚¿å†èª­ã¿è¾¼ã¿ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’è¿½åŠ 
 package jp.co.acroquest.tool.snmp.toolkit;
 
 import java.rmi.Remote;
@@ -9,35 +9,35 @@ import java.rmi.RemoteException;
 import jp.co.acroquest.tool.snmp.toolkit.entity.TrapData;
 
 /**
- * SNMP Toolkit‚ÌƒŠƒ‚[ƒgƒCƒ“ƒ^ƒtƒF[ƒXB
- * 
+ * SNMP Toolkitã®ãƒªãƒ¢ãƒ¼ãƒˆã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
 public interface SnmpToolkit extends Remote
 {
     /**
-     * Trap‚ğ‘—M‚·‚éB
-     * 
-     * @param address Agent‚ğw’è‚·‚éIPƒAƒhƒŒƒXB
-     * @param trapData ‘—M‚·‚éTrap‚Ìƒf[ƒ^B
-     * @throws RemoteException RMIŒÄ‚Ño‚µ‚Å”­¶‚µ‚½—áŠOB
+     * Trapã‚’é€ä¿¡ã™ã‚‹ã€‚
+     *
+     * @param address Agentã‚’æŒ‡å®šã™ã‚‹IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+     * @param trapData é€ä¿¡ã™ã‚‹Trapã®ãƒ‡ãƒ¼ã‚¿ã€‚
+     * @throws RemoteException RMIå‘¼ã³å‡ºã—ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã€‚
      */
     public void sendTrap(String address, TrapData trapData)
         throws RemoteException;
 
     /**
-     * MIBƒf[ƒ^‚ÌÄ“Ç‚İ‚İ‚ğÀs‚·‚éB
-     * 
-     * @throws RemoteException RMIŒÄ‚Ño‚µ‚Å”­¶‚µ‚½—áŠOB
+     * MIBãƒ‡ãƒ¼ã‚¿ã®å†èª­ã¿è¾¼ã¿ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+     *
+     * @throws RemoteException RMIå‘¼ã³å‡ºã—ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã€‚
      */
     public void reloadMIBData() throws RemoteException;
 
     /**
-     * “Á’èIPƒAƒhƒŒƒX‚ÌAgent‚É‚Â‚¢‚ÄMIBƒf[ƒ^‚ÌÄ“Ç‚İ‚İ‚ğÀs‚·‚éB
-     * 
-     * @param address Agent‚ğw’è‚·‚éIPƒAƒhƒŒƒXB
-     * @throws RemoteException RMIŒÄ‚Ño‚µ‚Å”­¶‚µ‚½—áŠOB
+     * ç‰¹å®šIPã‚¢ãƒ‰ãƒ¬ã‚¹ã®Agentã«ã¤ã„ã¦MIBãƒ‡ãƒ¼ã‚¿ã®å†èª­ã¿è¾¼ã¿ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+     *
+     * @param address Agentã‚’æŒ‡å®šã™ã‚‹IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+     * @throws RemoteException RMIå‘¼ã³å‡ºã—ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã€‚
      */
     public void reloadMIBData(String address) throws RemoteException;
 }

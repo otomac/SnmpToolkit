@@ -4,8 +4,8 @@
 package jp.co.acroquest.tool.snmp.toolkit;
 
 /**
- * SnmpToolkit‚Ì“à•”‚Å‹¤’Ê“I‚Éæ‚è‰ñ‚·—áŠOB
- * 
+ * SnmpToolkitã®å†…éƒ¨ã§å…±é€šçš„ã«å–ã‚Šå›ã™ä¾‹å¤–ã€‚
+ *
  * @author akiba
  * @version 1.00
  */
@@ -14,7 +14,7 @@ public class SnmpToolkitException extends Exception
     private static final long serialVersionUID = 930082892844855194L;
 
     /**
-     * SnmpToolkitException‚ğ¶¬‚·‚éB
+     * SnmpToolkitExceptionã‚’ç”Ÿæˆã™ã‚‹ã€‚
      */
     public SnmpToolkitException()
     {
@@ -22,9 +22,9 @@ public class SnmpToolkitException extends Exception
     }
 
     /**
-     * SnmpToolkitException‚ğ¶¬‚·‚éB
-     * 
-     * @param cause ‚±‚Ì—áŠO‚ª”­¶‚µ‚½——RB
+     * SnmpToolkitExceptionã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param cause ã“ã®ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸç†ç”±ã€‚
      */
     public SnmpToolkitException(String cause)
     {
@@ -32,9 +32,9 @@ public class SnmpToolkitException extends Exception
     }
 
     /**
-     * SnmpToolkitException‚ğ¶¬‚·‚éB
-     * 
-     * @param superException ‚±‚Ì—áŠO‚É˜A½‚³‚¹‚é—áŠOƒIƒuƒWƒFƒNƒgB
+     * SnmpToolkitExceptionã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param superException ã“ã®ä¾‹å¤–ã«é€£é–ã•ã›ã‚‹ä¾‹å¤–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public SnmpToolkitException(Throwable superException)
     {
@@ -42,10 +42,10 @@ public class SnmpToolkitException extends Exception
     }
 
     /**
-     * SnmpToolkitException‚ğ¶¬‚·‚éB
-     * 
-     * @param cause ‚±‚Ì—áŠO‚ª”­¶‚·‚é——RB
-     * @param superException ‚±‚Ì—áŠO‚É˜A½‚³‚¹‚é—áŠOƒIƒuƒWƒFƒNƒgB
+     * SnmpToolkitExceptionã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param cause ã“ã®ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹ç†ç”±ã€‚
+     * @param superException ã“ã®ä¾‹å¤–ã«é€£é–ã•ã›ã‚‹ä¾‹å¤–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public SnmpToolkitException(String cause, Throwable superException)
     {

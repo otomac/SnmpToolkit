@@ -18,22 +18,22 @@ import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
 
 /**
- * Agent‚ÌMIBƒf[ƒ^CSVƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Şƒ[ƒ_[ƒNƒ‰ƒXB<br/>
- * CSVƒtƒ@ƒCƒ‹‚ÍAExcel‚Å“Ç‚İ‚ß‚éŒ`®‚ÅA‚Ps–Ú‚Éƒwƒbƒ_•¶š—ñ‚ğw’è‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚éB<br/>
- * ‚Ps–Ú‚Ìƒwƒbƒ_•¶š—ñ‚ÍAAgentƒIƒuƒWƒFƒNƒg‚ÌGetterƒƒ\ƒbƒh–¼‚É“]—p‚³‚ê‚é‚½‚ßA•ÏX‚µ‚È‚¢‚±‚ÆB<br/>
- * —ñ–¼F
+ * Agentã®MIBãƒ‡ãƒ¼ã‚¿CSVãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¹ã€‚<br/>
+ * CSVãƒ•ã‚¡ã‚¤ãƒ«ã¯ã€Excelã§èª­ã¿è¾¼ã‚ã‚‹å½¢å¼ã§ã€ï¼‘è¡Œç›®ã«ãƒ˜ãƒƒãƒ€æ–‡å­—åˆ—ã‚’æŒ‡å®šã—ã¦ãŠãå¿…è¦ãŒã‚ã‚‹ã€‚<br/>
+ * ï¼‘è¡Œç›®ã®ãƒ˜ãƒƒãƒ€æ–‡å­—åˆ—ã¯ã€Agentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®Getterãƒ¡ã‚½ãƒƒãƒ‰åã«è»¢ç”¨ã•ã‚Œã‚‹ãŸã‚ã€å¤‰æ›´ã—ãªã„ã“ã¨ã€‚<br/>
+ * åˆ—åï¼š
  * <ol>
- *   <li>oid : MIBƒf[ƒ^‚ÌOIDB</li>
- *   <li>type : MIBƒf[ƒ^‚ÌŒ^Bstring, octets, integer, hex, ipaddress, timeticks, object-id‚Ì‚¢‚¸‚ê‚©B</li>
- *   <li>value : MIB‚Ì’lB</li>
- *   <li>accessibility : QÆ‰Â”\«BREAD-WRITE(default), READ-ONLY, NOT-ACCESSIBLE‚Ì‚¢‚¸‚ê‚©B</li>
+ *   <li>oid : MIBãƒ‡ãƒ¼ã‚¿ã®OIDã€‚</li>
+ *   <li>type : MIBãƒ‡ãƒ¼ã‚¿ã®å‹ã€‚string, octets, integer, hex, ipaddress, timeticks, object-idã®ã„ãšã‚Œã‹ã€‚</li>
+ *   <li>value : MIBã®å€¤ã€‚</li>
+ *   <li>accessibility : å‚ç…§å¯èƒ½æ€§ã€‚READ-WRITE(default), READ-ONLY, NOT-ACCESSIBLEã®ã„ãšã‚Œã‹ã€‚</li>
  * </ol>
- * 
+ *
  * @author akiba
  */
 public class AgentMIBCSVLoader
 {
-    /** CSV“Ç‚İ‚İ‚Ì‹K‘¥‚ğ‹K’è‚·‚éCellProcessorB */
+    /** CSVèª­ã¿è¾¼ã¿æ™‚ã®è¦å‰‡ã‚’è¦å®šã™ã‚‹CellProcessorã€‚ */
     private final CellProcessor[] PROCESSORS = new CellProcessor[] {
         // oid
         new Unique(),
@@ -44,41 +44,41 @@ public class AgentMIBCSVLoader
         // accessibility
         new ConvertNullTo("READ-WRITE")
     };
-    
+
     /**
-     * ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public AgentMIBCSVLoader()
     {
     }
 
     /**
-     * w’è‚µ‚½ƒpƒX‚É”z’u‚³‚ê‚Ä‚¢‚éCSVƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İAAgentƒf[ƒ^‚ğ¶¬‚·‚éB
-     * 
-     * @param parent CSVƒtƒ@ƒCƒ‹‚ª”z’u‚³‚ê‚Ä‚¢‚éƒfƒBƒŒƒNƒgƒŠB
-     * @param filename CSVƒtƒ@ƒCƒ‹–¼B
-     * @return “Ç‚İ‚İ‚É¬Œ÷‚µ‚½Œ‹‰ÊA¶¬‚³‚ê‚½AgentƒIƒuƒWƒFƒNƒgB
-     * @throws IOException “Ç‚İ‚İ‚É¸”s‚µ‚½ê‡B
+     * æŒ‡å®šã—ãŸãƒ‘ã‚¹ã«é…ç½®ã•ã‚Œã¦ã„ã‚‹CSVãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã€Agentãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param parent CSVãƒ•ã‚¡ã‚¤ãƒ«ãŒé…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã€‚
+     * @param filename CSVãƒ•ã‚¡ã‚¤ãƒ«åã€‚
+     * @return èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸçµæœã€ç”Ÿæˆã•ã‚ŒãŸAgentã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @throws IOException èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public Agent load(String parent, String filename)
         throws IOException
     {
         Agent agent = null;
-        
-        // ƒfƒBƒŒƒNƒgƒŠ‚Æƒtƒ@ƒCƒ‹–¼‚©‚çFileƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚é
+
+        // ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¨ãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰Fileã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹
         File csvFile = new File(parent, filename);
-        
-        // CSVƒtƒ@ƒCƒ‹ƒŠ[ƒ_[
+
+        // CSVãƒ•ã‚¡ã‚¤ãƒ«ãƒªãƒ¼ãƒ€ãƒ¼
         ICsvBeanReader reader = null;
         try
         {
-            // Excel‚Ì“Ç‚İ‚İ‹K‘¥‚ğg—p‚µ‚ÄCSVƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+            // Excelã®èª­ã¿è¾¼ã¿è¦å‰‡ã‚’ä½¿ç”¨ã—ã¦CSVãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
             reader = new CsvBeanReader(new FileReader(csvFile), CsvPreference.EXCEL_PREFERENCE);
-            
-            // ƒwƒbƒ_‚ğæ“¾‚·‚é
+
+            // ãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã™ã‚‹
             final String[] headers = reader.getCSVHeader(true);
-            
-            // Agent‚ğ¶¬‚µA‚Ps‚PŒÂ‚ÌVarbind‚ğ¶¬‚µŠi”[‚·‚é
+
+            // Agentã‚’ç”Ÿæˆã—ã€ï¼‘è¡Œï¼‘å€‹ã®Varbindã‚’ç”Ÿæˆã—æ ¼ç´ã™ã‚‹
             agent = new Agent();
             while(true)
             {
@@ -87,7 +87,7 @@ public class AgentMIBCSVLoader
                 {
                     break;
                 }
-                
+
                 agent.addVarbind(varbind);
             }
         }
@@ -98,7 +98,7 @@ public class AgentMIBCSVLoader
         }
         finally
         {
-            // ŠJ‚©‚ê‚Ä‚¢‚éReader‚ÍƒNƒ[ƒY‚·‚é
+            // é–‹ã‹ã‚Œã¦ã„ã‚‹Readerã¯ã‚¯ãƒ­ãƒ¼ã‚ºã™ã‚‹
             if (reader != null)
             {
                 try
@@ -110,14 +110,14 @@ public class AgentMIBCSVLoader
                 }
             }
         }
-        
+
         return agent;
     }
-    
+
     /**
-     * ƒeƒXƒg—p‚ÌƒƒCƒ“ƒƒ\ƒbƒhB
-     * 
-     * @param args “Ç‚İ‚Şƒf[ƒ^ƒtƒ@ƒCƒ‹B
+     * ãƒ†ã‚¹ãƒˆç”¨ã®ãƒ¡ã‚¤ãƒ³ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     *
+     * @param args èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã€‚
      * @throws Exception
      */
     public static void main(String[] args) throws Exception

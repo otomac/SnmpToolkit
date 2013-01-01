@@ -9,8 +9,8 @@ import java.rmi.RemoteException;
 import jp.co.acroquest.tool.snmp.toolkit.SnmpToolkit;
 
 /**
- * “Á’è‚Ü‚½‚Í‘S‚Ä‚ÌAgent‚É‚Â‚¢‚ÄMIBƒf[ƒ^‚ÌÄ“Ç‚İ‚İ‚ğs‚¤ƒRƒ}ƒ“ƒhB
- * 
+ * ç‰¹å®šã¾ãŸã¯å…¨ã¦ã®Agentã«ã¤ã„ã¦MIBãƒ‡ãƒ¼ã‚¿ã®å†èª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‚³ãƒãƒ³ãƒ‰ã€‚
+ *
  * @author akiba
  */
 public class ReloadMIBData
@@ -18,9 +18,9 @@ public class ReloadMIBData
     private static final String DEFAULT_SRV_NAME = "SnmpToolkit";
 
     /**
-     * ƒvƒƒOƒ‰ƒ€ƒGƒ“ƒgƒŠB
-     * 
-     * @param args ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ˆø”B[0]=RMIÚ‘±URLB[1]=Agent‚ÌIPƒAƒhƒŒƒXB
+     * ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¨ãƒ³ãƒˆãƒªã€‚
+     *
+     * @param args ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°ã€‚[0]=RMIæ¥ç¶šURLã€‚[1]=Agentã®IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
      * @throws Exception
      */
     public static void main(String[] args)
@@ -31,13 +31,13 @@ public class ReloadMIBData
             System.err.println("USAGE: RemoteTrapSender <rmi-url> [<address>]");
             System.exit(1);
         }
-        
+
         String targetAddress = null;
         if (args.length > 1)
         {
             targetAddress = args[1];
         }
-        
+
         String boundObjName = args[0] + "/" + DEFAULT_SRV_NAME;
         System.out.println("Connecting to " + boundObjName + " ...");
         SnmpToolkit toolkit = null;
@@ -51,7 +51,7 @@ public class ReloadMIBData
             System.exit(1);
         }
         System.out.println("Succeeded connecting to [" + boundObjName + "].");
-        
+
         try
         {
             if (targetAddress == null)

@@ -1,6 +1,6 @@
 // RemoteTrapSender.java ----
 // History: 2004/03/23 - Create
-// 2009/07/25 - ƒpƒbƒP[ƒWˆÚ“®(trap¨command)
+// 2009/07/25 - ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ç§»å‹•(trapâ†’command)
 package jp.co.acroquest.tool.snmp.toolkit.command;
 
 import java.rmi.Naming;
@@ -13,8 +13,8 @@ import jp.co.acroquest.tool.snmp.toolkit.entity.Traps;
 import jp.co.acroquest.tool.snmp.toolkit.loader.TrapDataLoader;
 
 /**
- * RMI‚ÅSnmpToolkit‚ÉÚ‘±‚µATrap‚ğ‘—M‚·‚éƒRƒ}ƒ“ƒhB
- * 
+ * RMIã§SnmpToolkitã«æ¥ç¶šã—ã€Trapã‚’é€ä¿¡ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
@@ -23,9 +23,9 @@ public class RemoteTrapSender
     private static final String DEFAULT_SRV_NAME = "SnmpToolkit";
 
     /**
-     * ƒvƒƒOƒ‰ƒ€ƒGƒ“ƒgƒŠB
-     * 
-     * @param args ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ˆø”B[0]=RMIÚ‘±URLB[1]=Agent‚ÌIPƒAƒhƒŒƒXB[2]=Trapƒf[ƒ^ƒtƒ@ƒCƒ‹B[3]=Trap‘—MŠÔŠu(ƒIƒvƒVƒ‡ƒ“)B
+     * ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¨ãƒ³ãƒˆãƒªã€‚
+     *
+     * @param args ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°ã€‚[0]=RMIæ¥ç¶šURLã€‚[1]=Agentã®IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚[2]=Trapãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã€‚[3]=Trapé€ä¿¡é–“éš”(ã‚ªãƒ—ã‚·ãƒ§ãƒ³)ã€‚
      * @throws Exception
      */
     public static void main(String[] args) throws Exception
@@ -49,8 +49,8 @@ public class RemoteTrapSender
             System.exit(1);
         }
         System.out.println("Succeeded connecting to [" + boundObjName + "].");
-        
-        // Trap‘—MƒCƒ“ƒ^[ƒoƒ‹‚Ìæ“¾
+
+        // Trapé€ä¿¡ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã®å–å¾—
         long interval = 0L;
         if (args.length > 3)
         {
@@ -73,18 +73,18 @@ public class RemoteTrapSender
 
         try
         {
-            // ‘—M‚·‚éTrapƒf[ƒ^‚Ì“Ç‚İ‚İ
+            // é€ä¿¡ã™ã‚‹Trapãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
             TrapDataLoader loader = new TrapDataLoader();
             Traps traps = loader.load(args[2]);
             TrapData[] trapArray = traps.getAllTrapData();
             for (int index = 0; index < trapArray.length; index++)
             {
-                // æ“¾‚µ‚½•ª‚ÌTrap‚ğ‘—M‚·‚é
+                // å–å¾—ã—ãŸåˆ†ã®Trapã‚’é€ä¿¡ã™ã‚‹
                 TrapData trapData = trapArray[index];
                 toolkit.sendTrap(args[1], trapData);
                 System.out.println("Trap[" + index + "] was sent.");
-                
-                // ƒEƒFƒCƒg‚ğ“ü‚ê‚é(1msˆÈã‚Ìê‡)
+
+                // ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹(1msä»¥ä¸Šã®å ´åˆ)
                 if (interval > 0)
                 {
                     Thread.sleep(interval);

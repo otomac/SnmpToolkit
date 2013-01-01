@@ -1,6 +1,6 @@
 // SnmpConfiguration.java ----
 // History: 2004/03/07 - Create
-// 2009/07/25 - URIw’è‚ğ•s—v‚Æ‚·‚é‚½‚ß‚ÌC³
+// 2009/07/25 - URIæŒ‡å®šã‚’ä¸è¦ã¨ã™ã‚‹ãŸã‚ã®ä¿®æ­£
 package jp.co.acroquest.tool.snmp.toolkit.loader;
 
 import java.io.File;
@@ -14,28 +14,28 @@ import org.apache.commons.digester.Digester;
 import org.xml.sax.SAXException;
 
 /**
- * SNMPİ’è‚ğ•Û‚·‚éƒNƒ‰ƒXB
- * 
+ * SNMPè¨­å®šã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
 public class SnmpConfiguration
 {
-    /** İ’èƒAƒCƒeƒ€B */
+    /** è¨­å®šã‚¢ã‚¤ãƒ†ãƒ ã€‚ */
     private SnmpConfigItem           item_     = null;
 
-    /** ‚±‚ÌƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒXB */
+    /** ã“ã®ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚ */
     private static SnmpConfiguration config__  = null;
 
-    /** ƒ‹[ƒgƒm[ƒh–¼B */
+    /** ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰åã€‚ */
     private static final String      ROOT_NODE = "config";
 
     /**
-     * ‚±‚ÌƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»‚·‚éB<br>
-     * getInstance()ƒƒ\ƒbƒh‚ğg—p‚µ‚ÄƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚é‘O‚ÉA•K‚¸Às‚·‚é‚±‚ÆB<br>
-     * ‚±‚Ìƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ‚Í‰‰ñ‚Ì‚İ—LŒø‚Å‚ ‚èA‚Q‰ñ–ÚˆÈ~‚ÌŒÄ‚Ño‚µ‚Í‰½‚à‚µ‚È‚¢B
-     * 
-     * @param path “Ç‚İ‚Şİ’èƒtƒ@ƒCƒ‹(XML)‚Ö‚ÌƒpƒXB
+     * ã“ã®ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚<br>
+     * getInstance()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨ã—ã¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹å‰ã«ã€å¿…ãšå®Ÿè¡Œã™ã‚‹ã“ã¨ã€‚<br>
+     * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—ã¯åˆå›ã®ã¿æœ‰åŠ¹ã§ã‚ã‚Šã€ï¼’å›ç›®ä»¥é™ã®å‘¼ã³å‡ºã—ã¯ä½•ã‚‚ã—ãªã„ã€‚
+     *
+     * @param path èª­ã¿è¾¼ã‚€è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«(XML)ã¸ã®ãƒ‘ã‚¹ã€‚
      * @throws IOException
      * @throws SAXException
      */
@@ -50,10 +50,10 @@ public class SnmpConfiguration
     }
 
     /**
-     * ‚±‚ÌƒNƒ‰ƒX‚Ì¶¬Ï‚İƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éB<br>
-     * ‚½‚¾‚µAinitialize()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·‘O‚Íí‚Énull‚ğ•Ô‚·B
-     * 
-     * @return ‚±‚ÌƒNƒ‰ƒX‚Ì¶¬Ï‚İƒCƒ“ƒXƒ^ƒ“ƒXB‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Íí‚ÉnullB
+     * ã“ã®ã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆæ¸ˆã¿ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚<br>
+     * ãŸã ã—ã€initialize()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™å‰ã¯å¸¸ã«nullã‚’è¿”ã™ã€‚
+     *
+     * @return ã“ã®ã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆæ¸ˆã¿ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„å ´åˆã¯å¸¸ã«nullã€‚
      */
     public static SnmpConfiguration getInstance()
     {
@@ -61,7 +61,7 @@ public class SnmpConfiguration
     }
 
     /**
-     * İ’èƒNƒ‰ƒX‚ğ‰Šú‰»‚·‚éB
+     * è¨­å®šã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
      */
     private SnmpConfiguration(String path) throws IOException, SAXException
     {
@@ -70,9 +70,9 @@ public class SnmpConfiguration
     }
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚©‚çŒÄ‚Ño‚³‚êAXMLƒtƒ@ƒCƒ‹‚©‚çİ’è’l‚ğæ“¾‚·‚éB
-     * 
-     * @param path İ’èƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒXB
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã€XMLãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰è¨­å®šå€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param path è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹ã€‚
      * @throws IOException
      * @throws SAXException
      */
@@ -96,14 +96,14 @@ public class SnmpConfiguration
                 .getName());
         digester.addCallMethod(ROOT_NODE + "/managers/manager", "setManagerAddress", 0);
 
-        // URIw’è‚ğ•s—v‚Æ‚·‚é‚½‚ß‚ÉFileƒIƒuƒWƒFƒNƒg‚ğ’Ê‚·
+        // URIæŒ‡å®šã‚’ä¸è¦ã¨ã™ã‚‹ãŸã‚ã«Fileã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é€šã™
         digester.parse(new File(path));
     }
 
     /**
-     * Snmpİ’è‚ğ•Û‘¶‚·‚éB
-     * 
-     * @param item Snmpİ’èB
+     * Snmpè¨­å®šã‚’ä¿å­˜ã™ã‚‹ã€‚
+     *
+     * @param item Snmpè¨­å®šã€‚
      */
     public void setSnmpConfigItem(SnmpConfigItem item)
     {
@@ -111,9 +111,9 @@ public class SnmpConfiguration
     }
 
     /**
-     * Snmpİ’è‚ğæ“¾‚·‚éB
-     * 
-     * @return Snmpİ’èB
+     * Snmpè¨­å®šã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Snmpè¨­å®šã€‚
      */
     public SnmpConfigItem getSnmpConfigItem()
     {
@@ -121,9 +121,9 @@ public class SnmpConfiguration
     }
 
     /**
-     * Object#toString()‚ÌƒI[ƒo[ƒ‰ƒCƒhB
-     * 
-     * @return ‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ì•¶š—ñ•\Œ»B
+     * Object#toString()ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã€‚
+     *
+     * @return ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ–‡å­—åˆ—è¡¨ç¾ã€‚
      */
     public String toString()
     {

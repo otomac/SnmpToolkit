@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TrapData‚ğƒŠƒXƒg‚ÅŠÇ—‚·‚éƒNƒ‰ƒXB
- * 
+ * TrapDataã‚’ãƒªã‚¹ãƒˆã§ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
 public class Traps
 {
-    /** ’Ç‰Á‚³‚ê‚Ä‚¢‚éTrapData‚ğŠÇ—‚·‚éƒŠƒXƒgB */
+    /** è¿½åŠ ã•ã‚Œã¦ã„ã‚‹TrapDataã‚’ç®¡ç†ã™ã‚‹ãƒªã‚¹ãƒˆã€‚ */
     private List<TrapData> trapList_;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public Traps()
     {
@@ -27,9 +27,9 @@ public class Traps
     }
 
     /**
-     * TrapData‚ğ’Ç‰Á‚·‚éB
-     * 
-     * @param trapData TrapDataB
+     * TrapDataã‚’è¿½åŠ ã™ã‚‹ã€‚
+     *
+     * @param trapData TrapDataã€‚
      */
     public void addTrapData(TrapData trapData)
     {
@@ -37,9 +37,9 @@ public class Traps
     }
 
     /**
-     * ’Ç‰Á‚³‚ê‚Ä‚¢‚é‘S‚Ä‚ÌTrapData‚ğ”z—ñ‚Åæ“¾‚·‚éB
-     * 
-     * @return ’Ç‰Á‚³‚ê‚Ä‚¢‚é‘S‚Ä‚ÌTrapDataB
+     * è¿½åŠ ã•ã‚Œã¦ã„ã‚‹å…¨ã¦ã®TrapDataã‚’é…åˆ—ã§å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return è¿½åŠ ã•ã‚Œã¦ã„ã‚‹å…¨ã¦ã®TrapDataã€‚
      */
     public TrapData[] getAllTrapData()
     {

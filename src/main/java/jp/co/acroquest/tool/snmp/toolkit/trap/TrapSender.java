@@ -6,25 +6,25 @@ import jp.co.acroquest.tool.snmp.toolkit.SnmpToolkitException;
 import jp.co.acroquest.tool.snmp.toolkit.entity.TrapData;
 
 /**
- * Trap‘—M‚ğs‚¤ƒNƒ‰ƒX‚ÌŠî’êƒCƒ“ƒ^ƒtƒF[ƒXB
- * 
+ * Trapé€ä¿¡ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã®åŸºåº•ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
 public interface TrapSender
 {
 	/**
-     * Trap‚ğ‘—M‚·‚é‚ÌƒRƒ~ƒ…ƒjƒeƒB–¼‚ğİ’è‚·‚éB
-     * 
-     * @param comm TrapƒRƒ~ƒ…ƒjƒeƒB–¼B
+     * Trapã‚’é€ä¿¡ã™ã‚‹æ™‚ã®ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param comm Trapã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚
      */
     public void setCommunity(String comm);
-    
+
     /**
-     * w’è‚µ‚½TrapData‚ğg—p‚µ‚ÄTrap‚ğ‘—M‚·‚éB
-     * 
-     * @param trapData ‘—M‚·‚éTrapDataB
-     * @throws SnmpToolkitException Trap‘—M‚É”­¶‚µ‚½—áŠOB
+     * æŒ‡å®šã—ãŸTrapDataã‚’ä½¿ç”¨ã—ã¦Trapã‚’é€ä¿¡ã™ã‚‹ã€‚
+     *
+     * @param trapData é€ä¿¡ã™ã‚‹TrapDataã€‚
+     * @throws SnmpToolkitException Trapé€ä¿¡æ™‚ã«ç™ºç”Ÿã—ãŸä¾‹å¤–ã€‚
      */
     public void sendTrap(TrapData trapData)
     	throws SnmpToolkitException;

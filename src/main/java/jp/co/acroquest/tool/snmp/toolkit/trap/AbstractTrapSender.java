@@ -8,24 +8,24 @@ import org.apache.commons.logging.LogFactory;
 import jp.co.acroquest.tool.snmp.toolkit.SnmpToolkitException;
 
 /**
- * TrapSenderƒCƒ“ƒ^ƒtƒF[ƒX‚ğÀ‘•‚µ‚½’ŠÛƒNƒ‰ƒXB
- * 
+ * TrapSenderã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸæŠ½è±¡ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @author akiba
  * @version 1.0
  */
 public abstract class AbstractTrapSender implements TrapSender
 {
-    /** Trap‘—MæƒzƒXƒg–¼B */
+    /** Trapé€ä¿¡å…ˆãƒ›ã‚¹ãƒˆåã€‚ */
     protected String host_;
 
-    /** Trap‘—Mæƒ|[ƒg”Ô†B */
+    /** Trapé€ä¿¡å…ˆãƒãƒ¼ãƒˆç•ªå·ã€‚ */
     protected int    port_;
 
-    /** Trap‘—MƒRƒ~ƒ…ƒjƒeƒB–¼B */
+    /** Trapé€ä¿¡ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚ */
     protected String community_;
 
     /**
-     * TrapSender‚É‹¤’Ê‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * TrapSenderã«å…±é€šã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     protected AbstractTrapSender()
     {
@@ -33,11 +33,11 @@ public abstract class AbstractTrapSender implements TrapSender
     }
 
     /**
-     * TrapSender‚ªTrap‚ğ‘—M‚·‚éƒzƒXƒg‚Æƒ|[ƒg”Ô†‚ğw’è‚·‚éB
-     * 
-     * @param host Trap‘—MæƒzƒXƒg–¼‚Ü‚½‚ÍIPƒAƒhƒŒƒXB
-     * @param port Trap‘—Mæƒ|[ƒg”Ô†B
-     * @throws SnmpToolkitException ‘—Mæ‚Ìİ’è‚É¸”s‚µ‚½ê‡B
+     * TrapSenderãŒTrapã‚’é€ä¿¡ã™ã‚‹ãƒ›ã‚¹ãƒˆã¨ãƒãƒ¼ãƒˆç•ªå·ã‚’æŒ‡å®šã™ã‚‹ã€‚
+     *
+     * @param host Trapé€ä¿¡å…ˆãƒ›ã‚¹ãƒˆåã¾ãŸã¯IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+     * @param port Trapé€ä¿¡å…ˆãƒãƒ¼ãƒˆç•ªå·ã€‚
+     * @throws SnmpToolkitException é€ä¿¡å…ˆã®è¨­å®šã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public void setTarget(String host, int port) throws SnmpToolkitException
     {
@@ -46,9 +46,9 @@ public abstract class AbstractTrapSender implements TrapSender
     }
 
     /**
-     * Trap‘—MƒRƒ~ƒ…ƒjƒeƒB–¼‚ğİ’è‚·‚éB
-     * 
-     * @param community Trap‘—MƒRƒ~ƒ…ƒjƒeƒB–¼Bnull‚ğw’è‚µ‚½ê‡‚Ípublic‚É‚È‚éB
+     * Trapé€ä¿¡ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param community Trapé€ä¿¡ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚nullã‚’æŒ‡å®šã—ãŸå ´åˆã¯publicã«ãªã‚‹ã€‚
      */
     public void setCommunity(String community)
     {
@@ -65,9 +65,9 @@ public abstract class AbstractTrapSender implements TrapSender
     }
 
     /**
-     * Trap‘—Mæ‚ÌƒzƒXƒg–¼‚Ü‚½‚ÍIPƒAƒhƒŒƒX‚ğæ“¾‚·‚éB
-     * 
-     * @return Trap‘—Mæ‚ÌƒzƒXƒg–¼‚Ü‚½‚ÍIPƒAƒhƒŒƒXB
+     * Trapé€ä¿¡å…ˆã®ãƒ›ã‚¹ãƒˆåã¾ãŸã¯IPã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Trapé€ä¿¡å…ˆã®ãƒ›ã‚¹ãƒˆåã¾ãŸã¯IPã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
      */
     protected String getHost()
     {
@@ -75,9 +75,9 @@ public abstract class AbstractTrapSender implements TrapSender
     }
 
     /**
-     * Trap‘—Mæ‚Ìƒ|[ƒg”Ô†‚ğæ“¾‚·‚éB
-     * 
-     * @return Trap‘—Mæ‚Ìƒ|[ƒg”Ô†B
+     * Trapé€ä¿¡å…ˆã®ãƒãƒ¼ãƒˆç•ªå·ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Trapé€ä¿¡å…ˆã®ãƒãƒ¼ãƒˆç•ªå·ã€‚
      */
     protected int getPort()
     {
@@ -85,9 +85,9 @@ public abstract class AbstractTrapSender implements TrapSender
     }
 
     /**
-     * Trap‘—M‚ÌƒRƒ~ƒ…ƒjƒeƒB–¼‚ğæ“¾‚·‚éB
-     * 
-     * @return Trap‘—M‚ÌƒRƒ~ƒ…ƒjƒeƒB–¼B
+     * Trapé€ä¿¡æ™‚ã®ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return Trapé€ä¿¡æ™‚ã®ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£åã€‚
      */
     protected String getCommunity()
     {

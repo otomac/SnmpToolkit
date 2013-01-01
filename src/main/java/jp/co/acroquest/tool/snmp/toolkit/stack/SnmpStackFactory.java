@@ -1,6 +1,6 @@
 //SnmpStackFactory.java ----
 // History: 2009/05/07 - Create
-//          2009/08/15 - AgentService‘Î‰
+//          2009/08/15 - AgentServiceå¯¾å¿œ
 package jp.co.acroquest.tool.snmp.toolkit.stack;
 
 import jp.co.acroquest.tool.snmp.toolkit.AgentService;
@@ -10,39 +10,39 @@ import jp.co.acroquest.tool.snmp.toolkit.request.RequestHandler;
 import jp.co.acroquest.tool.snmp.toolkit.trap.TrapSender;
 
 /**
- * SNMPƒXƒ^ƒbƒN‚É‹¤’Ê‚·‚éˆ—ƒIƒuƒWƒFƒNƒg¶¬ƒtƒ@ƒNƒgƒŠB
- * 
+ * SNMPã‚¹ã‚¿ãƒƒã‚¯ã«å…±é€šã™ã‚‹å‡¦ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒªã€‚
+ *
  * @author akiba
  */
 public abstract class SnmpStackFactory
 {
-    /** ‚±‚Ìƒtƒ@ƒNƒgƒŠ‚ÌƒCƒ“ƒXƒ^ƒ“ƒXB */
+    /** ã“ã®ãƒ•ã‚¡ã‚¯ãƒˆãƒªã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚ */
     private static SnmpStackFactory factory__;
-    
-    /** ƒtƒ@ƒNƒgƒŠƒNƒ‰ƒX–¼‚ğw’è‚·‚éƒvƒƒpƒeƒB–¼B */
+
+    /** ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚¯ãƒ©ã‚¹åã‚’æŒ‡å®šã™ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åã€‚ */
     private static final String PROP_STACK_FACTORY = "snmptoolkit.stackFactory";
-    
-    /** ƒfƒtƒHƒ‹ƒg‚Ìƒtƒ@ƒNƒgƒŠƒNƒ‰ƒX–¼B */
+
+    /** ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚¯ãƒ©ã‚¹åã€‚ */
     private static final String DEF_STACK_FACTORY  = "jp.co.acroquest.tool.snmp.toolkit.stack.Snmp4jFactory";
-    
-    /** ƒfƒtƒHƒ‹ƒg‚ÌTrapƒ|[ƒg”Ô†B */
+
+    /** ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®Trapãƒãƒ¼ãƒˆç•ªå·ã€‚ */
     protected static final int  DEFAULT_TRAP_PORT  = 162;
-    
+
     /**
-     * ƒtƒ@ƒNƒgƒŠ‚ğ¶¬‚·‚éB
+     * ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚’ç”Ÿæˆã™ã‚‹ã€‚
      */
     protected SnmpStackFactory()
     {
     }
-    
+
     /**
-     * ƒtƒ@ƒNƒgƒŠƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚éB<br/>
-     * ƒtƒ@ƒNƒgƒŠƒNƒ‰ƒX‚ÍAƒvƒƒpƒeƒB<code>snmptoolkit.stackFactory</code>‚Åİ’è‰Â”\B
-     * 
-     * @return ¶¬‚µ‚½ƒtƒ@ƒNƒgƒŠƒIƒuƒWƒFƒNƒgB
-     * @throws ClassNotFoundException 
-     * @throws IllegalAccessException 
-     * @throws InstantiationException 
+     * ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚<br/>
+     * ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚¯ãƒ©ã‚¹ã¯ã€ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£<code>snmptoolkit.stackFactory</code>ã§è¨­å®šå¯èƒ½ã€‚
+     *
+     * @return ç”Ÿæˆã—ãŸãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
      */
     public static final SnmpStackFactory getFactory()
         throws ClassNotFoundException, InstantiationException, IllegalAccessException
@@ -53,25 +53,25 @@ public abstract class SnmpStackFactory
             Class<?> factoryClass = Class.forName(factoryClassName);
             factory__ = (SnmpStackFactory) factoryClass.newInstance();
         }
-        
+
         return factory__;
     }
-    
+
     /**
-     * TrapSenderƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param agent TrapSender‚ªˆ—‚·‚éAgent‚Ìƒf[ƒ^B
-     * @return TrapSenderƒIƒuƒWƒFƒNƒgB
+     * TrapSenderã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param agent TrapSenderãŒå‡¦ç†ã™ã‚‹Agentã®ãƒ‡ãƒ¼ã‚¿ã€‚
+     * @return TrapSenderã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      * @throws SnmpToolkitException
      */
     public abstract TrapSender createTrapSender(Agent agent)
         throws SnmpToolkitException;
-    
+
     /**
-     * RequestHandlerƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * 
-     * @param agent RequestHandler‚ªˆ—‚·‚éAgent‚ğ‚ÂƒT[ƒrƒXB
-     * @return RequestHandlerƒIƒuƒWƒFƒNƒgB
+     * RequestHandlerã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param agent RequestHandlerãŒå‡¦ç†ã™ã‚‹Agentã‚’æŒã¤ã‚µãƒ¼ãƒ“ã‚¹ã€‚
+     * @return RequestHandlerã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      * @throws SnmpToolkitException
      */
     public abstract RequestHandler createRequestHandler(AgentService agentService)

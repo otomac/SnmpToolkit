@@ -14,40 +14,40 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * SNMP‚Ì’l‚ğŒ^w’è•¶š—ñ‚É‚µ‚½‚ª‚Á‚Ä•ÏŠ·‚·‚éƒwƒ‹ƒp[ƒNƒ‰ƒX‚Ì’ŠÛƒNƒ‰ƒXB<br/>
- * ŠeƒXƒ^ƒbƒN‚É‹¤’Ê‚Ìˆ—‚ğÀ‘•‚µ‚Ä‚¢‚éB
- * 
+ * SNMPã®å€¤ã‚’å‹æŒ‡å®šæ–‡å­—åˆ—ã«ã—ãŸãŒã£ã¦å¤‰æ›ã™ã‚‹ãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã®æŠ½è±¡ã‚¯ãƒ©ã‚¹ã€‚<br/>
+ * å„ã‚¹ã‚¿ãƒƒã‚¯ã«å…±é€šã®å‡¦ç†ã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã€‚
+ *
  * @author akiba
  */
 public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
 {
-    /** “ú•t‰ğÍ—pƒtƒH[ƒ}ƒbƒ^B */
+    /** æ—¥ä»˜è§£æç”¨ãƒ•ã‚©ãƒ¼ãƒãƒƒã‚¿ã€‚ */
     protected static final SimpleDateFormat PARSER =
         new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
 
     /**
-     * ƒwƒ‹ƒp[ƒNƒ‰ƒX‚ğ‰Šú‰»‚·‚éB
+     * ãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
      */
     protected AbstractSnmpVariableHelper()
     {
     }
-    
+
     /**
-     * Object‚ÌŒ^‚©‚çAAsnObject‚ğ¶¬‚·‚éB
-     * 
-     * @param value AsnObject‚É•ÏŠ·‚µ‚½‚¢ObjectB
-     * @param type  Object‚ÌŒ^‚ğ•\‚·•¶š—ñB
-     * @return AsnObjectB
+     * Objectã®å‹ã‹ã‚‰ã€AsnObjectã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param value AsnObjectã«å¤‰æ›ã—ãŸã„Objectã€‚
+     * @param type  Objectã®å‹ã‚’è¡¨ã™æ–‡å­—åˆ—ã€‚
+     * @return AsnObjectã€‚
      */
     public Object createAsnObject(Object value, String type)
         throws SnmpEncodingException
     {
         Log log = LogFactory.getLog(SnmpVariableHelper.class);
         Object obj = null;
-        
+
         if (type.equals(OCTET_STRING))
         {
-            // OctetStringŒ`®‚Ìê‡‚ÍA‚»‚Ì‚Ü‚ÜString‚Æ‚µ‚Äˆµ‚¤
+            // OctetStringå½¢å¼ã®å ´åˆã¯ã€ãã®ã¾ã¾Stringã¨ã—ã¦æ‰±ã†
             String strObj = "";
             if (value != null)
             {
@@ -70,7 +70,7 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
         else
         if (type.equals(OBJECT_ID))
         {
-            // ObjectIDŒ`®‚Ìê‡‚ÍA‚»‚Ì‚Ü‚ÜOID‚É•ÏŠ·‚·‚é
+            // ObjectIDå½¢å¼ã®å ´åˆã¯ã€ãã®ã¾ã¾OIDã«å¤‰æ›ã™ã‚‹
             String oidStr = (String) value;
             log.debug("OBJECT-ID=" + oidStr);
             obj = createObjectId(oidStr);
@@ -78,23 +78,23 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
         else
         if (type.equals(HEX_STRING))
         {
-            // Hex-StringŒ`®‚Ìê‡‚ÍA':' ‚Å‹æØ‚ç‚ê‚½16i•¶š—ñ‚ğbyte[]‚É•ÏŠ·‚·‚é
+            // Hex-Stringå½¢å¼ã®å ´åˆã¯ã€':' ã§åŒºåˆ‡ã‚‰ã‚ŒãŸ16é€²æ–‡å­—åˆ—ã‚’byte[]ã«å¤‰æ›ã™ã‚‹
             byte[]       bytes;
             if (value != null)
             {
                 String   strObj   = (String) value;
                 String[] strArray = strObj.split(":");
-                
+
                 bytes = new byte[strArray.length];
                 StringBuffer buf   = new StringBuffer(strArray.length * 2);
                 try
                 {
                     for (int index = 0; index < strArray.length; index ++)
                     {
-                        // byte‚É•ÏŠ·‚·‚é‘O‚ÉAˆê“xint‚ğ’Ê‚·‚±‚Æ‚Å0x80ˆÈã‚Ì’l‚ğˆµ‚¤
+                        // byteã«å¤‰æ›ã™ã‚‹å‰ã«ã€ä¸€åº¦intã‚’é€šã™ã“ã¨ã§0x80ä»¥ä¸Šã®å€¤ã‚’æ‰±ã†
                         int intValue = Integer.parseInt(strArray[index], 16);
                         bytes[index] = (byte) (intValue & 0x000000FF);
-                        
+
                         if (log.isDebugEnabled())
                         {
                             buf.append(toHexString(bytes[index]) + ":");
@@ -103,7 +103,7 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
                 }
                 catch (NumberFormatException exception)
                 {
-                    // Hex”’l‚Æ‚µ‚Ä”F¯‚Å‚«‚È‚¢ê‡‚ÍA—áŠO‚ğƒXƒ[‚·‚é
+                    // Hexæ•°å€¤ã¨ã—ã¦èªè­˜ã§ããªã„å ´åˆã¯ã€ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹
                     throw new SnmpEncodingException("cannot recognize value as numeric.", exception);
                 }
                 log.debug("HEX-STRING=" + buf.toString());
@@ -118,7 +118,7 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
         else
         if (type.equals(TIMETICKS))
         {
-            // TimeticksŒ`®‚Ìê‡‚ÍA
+            // Timetickså½¢å¼ã®å ´åˆã¯ã€
             Date dateObj = null;
             if (value instanceof Date)
             {
@@ -146,12 +146,12 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
             }
             else
             {
-                // IntegerAStringˆÈŠO‚Í—áŠO‚ğƒXƒ[‚·‚é
+                // Integerã€Stringä»¥å¤–ã¯ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹
                 String actualType = value.getClass().getName();
                 throw new SnmpEncodingException("invalid object type: excepcted=Date, actual=" +
                                                 actualType);
             }
-            
+
             long ticks = dateObj.getTime();
             log.debug("TIMETICKS=" + ticks);
             obj = createTimeticks(ticks);
@@ -159,22 +159,22 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
         else
         if (type.equals(INTEGER))
         {
-            // IntegerŒ`®‚ÍA(java.lang)Integer‚ÆString‚Ì‚İ—LŒø
+            // Integerå½¢å¼ã¯ã€(java.lang)Integerã¨Stringã®ã¿æœ‰åŠ¹
             Integer intObj = null;
             if (value instanceof Integer)
             {
-                // (java.lang)Integer‚Ìê‡
+                // (java.lang)Integerã®å ´åˆ
                 intObj = (Integer) value;
             }
             else
             if (value instanceof String)
             {
-                // String‚Ìê‡
+                // Stringã®å ´åˆ
                 intObj = Integer.valueOf((String) value);
             }
             else
             {
-                // IntegerAStringˆÈŠO‚Í—áŠO‚ğƒXƒ[‚·‚é
+                // Integerã€Stringä»¥å¤–ã¯ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹
                 String actualType = value.getClass().getName();
                 throw new SnmpEncodingException("invalid object type: expected=Integer, actual=" +
                                                 actualType);
@@ -185,7 +185,7 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
         else
         if (type.equals(IPADDRESS))
         {
-            // IpAddressŒ`®‚ÍAInetAddressƒIƒuƒWƒFƒNƒg‚Æ‚µ‚Äˆµ‚¤
+            // IpAddresså½¢å¼ã¯ã€InetAddressã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã—ã¦æ‰±ã†
             InetAddress addrObj;
             try
             {
@@ -195,8 +195,8 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
             }
             catch (UnknownHostException exception)
             {
-                // IpAddressƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚Å‚«‚È‚©‚Á‚½ê‡‚Í
-                // “Æ©‚Ì—áŠO‚É’u‚«Š·‚¦‚ÄƒXƒ[‚·‚é
+                // IpAddressã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã§ããªã‹ã£ãŸå ´åˆã¯
+                // ç‹¬è‡ªã®ä¾‹å¤–ã«ç½®ãæ›ãˆã¦ã‚¹ãƒ­ãƒ¼ã™ã‚‹
                 throw new SnmpEncodingException("Invalid address.", exception);
             }
         }
@@ -204,15 +204,15 @@ public abstract class AbstractSnmpVariableHelper implements SnmpVariableHelper
         {
             throw new SnmpEncodingException("Unknown type: " + type);
         }
-        
+
         return obj;
     }
-    
+
     /**
-     * 1•¶š•ª‚Ìbyte’l‚ğHEX•¶š—ñ‚É•ÏŠ·‚·‚éB(‚â‚âd)
-     * 
-     * @param ch HEX•¶š—ñ‚É•ÏŠ·‚·‚ébyte’lB
-     * @return HEX•¶š—ñB
+     * 1æ–‡å­—åˆ†ã®byteå€¤ã‚’HEXæ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹ã€‚(ã‚„ã‚„é‡)
+     *
+     * @param ch HEXæ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹byteå€¤ã€‚
+     * @return HEXæ–‡å­—åˆ—ã€‚
      */
     private String toHexString(byte ch)
     {
