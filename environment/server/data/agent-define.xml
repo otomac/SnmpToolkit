@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<agents>
+	<agent address="192.168.1.10"
+	       version="v1"
+	       snmpPort="161"
+	       trapPort="162"
+	       roCommunity="public"
+	       rwCommunity="private"
+	       trapCommunity="public">agent-sample.csv</agent>
+	
+	<!--
+	<agent address="192.168.2.100"
+	       version="v1"
+	       port="161"
+	       trap-port="162"
+	       ro-community="public"
+	       rw-community="private"
+	       trap-community="public">agent-sample2.csv</agent>
+ 	-->
+ </agents>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <!-- MIBデータファイルを配置するディレクトリ。
+         agent-define.xml内のAgent定義で参照する。
+     -->
+    <property name="data-dir" value="../data"/>
+    
+    <!-- 各種コマンドからリモートアクセスする際のRMIポート番号。 -->
+    <property name="remote-port" value="10000"/>
+    
+    <!-- Trap送信先となるSNMPマネージャのリスト。udp:<address>/<port>形式。 -->
+    <managers>
+        <manager>udp:192.168.1.1/162</manager>
+    </managers>
+</config>

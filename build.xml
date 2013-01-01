@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="SnmpToolkit" default="jar" basedir=".">
+	<property name="srcdir"    value="${basedir}/src/main/java" />
+	<property name="destdir"   value="${basedir}/classes" />
+	<property name="libdir"    value="${basedir}/lib" />
+	<property name="confdir"   value="${basedir}/environment/server/conf" />
+	<property name="deploydir" value="${basedir}/environment/server/lib" />
+	<property name="jarfile"   value="snmptoolkit.jar" />
+	<property file="build.properties" />
+
+	<target name="init">
+		<!-- set properties to DSTAMP and TSTAMP -->
+		<tstamp>
+			<format property="NOW" pattern="yyyy/MM/dd HH:mm:ss" />
+		</tstamp>
+	</target>
+
+	<!--Classpath-->
+	<path id="project.class.path">
+		<pathelement path="${libdir}/commons-logging-1.1.1.jar" />
+		<pathelement path="${libdir}/commons-beanutils-1.8.0.jar" />
+		<pathelement path="${libdir}/commons-collections-3.2.1.jar" />
+		<pathelement path="${libdir}/commons-digester-2.0.jar" />
+		<pathelement path="${libdir}/SNMP4J.jar" />
+		<pathelement path="${libdir}/SuperCSV-1.52.jar" />
+		<pathelement path="${libdir}/spiffy-with_source-all-0.05" />
+		<pathelement path="${libdir}/log4j-1.2.15.jar" />
+	</path>
+
+	<target name="clean" depends="init">
+		<delete failonerror="no" dir="${destdir}" />
+	</target>
+
+	<target name="prepare" depends="clean">
+		<mkdir dir="${destdir}/manifest" />
+	</target>
+
+	<target name="compile" depends="prepare">
+		<replace file="${srcdir}/jp/co/acroquest/tool/snmp/toolkit/Version.java"
+		         token="###_VERSION_###" value="${snmp.toolkit.version}" />
+		<javac srcdir="${srcdir}" encoding="Shift_JIS" target="1.5" includeantruntime="false"
+			   destdir="${destdir}" classpathref="project.class.path" debug="on">
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<echo message="Signature-Version: SnmpToolkit ${snmp.toolkit.version} (${NOW})"
+			  file="${destdir}/manifest/MANIFEST.MF" />
+		<jar destfile="${basedir}/${jarfile}" basedir="${destdir}"
+			 manifest="${destdir}/manifest/MANIFEST.MF">
+			<include name="**/*.class" />
+		</jar>
+		<move file="${basedir}/${jarfile}" todir="${basedir}/environment/server/lib" />
+	</target>
+
+</project>

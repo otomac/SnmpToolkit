@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  == Trapデータサンプル。
+  == 構成要素: traps            ... このドキュメントのルート要素。
+  ==           |                    複数のtrap-dataを含む。
+  ==           +- trap-data     ... 単一のTrapデータをあらわす要素。
+  ==              +- trap-oid   ... このTrapのTrapOID。
+  ==              +- enterprise ... このTrapのEnterprise。
+  ==              +- varbind    ... このTrapが含むVariableBinding。
+  ==                 |              記述順でTrapに格納される。
+  ==                 +- oid     ... varbindのObjectID。
+  ==                 +- value   ... varbindの値。
+  -->
+<traps>
+    <!-- v1 linkDown Trap -->
+    <trap-data version="v1">
+    	<generic>2</generic>
+    	<specific>0</specific>
+    	<enterprise>1.3.6.1.2.1.4</enterprise>
+    	<varbind>
+    		<oid>1.3.6.1.2.1.2.2.1.1.1</oid>
+    		<value type="integer">1</value>
+    	</varbind>
+    </trap-data>
+    <!-- v1 linkUp Trap -->
+    <trap-data version="v1">
+    	<generic>3</generic>
+    	<specific>0</specific>
+    	<enterprise>1.3.6.1.2.1.4</enterprise>
+    	<varbind>
+    		<oid>1.3.6.1.2.1.2.2.1.1.1</oid>
+    		<value type="integer">1</value>
+    	</varbind>
+    </trap-data>
+</traps>
