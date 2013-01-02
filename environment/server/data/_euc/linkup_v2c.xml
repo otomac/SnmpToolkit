@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="EUC-JP"?>
 
 <!--
-  == Trapデータサンプル。
-  == 構成要素: traps            ... このドキュメントのルート要素。
-  ==           |                    複数のtrap-dataを含む。
-  ==           +- trap-data     ... 単一のTrapデータをあらわす要素。
-  ==              +- trap-oid   ... このTrapのTrapOID。
-  ==              +- enterprise ... このTrapのEnterprise。
-  ==              +- varbind    ... このTrapが含むVariableBinding。
-  ==                 |              記述順でTrapに格納される。
-  ==                 +- oid     ... varbindのObjectID。
-  ==                 +- value   ... varbindの値。
+  == SNMPv2 LinkUp Trapデータサンプル
+  == 構成要素: traps            ... このドキュメントのルート要素
+  ==           |                    複数のtrap-dataを含む
+  ==           +- trap-data     ... 単一のTrapデータをあらわす要素
+  ==              |                 versionにv2c、reqIdを指定しない場合は自動採番
+  ==              +- trap-oid   ... このTrapを指定するObjectID
+  ==              +- specific   ... このTrapのSpecificの値
+  ==              +- enterprise ... このTrapのEnterprise(ObjectID)
+  ==              +- varbind    ... このTrapが含むVariableBinding
+  ==                 |              記述順でTrapに格納される
+  ==                 +- oid     ... varbindのObjectID
+  ==                 +- value   ... varbindの値
   -->
 <traps>
     <!-- v2Trap (linkUp) -->

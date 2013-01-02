@@ -8,7 +8,7 @@
 	       roCommunity="public"
 	       rwCommunity="private"
 	       trapCommunity="public">agent-sample.csv</agent>
-	
+
 	<!--
 	<agent address="192.168.2.100"
 	       version="v1"
@@ -17,5 +17,5 @@
 	       ro-community="public"
 	       rw-community="private"
 	       trap-community="public">agent-sample2.csv</agent>
- 	-->
- </agents>
+	-->
+</agents>
