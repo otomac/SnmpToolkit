@@ -12,7 +12,7 @@ import jp.co.acroquest.tool.snmp.toolkit.entity.SnmpVarbind;
 import org.supercsv.cellprocessor.ConvertNullTo;
 import org.supercsv.cellprocessor.constraint.Unique;
 import org.supercsv.cellprocessor.ift.CellProcessor;
-import org.supercsv.exception.SuperCSVException;
+import org.supercsv.exception.SuperCsvException;
 import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
@@ -76,7 +76,7 @@ public class AgentMIBCSVLoader
             reader = new CsvBeanReader(new FileReader(csvFile), CsvPreference.EXCEL_PREFERENCE);
 
             // ヘッダを取得する
-            final String[] headers = reader.getCSVHeader(true);
+            final String[] headers = reader.getHeader(true);
 
             // Agentを生成し、１行１個のVarbindを生成し格納する
             agent = new Agent();
@@ -91,7 +91,7 @@ public class AgentMIBCSVLoader
                 agent.addVarbind(varbind);
             }
         }
-        catch (SuperCSVException exception)
+        catch (SuperCsvException exception)
         {
             IOException ioex = new IOException(exception.getLocalizedMessage());
             throw ioex;
