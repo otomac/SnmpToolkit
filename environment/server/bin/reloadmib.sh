@@ -23,5 +23,5 @@ source ${basedir}/setenv.sh
 #   ${2} - AgentのIPアドレス (未指定の場合は全てのAgentが対象)
 ${JDK_BIN}/java                                                     \
   -cp ${TOOLKIT_LIB}                                                \
-  jp.co.acroquesttool.snmp.toolkit.command.ReloadMIBData            \
+  jp.co.acroquest.tool.snmp.toolkit.command.ReloadMIBData            \
     $*
