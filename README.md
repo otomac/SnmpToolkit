@@ -5,23 +5,22 @@ SNMPToolkit
 -----------
 SNMPToolkitは、多数のSNMP装置をシミュレートする試験ツール環境です。
 
-
 SnmpToolkitは、以下の機能を提供します。
 
 
-# SNMP v1/v2c ノードシミュレーション
-## Get/GetNextオペレーションへの応答
-## Trap/Notificationの送信
-## Setオペレーションの対応
-#複数ノード(要IPアドレス)のシミュレーション環境
-#MIBデータの動的再読み込み
+1. SNMP v1/v2c ノードシミュレーション
++ Get/GetNextオペレーションへの応答
++ Trap/Notificationの送信
++ Setオペレーションの対応
+1. 複数ノード(要IPアドレス)のシミュレーション環境
+1. MIBデータの動的再読み込み
 
 
 2. インストール
 ---------------
-# 配置
-## snmptoolkit-1.x.x.tgz を展開する。
-## bin/setenv.sh を開き、初期設定を行う。
+# 1. 配置
+## (1) snmptoolkit-1.x.x.tgz を展開する。
+## (2) bin/setenv.sh を開き、初期設定を行う。
 
 ```
 # SnmpToolkitを配置した基準ディレクトリ
@@ -37,8 +36,6 @@ export TOOLKIT_NAME
 JAVA_HOME=/opt/jdk1.5.0_22                           ....[c]
 export JAVA_HOME
 ```
-
-
 [a] インストールディレクトリを記述する。
 
 
@@ -51,7 +48,7 @@ export JAVA_HOME
 [c] JDKのインストールパスを記述する。
 
 
-## conf/config.xml を開き、IPアドレスとポート番号を設定する。
+## (3) conf/config.xml を開き、IPアドレスとポート番号を設定する。
 
 ```
 <config>
@@ -82,7 +79,7 @@ export JAVA_HOME
 
 3. Agentの定義
 --------------
-# agent-define.xml を書く。
+# (1) agent-define.xml を書く。
 ```
 <?xml version="1.0" encoding="EUC-JP"?>
 <agents>
@@ -133,7 +130,7 @@ export JAVA_HOME
 　※config.xml内の、data-dirで指定したディレクトリを基準にして探す。
 
 
-# MIBファイルを書く。
+# (2) MIBファイルを書く。
 ※Trapを送るだけなら、特に無くてよい。空のファイル(★)だけ用意する。
 
 
@@ -149,7 +146,7 @@ oid,type,value,accessibility
 ：
 ```
 
-# 仮想IPアドレス定義
+# (3) 仮想IPアドレス定義
 Linuxの場合は、以下のコマンドで作成する。
 ```
 ifconfig eth0:1000 inet 192.168.101.101 netmask 255.255.255.0 up
@@ -292,6 +289,7 @@ integer, string, octets, timestamp, ipaddress, object-id, hex
 　　※typeに指定できるのは以下の7種類。
 ```
 integer, string, octets, timestamp, ipaddress, object-id, hex
+```
 [s] TrapOID。Trapの種類を指定する。
 
 
