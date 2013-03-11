@@ -19,7 +19,7 @@ SnmpToolkitは、以下の機能を提供します。
 ## (1) snmptoolkit-1.x.x.tgz を展開する。
 ## (2) bin/setenv.sh を開き、初期設定を行う。
 
-```
+```shell
 # SnmpToolkitを配置した基準ディレクトリ
 TOOLKIT_HOME=/home/simagent                          ....[a]
 export TOOLKIT_HOME
@@ -39,7 +39,7 @@ export JAVA_HOME
 [c] JDKのインストールパスを記述する。
 
 ## (3) conf/config.xml を開き、IPアドレスとポート番号を設定する。
-```
+```xml
 <config>
     <property name="data-dir" value="../data"/>
     <property name="remote-port" value="10000"/>     ....[d]
@@ -60,7 +60,7 @@ export JAVA_HOME
 3. Agentの定義
 --------------
 # (1) agent-define.xml を書く。
-```
+```html
 <?xml version="1.0" encoding="EUC-JP"?>
 <agents>
 <!-- #01-1 -->
