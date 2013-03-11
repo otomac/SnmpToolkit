@@ -171,7 +171,7 @@ TOOLKIT_NAMEの値をユニークな名前に設定すること。
 [p] specific   (必須)　MIB定義ファイル(asn.1)参照。  
 [q] enterprise (必須)　MIB定義ファイル(asn.1)参照。  
 [r] varbind    (任意)　Trapに含める情報。  
-※typeに指定できるのは以下の7種類。
+　　※typeに指定できるのは以下の7種類。
 ```
 integer, string, octets, timestamp, ipaddress, object-id, hex
 ```
@@ -222,13 +222,13 @@ integer, string, octets, timestamp, ipaddress, object-id, hex
 ```
 [u] RMIのURL。 rmi://localhost:10000 形式。  
 [v] AgentのIPアドレス。ここが送信元AgentのIPアドレスになる。  
-当然、agent-define.xmlに定義していないと使えない。(無視される)  
+　　当然、agent-define.xmlに定義していないと使えない。(無視される)  
 [w] ファイルパス。 XMLファイルを指定する。  
 [x] Trap送信間隔。  
-1ファイル中に複数のTrap(<trap-data>～</trap-data>)を記述している場合に、
-それらの送信間隔をミリ秒単位で指定可能。  
-省略した場合はウェイト無しで送信する。  
-※HWやOSの性能にもよるが、おおよそ、10ms以下の精度で送信間隔を細かく制御することは困難。
+　　1ファイル中に複数のTrap(<trap-data>～</trap-data>)を記述している場合に、
+　　それらの送信間隔をミリ秒単位で指定可能。  
+　　省略した場合はウェイト無しで送信する。  
+　　※HWやOSの性能にもよるが、おおよそ、10ms以下の精度で送信間隔を細かく制御することは困難。
 
 7. MIBデータのリロード
 ----------------------
@@ -238,7 +238,7 @@ integer, string, octets, timestamp, ipaddress, object-id, hex
 ```
 [u] RMIのURL。 rmi://localhost:10000 形式。  
 [v] AgentのIPアドレス。  
-省略した場合は、agent-define.xml に定義した全てのIPアドレスが対象となる。  
-指定する場合は、agent-define.xmlに定義していないと使えない。(無視される)
+　　省略した場合は、agent-define.xml に定義した全てのIPアドレスが対象となる。  
+　　指定する場合は、agent-define.xmlに定義していないと使えない。(無視される)
 
 以上
