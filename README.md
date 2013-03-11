@@ -15,9 +15,8 @@ SnmpToolkitは、以下の機能を提供します。
 
 2. インストール
 ---------------
-# 1. 配置
-## (1) snmptoolkit-1.x.x.tgz を展開する。
-## (2) bin/setenv.sh を開き、初期設定を行う。
+### (1) snmptoolkit-1.x.x.tgz を展開する。
+### (2) bin/setenv.sh を開き、初期設定を行う。
 
 ```
 # SnmpToolkitを配置した基準ディレクトリ
@@ -38,7 +37,7 @@ export JAVA_HOME
 	　　(１台のマシンで複数のSnmpToolkitを起動する場合には変更が必要)
 [c] JDKのインストールパスを記述する。
 
-## (3) conf/config.xml を開き、IPアドレスとポート番号を設定する。
+### (3) conf/config.xml を開き、IPアドレスとポート番号を設定する。
 ```xml
 <config>
     <property name="data-dir" value="../data"/>
@@ -59,7 +58,7 @@ export JAVA_HOME
 
 3. Agentの定義
 --------------
-# (1) agent-define.xml を書く。
+### (1) agent-define.xml を書く。
 ```xml
 <?xml version="1.0" encoding="EUC-JP"?>
 <agents>
@@ -92,7 +91,7 @@ export JAVA_HOME
 [m] MIBファイル名。  
 　※config.xml内の、data-dirで指定したディレクトリを基準にして探す。
 
-# (2) MIBファイルを書く。
+### (2) MIBファイルを書く。
 ※Trapを送るだけなら、特に無くてよい。空のファイル(★)だけ用意する。  
 ３列のCSVファイルで、OID,型,値の順に書いていく。  
 ★ただし、1行だけ、oid,type,value,accessibility という記述が必要
@@ -103,7 +102,7 @@ oid,type,value,accessibility
 ：
 ```
 
-# (3) 仮想IPアドレス定義
+### (3) 仮想IPアドレス定義
 Linuxの場合は、以下のコマンドで作成する。
 ```
 ifconfig eth0:1000 inet 192.168.101.101 netmask 255.255.255.0 up
