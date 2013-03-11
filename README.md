@@ -19,7 +19,7 @@ SnmpToolkitは、以下の機能を提供します。
 ## (1) snmptoolkit-1.x.x.tgz を展開する。
 ## (2) bin/setenv.sh を開き、初期設定を行う。
 
-```shell
+```
 # SnmpToolkitを配置した基準ディレクトリ
 TOOLKIT_HOME=/home/simagent                          ....[a]
 export TOOLKIT_HOME
@@ -60,7 +60,7 @@ export JAVA_HOME
 3. Agentの定義
 --------------
 # (1) agent-define.xml を書く。
-```html
+```xml
 <?xml version="1.0" encoding="EUC-JP"?>
 <agents>
 <!-- #01-1 -->
@@ -146,7 +146,7 @@ TOOLKIT_NAMEの値をユニークな名前に設定すること。
 -------------------------
 以下のXMLファイルを作成し、保存する。  
 ※以下はv1Trap(LinkDown)の例
-```
+```xml
 <traps>
 <!-- v1 linkDown Trap -->
     <trap-data version="v1" reqId="1234">            ....[n]
@@ -178,7 +178,7 @@ integer, string, octets, timestamp, ipaddress, object-id, hex
 
 ★v2Trapの場合：  
 ※以下はv2Trap(LinkDown)の例
-```
+```xml
 <traps>
     <!-- v2Trap (linkDown) -->
     <trap-data version="v2c" reqId="1236">           ....[n]
