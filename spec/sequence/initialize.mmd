@@ -1,0 +1,95 @@
+sequenceDiagram
+autonumber
+participant Main as SnmpToolkitImpl.main
+participant STMPL as SnmpToolkitImpl
+participant SC as loader.SnmpConfiguration
+participant SCI as entity.SnmpConfigItem
+participant SML as entity.SnmpManagerList
+participant ALCM as AgentLifecycleManager
+participant ADLL as loader.AgentDefinitionListLoader
+participant AMDCSV as loader.AgentMIBCSVLoader
+participant ADL as entity.AgentDefinitionList
+participant AD as entity.AgentDefinition
+participant AS as AgentService
+participant SSF as stack.SnmpStackFactory
+participant S4F as stack.Snmp4jFactory
+participant SRH as request.Snmp4jRequestHandler
+participant STS as trap.Snmp4jTrapSender
+participant RMI as java.rmi.Registry
+participant SNMP as org.snmp4j.Snmp
+participant Digester as org.apache.commons.digester.Digester
+participant SuperCSV as org.supercsv.*
+
+Main->>SC: initialize(configPath)
+Main->>STMPL: checkConfig()
+STMPL->>SC: getInstance()
+SC-->>STMPL: SnmpConfiguration
+STMPL->>SCI: getSnmpConfigItem()
+STMPL->>SML: getSnmpManagerList()
+STMPL->>SML: getSnmpManagers()
+STMPL-->>Main: OK
+
+Main->>STMPL: new SnmpToolkitImpl(dataFile)
+activate STMPL
+STMPL->>ALCM: getInstance()
+STMPL->>SC: getInstance()
+STMPL->>SCI: getSnmpConfigItem()
+STMPL->>SCI: getDataDir()
+STMPL->>ALCM: setDataDir(parentPath)
+STMPL->>ALCM: loadAgent(agentDefFile)
+activate ALCM
+ALCM->>ADLL: new AgentDefinitionListLoader()
+ALCM->>ADLL: load(defFile)
+ADLL->>Digester: parse(File) [external]
+ADLL-->>ALCM: AgentDefinitionList
+ALCM->>ADL: getAgentDefinitionArray()
+loop for each AgentDefinition
+  ALCM->>AD: getAddress(), getAgentMIBFile()
+  ALCM->>AMDCSV: new AgentMIBCSVLoader()
+  ALCM->>AMDCSV: load(dataDir, mibFile)
+  AMDCSV->>SuperCSV: CsvBeanReader(...) [external]
+  AMDCSV-->>ALCM: Agent
+  ALCM->>Agent: setAddress/Ports/Communities
+  ALCM->>AS: new AgentService(agent)
+  ALCM->>ALCM: agentServiceMap.put(address, service)
+end
+deactivate ALCM
+STMPL->>ALCM: startAllAgents()
+activate ALCM
+ALCM->>ALCM: for each address
+ALCM->>AS: startService()
+activate AS
+AS->>SSF: SnmpStackFactory.getFactory()
+SSF->>System: getProperty(snmptoolkit.stackFactory) [external]
+SSF->>Class: forName(factoryClass) [external]
+SSF->>S4F: new Snmp4jFactory()
+SSF-->>AS: SnmpStackFactory
+AS->>S4F: createRequestHandler(this)
+S4F->>SRH: new Snmp4jRequestHandler()
+S4F->>SRH: initHandler(agentService)
+activate SRH
+SRH->>AS: getAgent()
+SRH->>Agent: getAddress(), getSnmpPort(), getRoCommunity(), getRwCommunity()
+SRH->>SNMP: new Snmp(DefaultUdpTransportMapping(UdpAddress)) [external]
+SRH->>SNMP: addCommandResponder(this) [external]
+SRH->>SRH: set communities
+SRH->>SRH: new Snmp4jGetRequestProcessor(agentService)
+SRH->>SRH: new Snmp4jSetRequestProcessor(agentService)
+deactivate SRH
+AS->>S4F: createTrapSender(agent)
+S4F->>STS: new Snmp4jTrapSender(host)
+activate STS
+STS->>S4F: createSnmp(host)
+S4F->>SNMP: new Snmp(DefaultUdpTransportMapping(UdpAddress)) [external]
+S4F-->>STS: Snmp
+deactivate STS
+AS->>SRH: startListening()
+SRH->>SNMP: listen() [external]
+deactivate AS
+deactivate ALCM
+deactivate STMPL
+
+Main->>RMI: createRegistry(remotePort) [external]
+Main->>RMI: bind("SnmpToolkit", toolkit) [external]
+Main-->>Main: SnmpToolkit started
+
