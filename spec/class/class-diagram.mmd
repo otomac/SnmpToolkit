@@ -1,0 +1,153 @@
+  classDiagram
+      class SnmpToolkit as SnmpToolkit interface {
+          +sendTrap(address, TrapData)
+          +reloadMIBData()
+          +reloadMIBData(address)
+      }
+      class SnmpToolkitImpl as SnmpToolkitImpl {
+          -AgentLifecycleManager lcMgr_
+          +SnmpToolkitImpl(agentDefFile)
+          +sendTrap(address, TrapData)
+          +reloadMIBData()
+      }
+      SnmpToolkit <|.. SnmpToolkitImpl
+      SnmpToolkitImpl --> AgentLifecycleManager
+      SnmpToolkitImpl --> SnmpConfiguration
+      SnmpToolkitImpl --> TrapSender
+
+      class AgentLifecycleManager as AgentLifecycleManager {
+          -AgentDefinitionList agentDefList_
+          -Map<String,AgentService> agentServiceMap_
+          +loadAgent(defFile)
+          +startAllAgents()
+          +reloadMIBData(address)
+      }
+      class AgentService as AgentService {
+          -Agent agent_
+          -RequestHandler reqHandler_
+          -TrapSender trapSender_
+          +startService()
+          +stopService()
+      }
+      AgentLifecycleManager o-- AgentService
+      AgentLifecycleManager o-- AgentDefinitionList
+      AgentLifecycleManager ..> AgentDefinitionListLoader
+      AgentLifecycleManager ..> AgentMIBCSVLoader
+      AgentService *-- Agent
+      AgentService o-- RequestHandler
+      AgentService o-- TrapSender
+
+      class SnmpToolkitException as SnmpToolkitException
+      class SnmpEncodingException as SnmpEncodingException
+      class Version as Version
+
+      class Agent {
+          -SortedMap<String,SnmpVarbind> objectMap_
+          +addVarbind(SnmpVarbind)
+          +findObject(oid, exact)
+      }
+      class SnmpVarbind
+      class AgentDefinition
+      class AgentDefinitionList
+      class TrapData {
+          -List<SnmpVarbind> varbindList_
+      }
+      class Traps as Traps {
+          -List<TrapData> trapList_
+      }
+      class SnmpConfigItem {
+          -Map<String,Object> configMap_
+      }
+      class SnmpManagerList {
+          -List<SnmpManager> managerList_
+      }
+      class SnmpManager
+      class OIDComparator
+      Agent o-- SnmpVarbind
+      Agent --> OIDComparator
+      AgentDefinitionList o-- AgentDefinition
+      TrapData o-- SnmpVarbind
+      Traps o-- TrapData
+      SnmpConfigItem o-- SnmpManagerList
+      SnmpManagerList o-- SnmpManager
+
+      class SnmpConfiguration {
+          -SnmpConfigItem item_
+          +getSnmpConfigItem()
+      }
+      class AgentDefinitionListLoader
+      class AgentMIBCSVLoader
+      class TrapDataLoader
+      SnmpConfiguration *-- SnmpConfigItem
+      SnmpConfiguration --> SnmpManagerList
+      AgentDefinitionListLoader ..> AgentDefinitionList
+      AgentDefinitionListLoader ..> AgentDefinition
+      AgentMIBCSVLoader ..> Agent
+      AgentMIBCSVLoader ..> SnmpVarbind
+      TrapDataLoader ..> Traps
+      TrapDataLoader ..> TrapData
+      TrapDataLoader ..> SnmpVarbind
+
+      class RequestHandler interface
+      class Snmp4jRequestHandler {
+          -RequestProcessor getReqProcessor_
+          -RequestProcessor setReqProcessor_
+          -AgentService agentService_
+      }
+      class SimpleRequestSender
+      RequestHandler <|.. Snmp4jRequestHandler
+      Snmp4jRequestHandler o-- Snmp4jGetRequestProcessor
+      Snmp4jRequestHandler o-- Snmp4jSetRequestProcessor
+      Snmp4jRequestHandler --> AgentService
+
+      class RequestProcessor interface
+      class Snmp4jGetRequestProcessor
+      class Snmp4jSetRequestProcessor
+      RequestProcessor <|.. Snmp4jGetRequestProcessor
+      RequestProcessor <|.. Snmp4jSetRequestProcessor
+      Snmp4jGetRequestProcessor --> SnmpVariableHelper
+      Snmp4jGetRequestProcessor --> Agent
+      Snmp4jGetRequestProcessor --> SnmpVarbind
+      Snmp4jSetRequestProcessor --> SnmpVariableHelper
+      Snmp4jSetRequestProcessor --> Agent
+      Snmp4jSetRequestProcessor --> SnmpVarbind
+
+      class SnmpStackFactory abstract {
+          +createTrapSender(Agent)
+          +createRequestHandler(AgentService)
+      }
+      class Snmp4jFactory
+      SnmpStackFactory <|-- Snmp4jFactory
+      Snmp4jFactory ..> Snmp4jRequestHandler
+      Snmp4jFactory ..> Snmp4jTrapSender
+
+      class TrapSender interface
+      class AbstractTrapSender abstract
+      class Snmp4jTrapSender
+      class TrapSenderFactory
+      TrapSender <|.. AbstractTrapSender
+      AbstractTrapSender <|-- Snmp4jTrapSender
+      TrapSenderFactory ..> SnmpStackFactory
+      TrapSenderFactory ..> TrapSender
+      Snmp4jTrapSender --> SnmpConfiguration
+      Snmp4jTrapSender --> SnmpConfigItem
+      Snmp4jTrapSender --> SnmpManagerList
+      Snmp4jTrapSender --> SnmpManager
+      Snmp4jTrapSender --> TrapData
+      Snmp4jTrapSender --> SnmpVarbind
+
+      class SnmpVariableHelper interface
+      class AbstractSnmpVariableHelper abstract
+      class Snmp4jVariableHelper
+      SnmpVariableHelper <|.. AbstractSnmpVariableHelper
+      AbstractSnmpVariableHelper <|-- Snmp4jVariableHelper
+      AbstractSnmpVariableHelper --> SnmpEncodingException
+
+      class RemoteTrapSender
+      class ReloadMIBData
+      class Snmp4jSetRequestSender
+      RemoteTrapSender --> SnmpToolkit
+      RemoteTrapSender --> TrapDataLoader
+      RemoteTrapSender --> TrapData
+      ReloadMIBData --> SnmpToolkit
+      Snmp4jSetRequestSender --> Snmp4jVariableHelper
